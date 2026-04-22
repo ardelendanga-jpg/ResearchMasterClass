@@ -1,0 +1,332 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newlands Clinic Research Masterclass</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 6px solid #e3342f; /* Matching the Newlands red */
+            border-radius: 8px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        header img {
+            max-width: 220px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.4em;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            color: #e3342f;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            font-size: 1.5em;
+        }
+        h3 {
+            color: #e3342f;
+            margin-top: 35px;
+            font-size: 1.2em;
+            background-color: #fdf2f2;
+            padding: 10px 15px;
+            border-left: 4px solid #e3342f;
+            border-radius: 4px;
+        }
+        p, li {
+            font-size: 1.05em;
+            color: #4a5568;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .features-grid li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+        .features-grid li::before {
+            content: "✓";
+            color: #e3342f;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px #eee;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #f8fafc;
+            color: #2c3e50;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+        .highlight-box {
+            background-color: #fdf2f2;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .instructor-section {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .instructor-name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #a0aec0;
+        }
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="image_4813bf.png" alt="Newlands Clinic Logo">
+        <h1>Research Masterclass</h1>
+        <div class="subtitle">Fundamentals of Research</div>
+    </header>
+
+    <main>
+        <h2>Course Description</h2>
+        <p>The Newlands Clinic Research Masterclass is a 12-week online program designed to introduce medical doctors to the fundamentals of clinical research, epidemiology, and scientific writing. Based at Newlands Clinic, this course empowers clinicians to transition from consuming medical literature to actively contributing to it.</p>
+        <p>The program teaches professionals how to design robust studies, analyze epidemiological data, and synthesize their findings into publication-ready manuscripts. Participants will apply their knowledge through structured weekly sessions and targeted readings, demonstrating real-world research capabilities relevant to their clinical practice.</p>
+
+        <h2>Bootcamp Features</h2>
+        <ul class="features-grid">
+            <li>A 3-Month Guided Course</li>
+            <li>Weekly live 1-hour lectures</li>
+            <li>Targeted weekly independent reading (2 hours)</li>
+            <li>Real-world clinical examples and datasets</li>
+            <li>Personalized feedback on writing assignments</li>
+            <li>Shareable certificate upon completion</li>
+        </ul>
+
+        <h2>Workload and Recommended Credits</h2>
+        <p>The 12-week course comprises weekly lectures and independent learning, totaling approximately 36 hours of work. A detailed breakdown of the course workload is shown below.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Course Component</th>
+                    <th>Total Hours Dedicated Over 12 Weeks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Live lecture sessions (1 hour per week)</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Independent reading & prework (2 hours per week)</td>
+                    <td>24</td>
+                </tr>
+                <tr style="font-weight: bold; background-color: #fdf2f2;">
+                    <td>TOTAL TYPICAL WORKING TIME</td>
+                    <td>36 HOURS</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Instructors & Mentors</h2>
+        <div class="instructor-section">
+            <div class="instructor-name">Ardele Ndanga, PhD(c)</div>
+            <div><em>Course Director</em></div>
+            <p style="margin-top: 5px; margin-bottom: 0;">Epidemiologist and Researcher, Newlands Clinic.</p>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #718096;"><em>(Additional guest lecturers and biostatisticians to be announced).</em></p>
+        </div>
+
+        <h2>Course Syllabus</h2>
+
+        <h3>Module 1: Fundamentals of Epidemiology (Weeks 1 - 4)</h3>
+        <p>This module provides a grounding in epidemiological study designs and measures of disease risk used in aetiological epidemiology and health services research.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Week</th>
+                    <th style="width: 40%;">Prework & Reading (2 hrs)</th>
+                    <th style="width: 40%;">Lecture Topics (1 hr)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Introduction to Population Health</strong></td>
+                    <td>• Historical context of epidemiology<br>• The clinical vs. population perspective</td>
+                    <td>• Overview of the fundamentals of epidemiology<br>• Introduction to epidemiology for doctors<br>• The epidemiological focus: cases and populations</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Measuring Disease</strong></td>
+                    <td>• Interpreting incidence and prevalence rates<br>• Overview of health surveillance systems</td>
+                    <td>• Measures of disease occurrence<br>• Routine data use in epidemiology</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Measuring Effect</strong></td>
+                    <td>• Understanding risk, rates, and odds<br>• Recognizing bias and confounding</td>
+                    <td>• Measures of effect and impact<br>• Introduction to causal inference</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Study Design</strong></td>
+                    <td>• Hierarchy of clinical evidence<br>• Case studies on clinical trials</td>
+                    <td>• Measures of study design (Observational vs. Experimental)<br>• Selecting the right design for your question</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Module 2: Statistics for Epidemiology (Weeks 5 - 8)</h3>
+        <p>Master the core biostatistical tools required for analyzing clinical data, understanding probabilities, and conducting valid statistical inferences.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Week</th>
+                    <th style="width: 40%;">Prework & Reading (2 hrs)</th>
+                    <th style="width: 40%;">Lecture Topics (1 hr)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>5. Data Fundamentals</strong></td>
+                    <td>• Identifying categorical vs. continuous data<br>• Best practices in data visualization</td>
+                    <td>• Introduction to statistics for epidemiology<br>• Data types, summary, and presentations</td>
+                </tr>
+                <tr>
+                    <td><strong>6. Probability & Distributions</strong></td>
+                    <td>• The concept of randomness in clinical trials<br>• Recognizing normal distribution curves</td>
+                    <td>• Probability and the role of chance<br>• Normal and binomial distributions</td>
+                </tr>
+                <tr>
+                    <td><strong>7. Statistical Inference</strong></td>
+                    <td>• Hypothesis testing basics<br>• Understanding Type I and Type II errors</td>
+                    <td>• Principles of statistical inference<br>• Comparisons of two means and proportions</td>
+                </tr>
+                <tr>
+                    <td><strong>8. Associations & Effect</strong></td>
+                    <td>• Correlation vs. causation<br>• Interpreting confidence intervals</td>
+                    <td>• Association of two variables<br>• Statistical measures of effect (p-values and CIs)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Module 3: Introduction to Scientific Writing (Weeks 9 - 12)</h3>
+        <p>Explore structured approaches for research dissemination, focusing on synthesizing your findings into a coherent, publishable manuscript.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Week</th>
+                    <th style="width: 40%;">Prework & Reading (2 hrs)</th>
+                    <th style="width: 40%;">Lecture Topics (1 hr)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>9. The Manuscript Blueprint</strong></td>
+                    <td>• Deconstructing a highly-cited paper<br>• The IMRAD structure</td>
+                    <td>• Overview of research manuscripts<br>• A dive into manuscript sections: Introduction & Methods</td>
+                </tr>
+                <tr>
+                    <td><strong>10. Presenting the Evidence</strong></td>
+                    <td>• Strategies for transparent reporting<br>• Guidelines for tables and figures</td>
+                    <td>• A dive into manuscript sections: Results & Discussion<br>• Aligning data with narrative</td>
+                </tr>
+                <tr>
+                    <td><strong>11. The Mechanics of Good Writing</strong></td>
+                    <td>• Active vs. passive voice in science<br>• Eliminating clinical jargon</td>
+                    <td>• Sentence and paragraph construction for a coherent message<br>• Ensuring logical flow and brevity</td>
+                </tr>
+                <tr>
+                    <td><strong>12. The Publication Journey</strong></td>
+                    <td>• Journal selection criteria<br>• Ethics, authorship, and citations</td>
+                    <td>• Navigating the peer-review process<br>• Responding to reviewer feedback</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box">
+            <h2 style="margin-top: 0; border: none; color: #e3342f;">Grading Rubric</h2>
+            <ul style="list-style-type: none; padding: 0; margin-bottom: 15px;">
+                <li><strong>Weekly comprehension quizzes:</strong> 20%</li>
+                <li><strong>Lecture attendance and participation:</strong> 20%</li>
+                <li><strong>Final Project:</strong> 60%</li>
+            </ul>
+            <div style="font-size: 1.2em; font-weight: bold; color: #2c3e50;">Passing grade: 80%</div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        &copy; 2026 Newlands Clinic. All rights reserved.
+    </footer>
+</div>
+
+</body>
+</html>
+```
