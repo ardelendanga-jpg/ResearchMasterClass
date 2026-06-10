@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1: Topics 1 & 2 Study Notes — Fundamentals of Epidemiology</title>
+<style>
+  :root {
+    --nc-navy: #1B2E4B;
+    --nc-red: #C0392B;
+    --nc-slate: #4A5568;
+    --nc-cream: #F8F6F2;
+    --nc-light-gray: #F1F5F9;
+    --text-color: #2D3748;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.7;
+    background-color: #FFF;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Header Styles */
+  header {
+    border-bottom: 2px solid var(--nc-navy);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .meta-tag {
+    display: inline-block;
+    background-color: var(--nc-red);
+    color: #FFF;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    color: var(--nc-navy);
+    font-size: 2.2rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--nc-slate);
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  /* Typography */
+  h2 {
+    color: var(--nc-navy);
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--nc-light-gray);
+    padding-bottom: 0.3rem;
+  }
+
+  h3 {
+    color: var(--nc-slate);
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  strong {
+    color: #000;
+  }
+
+  /* Lists */
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+  }
+
+  /* Feature Boxes */
+  .box {
+    padding: 1.25rem 1.5rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+  }
+
+  .box-definition {
+    background-color: var(--nc-cream);
+    border-left: 4px solid var(--nc-red);
+  }
+
+  .box-definition .label {
+    color: var(--nc-red);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .box-local {
+    background-color: #EAF3DE;
+    border: 1px solid #97C459;
+  }
+
+  .box-local .label {
+    color: #3B6D11;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .box-local p {
+    color: #27500A;
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+
+  th {
+    background-color: var(--nc-navy);
+    color: #FFF;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--nc-light-gray);
+  }
+
+  tr:nth-child(even) td {
+    background-color: #F8FAFC;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--nc-light-gray);
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--nc-slate);
+    text-align: center;
+  }
+
+  /* Print Optimized Styles */
+  @media print {
+    body { padding: 0; font-size: 11pt; }
+    .container { max-width: 100%; }
+    h1 { font-size: 24pt; }
+    h2 { font-size: 18pt; page-break-after: avoid; }
+    h3 { font-size: 14pt; page-break-after: avoid; }
+    .box { page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
+    footer { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="meta-tag">Module 1 · Topics 1 &amp; 2</div>
+    <h1>Fundamentals of Research Masterclass</h1>
+    <div class="subtitle">Deep-Read Reference Study Notes: Core Epidemiology Principles</div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Topic 1: What is Epidemiology?</h2>
+      
+      <div class="box box-definition">
+        <div class="label">Formal Definition</div>
+        <p>"The study of the occurrence and distribution of health-related states or events in specified populations, including the study of determinants influencing such states, and the application of this study to control health problems."</p>
+        <p style="font-size: 0.85rem; color: var(--nc-slate); margin: 0; font-style: italic;">— Porta, Greenland &amp; Last (Dictionary of Epidemiology, 2008)</p>
+      </div>
+
+      <p>In clinical practice, we focus heavily on individual patients. Epidemiology shifts our view to look at the broader picture by breaking this definition down into four fundamental operational parameters:</p>
+      <ul>
+        <li><strong>Frequency (How often?):</strong> Quantifying how common or rare a specific clinical outcome or health state is within a group.</li>
+        <li><strong>Distribution (Who, where, and when?):</strong> Dissecting the patterns of the health event across demographic characteristics, geographic catchments, and temporal shifts.</li>
+        <li><strong>Determinants (Why?):</strong> Investigating the causal factors, risk modifiers, exposures, and biological drivers underlying those observed distributions.</li>
+        <li><strong>Application (So what?):</strong> Converting research evidence directly into active health strategies, clinical guidelines, and policy actions to mitigate outcomes.</li>
+      </ul>
+
+      <h3>Historical Benchmarks &amp; Etymology</h3>
+      <p>Derived from the Greek roots <strong>epi</strong> (upon) and <strong>demos</strong> (people), the field has evolved from structural observation to dynamic causation models:</p>
+      <ul>
+        <li><strong>Hippocrates (~460 BC):</strong> Promoted the idea that disease distributions are not random but driven by environment, seasons, and human behaviors.</li>
+        <li><strong>William Farr (1839):</strong> Established systemic registry metrics to demonstrate how mortality scales systematically alongside socioeconomic conditions and geography.</li>
+        <li><strong>John Snow (1854):</strong> Traced London's cholera cluster using spatial tracking to isolate a specific community water infrastructure point, demonstrating disease control vectors prior to standard microbiology.</li>
+        <li><strong>Ignaz Semmelweis (1840s):</strong> Compared parallel wards to implement standard hand hygiene protocols, establishing early paradigms for intervention-driven outcome variance.</li>
+      </ul>
+
+      <div class="box box-local">
+        <div class="label">Modern Local Parallel: Cholera (2023–2024)</div>
+        <p>The historical methods of Snow remain critical today. During the 2023–2024 regional outbreak, tracking 34,549 suspected cases and 718 deaths across all 10 provinces allowed epidemiological teams to direct emergency resources, prioritize clean water distribution, and focus medical setups exactly where patterns indicated high transmission vectors.</p>
+      </div>
+
+      <h3>Methodological Categorizations</h3>
+      <p>Research frameworks are broadly split across descriptive, analytical, observational, and experimental vectors:</p>
+      
+      <p><strong>Descriptive vs. Analytical:</strong> Descriptive research establishes <em>"What is happening?"</em> by mapping prevalence and distribution metrics without attempting to validate causal connections (e.g., finding that the prevalence of hypertension among PLHIV aged &ge;50 at our clinic is 41.2%). Analytical research establishes <em>"Why is it happening?"</em> by measuring direct relationships between specific exposures and targets to isolate underlying risks.</p>
+
+      <p><strong>Observational vs. Interventional:</strong> In observational structures, variables are measured exactly as they naturally manifest without clinical disruption. In interventional frameworks, researchers systematically modify an exposure setting (e.g., via clinical trials) to measure direct prospective outcomes. Observational frameworks can be descriptive or analytical, whereas interventional research is inherently analytical.</p>
+    </section>
+
+    <section>
+      <h2>Topic 2: The Epidemiological Focus</h2>
+      
+      <h3>Defining the Denominator</h3>
+      <p>A primary rule of epidemiology is to establish an exact denominator. Clinical medicine centers heavily on the numerator (the individual presenting with standard symptoms). Epidemiology focuses on the **underlying group parameter** from which those specific cases emerged.</p>
+      
+      <p>While general demography views a population strictly as the geographic residents of an area, an **epidemiological population** is defined as the precise collection of baseline units (individuals, clinical sites, records) from which samples are structurally captured. For instance, in our collaborative cohort studies, the denominator is explicitly defined as all clinical patients aged &ge;16 initiating specialized ART regimens within specific date brackets, rather than a broad geographic cross-section.</p>
+
+      <h3>The Descriptive Triad: Person, Place, and Time</h3>
+      <p>Any robust study design requires framing health states within three strict parameters:</p>
+      <ul>
+        <li><strong>Person:</strong> Who develops the outcome? (Age variations, sex ratios, occupational vectors, immunological history, baseline body mass index, current therapeutic lines).</li>
+        <li><strong>Place:</strong> Where is the health state happening? (Catchment topography, district tracking, environmental borders, urban versus rural infrastructure).</li>
+        <li><strong>Time:</strong> When is the health state scaling? (Calendar cohorts, secular long-term trajectories, seasonal fluctuations).</li>
+      </ul>
+
+      <h3>Case Definitions</h3>
+      <p>A case definition is a pre-specified, strict set of clinical and diagnostic criteria used to determine whether an individual is counted in a study's numerator. Maintaining rigid consistency is crucial because shifting criteria alters data boundaries:</p>
+      <ul>
+        <li><strong>Overly Broad Definitions:</strong> Introduce false positives, falsely inflating calculated prevalence data.</li>
+        <li><strong>Overly Restricted Definitions:</strong> Miss early presentation lines, leading to an underestimation of the clinical burden.</li>
+      </ul>
+      <p>For example, in local clinical research, a case definition for hypertension requires documented systolic metrics &gt;140 mmHg and/or diastolic metrics &gt;90 mmHg captured across two separate days, or confirmed active use of antihypertensive medication. In outbreak settings like cholera, surveillance parameters explicitly separate *suspected cases* (based on clinical signs like acute watery diarrhea) from *confirmed cases* (requiring laboratory isolation of <em>Vibrio cholerae</em>).</p>
+
+      <h3>Exposures and Outcomes</h3>
+      <p>Analytical research maps out the links between two distinct targets:</p>
+      <ul>
+        <li><strong>Exposure:</strong> The predictive variable, risk characteristic, environmental factor, or therapeutic line hypothesized to influence health states.</li>
+        <li><strong>Outcome:</strong> The final clinical endpoint, disease state, or performance metric under investigation.</li>
+      </ul>
+
+      <p> Crucially, a single clinical metric can serve as an exposure in one design and an outcome in another, depending on the core research objective:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Research Objective Context</th>
+            <th>Exposure Factor</th>
+            <th>Outcome Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Evaluating drug-induced metabolic changes</td>
+            <td>ART Regimen Selection (e.g., DTG vs. EFV)</td>
+            <td>New-Onset Hypertension / Weight Variance</td>
+          </tr>
+          <tr>
+            <td>Assessing risk vectors during regional outbreaks</td>
+            <td>Sub-district Infrastructure / Water Access</td>
+            <td>Confirmed Cholera Diagnosis or Mortality</td>
+          </tr>
+          <tr>
+            <td>Tracking long-term metabolic risk in chronic care</td>
+            <td>Total ART Duration &amp; CD4 Recovery Line</td>
+            <td>Incident Type 2 Diabetes Mellitus (T2DM)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fundamentals of Research Masterclass — Developed for Clinical Investigators</p>
+    <p>For research queries, curriculum feedback, or cohort updates, please contact the team at: <a href="mailto:research@newlandsclinic.org.zw">research@newlandsclinic.org.zw</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
