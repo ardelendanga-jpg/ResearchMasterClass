@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Module 1 Topics 1 & 2 Slides</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --nc-navy:#1B2E4B;
+  --nc-red:#C0392B;
+  --nc-red-light:#F5C4B3;
+  --nc-cream:#F8F6F2;
+  --nc-slate:#4A5568;
+  --nc-highlight:#FFF3CD;
+}
+body{font-family:var(--font-sans);background:transparent}
+.deck{width:100%;max-width:700px;margin:0 auto;padding:0.5rem 0}
+.slide{display:none;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-primary);overflow:hidden}
+.slide.active{display:block}
+.slide-header{background:var(--nc-navy);color:#fff;padding:1.25rem 1.5rem 1rem}
+.slide-header .eyebrow{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.35rem}
+.slide-header h2{font-size:20px;font-weight:500;line-height:1.3;color:#fff}
+.slide-header .module-tag{display:inline-block;background:var(--nc-red);color:#fff;font-size:11px;padding:3px 10px;border-radius:4px;margin-bottom:0.5rem}
+.slide-body{padding:1.25rem 1.5rem}
+.slide-footer{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.5rem;border-top:0.5px solid var(--color-border-tertiary)}
+.slide-counter{font-size:12px;color:var(--color-text-secondary)}
+.nav-row{display:flex;gap:8px}
+.nav-btn{padding:6px 16px;font-size:13px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+.nav-btn:hover{background:var(--color-background-secondary)}
+.nav-btn.primary{background:var(--nc-navy);color:#fff;border-color:var(--nc-navy)}
+.nav-btn.primary:hover{background:#243d63}
+.def-box{background:var(--color-background-secondary);border-left:3px solid var(--nc-red);padding:0.85rem 1rem;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;margin:0.75rem 0;border-radius:0 8px 8px 0}
+.def-box .def-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--nc-red);font-weight:500;margin-bottom:0.3rem}
+.def-box p{font-size:14px;color:var(--color-text-primary);line-height:1.6}
+.zim-box{background:#EAF3DE;border:0.5px solid #97C459;border-radius:var(--border-radius-md);padding:0.85rem 1rem;margin:0.75rem 0}
+.zim-box .zim-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#3B6D11;font-weight:500;margin-bottom:0.3rem;display:flex;align-items:center;gap:6px}
+.zim-box p{font-size:14px;color:#27500A;line-height:1.6}
+.ppt{font-size:15px;color:var(--color-text-primary);line-height:1.65;margin:0.5rem 0}
+.ppt strong{font-weight:500}
+.bullets{list-style:none;margin:0.5rem 0}
+.bullets li{font-size:14px;color:var(--color-text-primary);line-height:1.6;padding:0.3rem 0 0.3rem 1.25rem;position:relative}
+.bullets li::before{content:"";position:absolute;left:0;top:0.72rem;width:7px;height:7px;border-radius:50%;background:var(--nc-red)}
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-secondary);color:var(--color-text-primary);cursor:pointer;margin:0.5rem 0}
+.reveal-btn:hover{background:var(--color-background-tertiary)}
+.reveal-content{display:none;margin-top:0.5rem}
+.reveal-content.shown{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0.75rem 0}
+.card-sm{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:0.75rem 1rem}
+.card-sm .card-title{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-secondary);margin-bottom:0.4rem}
+.card-sm p{font-size:13px;color:var(--color-text-primary);line-height:1.55}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;margin:0.75rem 0}
+.quiz-opt{padding:10px 14px;font-size:14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);cursor:pointer;text-align:left;color:var(--color-text-primary)}
+.quiz-opt:hover{background:var(--color-background-secondary)}
+.quiz-opt.correct{background:#EAF3DE;border-color:#97C459;color:#27500A}
+.quiz-opt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
+.quiz-feedback{padding:0.75rem 1rem;border-radius:var(--border-radius-md);margin-top:0.5rem;font-size:14px;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#EAF3DE;color:#27500A}
+.quiz-feedback.bad{background:#FCEBEB;color:#791F1F}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:0.85rem 0}
+.stat-strip{display:flex;gap:10px;margin:0.75rem 0;flex-wrap:wrap}
+.stat-chip{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.6rem 0.9rem;flex:1;min-width:130px}
+.stat-chip .num{font-size:20px;font-weight:500;color:var(--nc-red)}
+.stat-chip .lbl{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.progress-bar-wrap{height:4px;background:var(--color-border-tertiary);border-radius:2px;margin-bottom:1.25rem;overflow:hidden}
+.progress-bar{height:100%;background:var(--nc-red);border-radius:2px;transition:width 0.3s ease}
+.section-intro{text-align:center;padding:1.5rem 1rem}
+.section-intro .big-num{font-size:48px;font-weight:500;color:var(--nc-red);line-height:1}
+.section-intro .big-label{font-size:14px;color:var(--color-text-secondary);margin-top:0.25rem}
+.topic-badge{display:inline-block;background:var(--nc-red);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:4px;vertical-align:middle}
+.table-simple{width:100%;border-collapse:collapse;font-size:13px;margin:0.75rem 0}
+.table-simple th{background:var(--nc-navy);color:#fff;padding:7px 10px;text-align:left;font-weight:500}
+.table-simple td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+.table-simple tr:last-child td{border-bottom:none}
+.table-simple tr:nth-child(even) td{background:var(--color-background-secondary)}
+</style>
+</head>
+<body>
+
+<div class="deck">
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar" style="width:10%"></div></div>
+<div id="slide-wrap"></div>
+</div>
+
+<script>
+const slides = [
+
+{id:'cover', render(){return `
+<div class="slide-header">
+  <div class="module-tag">Module 1 · Topics 1 & 2</div>
+  <div class="eyebrow">Research Masterclass for Clinicians — Newlands Clinic</div>
+  <h2>Fundamentals of Epidemiology: What it is &amp; who it is about</h2>
+</div>
+<div class="slide-body">
+  <div class="section-intro">
+    <div class="big-num">2</div>
+    <div class="big-label">topics · ~30 minutes</div>
+  </div>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">Topic 1</div><p>Overview of epidemiology and its applications in clinical medicine</p></div>
+    <div class="card-sm"><div class="card-title">Topic 2</div><p>The epidemiological focus: defining cases and populations</p></div>
+  </div>
+  <p class="ppt" style="font-size:13px;color:var(--color-text-secondary);margin-top:0.5rem">By the end of this session you will be able to define epidemiology, explain what "population" means in our discipline, and describe a health event using person, place, and time.</p>
+</div>
+`}},
+
+{id:'t1a', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 1</span> What is epidemiology?</div>
+  <h2>The definition and its parts</h2>
+</div>
+<div class="slide-body">
+  <div class="def-box">
+    <div class="def-label">Definition</div>
+    <p>"The study of the <strong>occurrence and distribution</strong> of health-related states or events in <strong>specified populations</strong>, including the study of <strong>determinants</strong> influencing such states, and the application of this study to <strong>control health problems</strong>."</p>
+    <p style="font-size:12px;color:var(--color-text-secondary);margin-top:0.4rem">Porta, Greenland &amp; Last — Dictionary of Epidemiology, 2008</p>
+  </div>
+  <hr class="divider">
+  <p class="ppt">Three core questions underpin the definition:</p>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">How often?</div><p>Frequency — how common is the health event?</p></div>
+    <div class="card-sm"><div class="card-title">In whom, where, when?</div><p>Distribution — who gets it, where, and at what time?</p></div>
+    <div class="card-sm"><div class="card-title">Why?</div><p>Determinants — what drives it?</p></div>
+    <div class="card-sm"><div class="card-title">So what?</div><p>Application — what can we do about it?</p></div>
+  </div>
+</div>
+`}},
+
+{id:'t1b', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 1</span> What is epidemiology?</div>
+  <h2>The Greek roots and a brief history</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">The word comes from Greek: <strong>epi</strong> (upon) + <strong>demos</strong> (people).</p>
+  <div class="grid2" style="margin-top:0.75rem">
+    <div class="card-sm"><div class="card-title">Hippocrates (~460 BC)</div><p>First described distribution of disease by season, climate, water source, and personal behaviour.</p></div>
+    <div class="card-sm"><div class="card-title">William Farr (1839)</div><p>Set up England's first routine death-registration system; compared mortality by occupation and place.</p></div>
+    <div class="card-sm"><div class="card-title">John Snow (1854)</div><p>Mapped cholera deaths in London, identified the Broad Street pump — evidence without a microscope.</p></div>
+    <div class="card-sm"><div class="card-title">Ignaz Semmelweis (1840s)</div><p>Reduced puerperal fever by comparing wards and introducing handwashing — an early intervention study.</p></div>
+  </div>
+  <div class="zim-box" style="margin-top:0.5rem">
+    <div class="zim-label"><i class="ti ti-map-pin" aria-hidden="true"></i> Zimbabwean parallel</div>
+    <p>Zimbabwe's 2023–2024 cholera outbreak is a direct modern parallel to Snow's work. <strong>34,549 suspected cases and 718 deaths</strong> across all 10 provinces — the distribution (who, where, when) had to be mapped before the response could be targeted.</p>
+  </div>
+</div>
+`}},
+
+{id:'t1c', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 1</span> What is epidemiology?</div>
+  <h2>Descriptive vs analytical epidemiology</h2>
+</div>
+<div class="slide-body">
+  <div class="grid2">
+    <div class="card-sm" style="border-left:3px solid var(--nc-red)">
+      <div class="card-title">Descriptive</div>
+      <p><strong>"What is happening?"</strong> — describes frequency and distribution of an exposure or outcome without seeking to explain it.</p>
+      <p style="margin-top:0.5rem;font-size:12px;color:var(--color-text-secondary)">Example: prevalence of hypertension among PLHIV at Newlands Clinic is 41.2% in patients aged &ge;50.</p>
+    </div>
+    <div class="card-sm" style="border-left:3px solid #185FA5">
+      <div class="card-title">Analytical</div>
+      <p><strong>"Why is it happening?"</strong> — examines associations between exposures and outcomes to identify possible causes.</p>
+      <p style="margin-top:0.5rem;font-size:12px;color:var(--color-text-secondary)">Example: Is dolutegravir-based ART associated with higher rates of hypertension vs efavirenz?</p>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="grid2">
+    <div class="card-sm" style="border-left:3px solid #3B6D11">
+      <div class="card-title">Observational</div>
+      <p>We measure without intervening — no attempt to alter the exposure.</p>
+    </div>
+    <div class="card-sm" style="border-left:3px solid #854F0B">
+      <div class="card-title">Interventional</div>
+      <p>We modify an exposure and measure the effect — experimental design.</p>
+    </div>
+  </div>
+  <p class="ppt" style="font-size:13px;color:var(--color-text-secondary);margin-top:0.5rem">Observational studies can be descriptive or analytical. Interventional studies are always analytical.</p>
+</div>
+`}},
+
+{id:'t1d', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 1</span> What is epidemiology?</div>
+  <h2>The role of epidemiology: three functions</h2>
+</div>
+<div class="slide-body">
+  <ul class="bullets">
+    <li><strong>Describe</strong> — quantify the frequency and distribution of health events in a population. Who is affected, where, and when?</li>
+    <li><strong>Interpret</strong> — investigate risk factors and determinants. Does a pattern of exposure explain the disease distribution?</li>
+    <li><strong>Apply and evaluate</strong> — translate findings into health policy and programmes, then assess whether they work.</li>
+  </ul>
+  <div class="zim-box">
+    <div class="zim-label"><i class="ti ti-map-pin" aria-hidden="true"></i> Zimbabwe example — all three functions</div>
+    <p><strong>Describe:</strong> the IeDEA–Newlands cohort found that as DTG-based ART was introduced, weight gain of ~4 kg over 2 years was documented in 9,487 PLHIV. <strong>Interpret:</strong> was the weight gain itself driving new hypertension? Analytical methods were used to assess that association. <strong>Apply:</strong> results inform monitoring protocols for PLHIV on DTG across sub-Saharan Africa.</p>
+  </div>
+</div>
+`}},
+
+{id:'t1e_quiz', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 1 — Check your understanding</span></div>
+  <h2>Quick question</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Researchers at Newlands Clinic report that <strong>41.2% of patients aged &ge;50 receiving HIV care have hypertension</strong> (Chimbetete et al., 2020). What type of epidemiology is this?</p>
+  <div class="quiz-opts" id="q1opts">
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">Analytical — it compares hypertensive and non-hypertensive PLHIV</button>
+    <button class="quiz-opt" onclick="checkQ(this,'correct','q1fb')">Descriptive — it reports the frequency of a condition in a defined group</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">Interventional — it tests an antihypertensive treatment</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">None of the above</button>
+  </div>
+  <div class="quiz-feedback ok" id="q1fb_correct" style="display:none">
+    Correct! Reporting a prevalence figure (41.2%) in a defined population (PLHIV aged &ge;50 at Newlands Clinic) is classic descriptive epidemiology — it tells us <em>how common</em> without yet asking <em>why</em>.
+  </div>
+  <div class="quiz-feedback bad" id="q1fb_wrong" style="display:none">
+    Not quite. This statement only reports a proportion — it does not compare groups or test an intervention. Reporting frequency in a defined population = descriptive epidemiology.
+  </div>
+</div>
+`}},
+
+{id:'t2a', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 2</span> The epidemiological focus</div>
+  <h2>Defining the population</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Epidemiologists constantly ask: <strong>"What is the denominator?"</strong> — meaning, what is the population from which the cases arose?</p>
+  <div class="grid2">
+    <div class="card-sm" style="border-top:2px solid var(--nc-red)">
+      <div class="card-title">Epidemiology</div>
+      <p>Population = the <strong>collection of units</strong> from which our sample is drawn. Could be people, institutions, or events.</p>
+    </div>
+    <div class="card-sm" style="border-top:2px solid var(--nc-navy)">
+      <div class="card-title">Demography</div>
+      <p>Population = the <strong>inhabitants of a country or area</strong> — a geographic concept.</p>
+    </div>
+  </div>
+  <div class="zim-box">
+    <div class="zim-label"><i class="ti ti-map-pin" aria-hidden="true"></i> Zimbabwe example</div>
+    <p>The IeDEA–Newlands cohort study enrolled <strong>all patients aged &ge;16 commencing ART at Newlands Clinic between 2004 and 2015</strong>. That patient list is the epidemiological population — not all Zimbabweans, not all PLHIV in Africa. The denominator is precisely defined.</p>
+  </div>
+</div>
+`}},
+
+{id:'t2b', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 2</span> The epidemiological focus</div>
+  <h2>Person, place, and time</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">To describe any health event we need to characterise it in three dimensions:</p>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">Person</div><p>Who is affected? Age, sex, occupation, HIV status, ART regimen, BMI.</p></div>
+    <div class="card-sm"><div class="card-title">Place</div><p>Where does it occur? Country, district, clinic catchment area, urban vs rural.</p></div>
+    <div class="card-sm" style="grid-column:1/-1"><div class="card-title">Time</div><p>When does it occur? Calendar period, secular trends, seasonal patterns.</p></div>
+  </div>
+  <hr class="divider">
+  <p class="ppt" style="font-size:13px">Practice identifying person, place, and time below — click to reveal.</p>
+  <button class="reveal-btn" onclick="toggle('ppt_ex')"><i class="ti ti-eye" aria-hidden="true"></i> Show worked example</button>
+  <div class="reveal-content" id="ppt_ex">
+    <div class="zim-box">
+      <div class="zim-label"><i class="ti ti-map-pin" aria-hidden="true"></i> Example statement</div>
+      <p>"The prevalence of hypertension among <strong style="color:#1B2E4B">HIV-positive adults aged &ge;50 (65% women)</strong> receiving care at <strong style="color:#C0392B">Newlands Clinic, Harare, Zimbabwe</strong>, was 41.2% as of <strong style="color:#3B6D11">1 October 2019</strong>."</p>
+      <p style="margin-top:0.5rem;font-size:12px"><strong>Person:</strong> HIV-positive adults aged &ge;50, predominantly women · <strong>Place:</strong> Newlands Clinic, Harare · <strong>Time:</strong> October 2019</p>
+    </div>
+  </div>
+</div>
+`}},
+
+{id:'t2c', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 2</span> The epidemiological focus</div>
+  <h2>Cases and populations — defining each precisely</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">A <strong>case</strong> is a person meeting a pre-specified case definition. The case definition determines who is counted in the numerator.</p>
+  <div class="def-box">
+    <div class="def-label">Case definition example — Newlands Clinic</div>
+    <p>Hypertension was defined as a documented systolic BP &gt;140 mmHg and/or diastolic BP &gt;90 mmHg on at least two different days, <strong>or</strong> current use of antihypertensive medication. (Shamu et al., Newlands Clinic cohort)</p>
+  </div>
+  <hr class="divider">
+  <p class="ppt">Why does the case definition matter so much?</p>
+  <ul class="bullets">
+    <li>Too broad: over-counts cases, inflates prevalence estimates.</li>
+    <li>Too narrow: misses cases, underestimates burden.</li>
+    <li>Inconsistent: prevents comparison across studies or sites.</li>
+  </ul>
+  <div class="zim-box">
+    <div class="zim-label"><i class="ti ti-map-pin" aria-hidden="true"></i> Cholera 2023–2024</div>
+    <p>Zimbabwe's outbreak surveillance distinguished <strong>suspected cases</strong> (clinical: acute watery diarrhoea) from <strong>confirmed cases</strong> (lab: Vibrio cholerae). Final tally: 34,549 suspected, 4,217 confirmed. The choice of definition changes the numerator — and every rate derived from it.</p>
+  </div>
+</div>
+`}},
+
+{id:'t2d', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 2</span> The epidemiological focus</div>
+  <h2>Exposures and outcomes</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Every epidemiological study measures at minimum:</p>
+  <div class="grid2">
+    <div class="card-sm" style="border-left:3px solid var(--nc-red)">
+      <div class="card-title">Exposure (risk factor / determinant)</div>
+      <p>Any factor that may influence the outcome. Can be biological, behavioural, environmental, or structural.</p>
+    </div>
+    <div class="card-sm" style="border-left:3px solid #185FA5">
+      <div class="card-title">Outcome</div>
+      <p>The disease, event, or health-related state we are interested in. Does not have to be a disease — could be viral suppression, BMI, BP control.</p>
+    </div>
+  </div>
+  <hr class="divider">
+  <p class="ppt" style="font-size:13px">Note: the same variable can be an exposure in one study and an outcome in another.</p>
+  <table class="table-simple">
+    <tr><th>Study</th><th>Exposure</th><th>Outcome</th></tr>
+    <tr><td>Dolutegravir &amp; hypertension (Newlands Clinic)</td><td>ART regimen (DTG vs EFV)</td><td>Hypertension / weight gain</td></tr>
+    <tr><td>Cholera 2023 distribution analysis</td><td>Water source / sanitation</td><td>Cholera case or death</td></tr>
+    <tr><td>HIV &amp; type 2 diabetes (Newlands cohort)</td><td>ART duration &amp; CD4 recovery</td><td>New-onset T2DM</td></tr>
+  </table>
+</div>
+`}},
+
+{id:'t2e_quiz', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 2 — Check your understanding</span></div>
+  <h2>Identify the exposure and the outcome</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Researchers want to know whether <strong>living in a high-density suburb of Harare</strong> (vs a low-density suburb) is associated with higher odds of <strong>cholera infection</strong> during the 2023 outbreak.</p>
+  <p class="ppt" style="margin-top:0.5rem">What is the <strong>exposure</strong> in this study?</p>
+  <div class="quiz-opts" id="q2opts">
+    <button class="quiz-opt" onclick="checkQ2(this,'wrong')">Cholera infection</button>
+    <button class="quiz-opt" onclick="checkQ2(this,'correct')">Residential area (high-density vs low-density suburb)</button>
+    <button class="quiz-opt" onclick="checkQ2(this,'wrong')">The water source in the suburb</button>
+    <button class="quiz-opt" onclick="checkQ2(this,'wrong')">The year 2023</button>
+  </div>
+  <div class="quiz-feedback ok" id="q2fb_correct" style="display:none">
+    Correct! The exposure is what we think might influence the outcome — here, the type of residential area. Cholera infection is the outcome we are measuring. Water source might actually be a mediator or confounder, which is a more advanced concept you will meet in later modules.
+  </div>
+  <div class="quiz-feedback bad" id="q2fb_wrong" style="display:none">
+    Not quite. The exposure is the factor we hypothesise may influence the health event. In this study, <em>where</em> someone lives (high vs low density) is the exposure; cholera infection is the outcome.
+  </div>
+</div>
+`}},
+
+{id:'summary', render(){return `
+<div class="slide-header">
+  <div class="eyebrow">Topics 1 &amp; 2 — Summary</div>
+  <h2>Key takeaways</h2>
+</div>
+<div class="slide-body">
+  <ul class="bullets">
+    <li><strong>Epidemiology</strong> studies the distribution and determinants of health events in defined populations, and applies findings to control health problems.</li>
+    <li><strong>Descriptive epidemiology</strong> answers "what and how much?". <strong>Analytical epidemiology</strong> answers "why?". <strong>Observational</strong> studies watch; <strong>interventional</strong> studies act.</li>
+    <li>The three functions are: <strong>describe</strong>, <strong>interpret</strong>, and <strong>apply/evaluate</strong>.</li>
+    <li>The epidemiological <strong>population</strong> is the defined group from which cases arise — not a geographic concept. Always ask: what is the denominator?</li>
+    <li>Describe any health event using <strong>person, place, and time</strong>.</li>
+    <li>Every study measures an <strong>exposure</strong> (risk factor) and an <strong>outcome</strong> — the same variable can be either depending on the research question.</li>
+    <li><strong>Case definitions</strong> determine who is counted in the numerator; they must be precise, consistent, and clinically valid.</li>
+  </ul>
+  <div style="margin-top:1rem">
+    <button class="nav-btn" onclick="sendPrompt('Can you generate a practice quiz for me on epidemiology fundamentals — person place time, descriptive vs analytical, and exposures vs outcomes?')">Practice quiz ↗</button>
+    <button class="nav-btn" style="margin-left:8px" onclick="sendPrompt('Create the printable deep-read study notes for Module 1 Topics 1 and 2')">Study notes ↗</button>
+  </div>
+</div>
+`}},
+
+];
+
+let current = 0;
+function render(){
+  const s = slides[current];
+  document.getElementById('slide-wrap').innerHTML = `<div class="slide active">${s.render()}<div class="slide-footer"><span class="slide-counter">${current+1} / ${slides.length}</span><div class="nav-row">${current>0?'<button class="nav-btn" onclick="go(-1)">&larr; Back</button>':''} ${current<slides.length-1?'<button class="nav-btn primary" onclick="go(1)">Next &rarr;</button>':''}</div></div></div>`;
+  document.getElementById('pbar').style.width = Math.round(((current+1)/slides.length)*100)+'%';
+}
+function go(d){current=Math.max(0,Math.min(slides.length-1,current+d));render();}
+function toggle(id){const el=document.getElementById(id);el.classList.toggle('shown');}
+function checkQ(btn,type,fb){
+  document.querySelectorAll('#q1opts .quiz-opt').forEach(b=>{b.disabled=true;});
+  btn.classList.add(type==='correct'?'correct':'wrong');
+  const ok=document.getElementById(fb+'_correct');
+  const bad=document.getElementById(fb+'_wrong');
+  if(type==='correct'){ok.classList.add('show');}else{bad.classList.add('show');}
+}
+function checkQ2(btn,type){
+  document.querySelectorAll('#q2opts .quiz-opt').forEach(b=>{b.disabled=true;});
+  btn.classList.add(type==='correct'?'correct':'wrong');
+  const ok=document.getElementById('q2fb_correct');
+  const bad=document.getElementById('q2fb_wrong');
+  if(type==='correct'){ok.classList.add('show');}else{bad.classList.add('show');}
+}
+render();
+</script>
+
+</body>
+</html>
