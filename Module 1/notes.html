@@ -1,669 +1,991 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Masterclass — Module 1, Topics 1 &amp; 2: Fundamentals of Epidemiology</title>
-<style>
-/* ── Reset ─────────────────────────────── */
-*{box-sizing:border-box;margin:0;padding:0}
-/* ── Body ──────────────────────────────── */
-body{
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:15px;
-  line-height:1.75;
-  color:#1a1a1a;
-  background:#fff;
-  max-width:760px;
-  margin:0 auto;
-  padding:0 24px 60px;
-}
-/* ── Header ─────────────────────────────── */
-header{
-  background:#1B2E4B;
-  color:#fff;
-  margin:0 -24px 2rem;
-  padding:1.5rem 2rem 1.25rem;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:1rem;
-}
-header .brand{
-  font-size:11px;
-  letter-spacing:0.07em;
-  text-transform:uppercase;
-  opacity:0.65;
-  margin-bottom:0.3rem;
-}
-header h1{
-  font-size:1.35rem;
-  font-family:Arial,sans-serif;
-  font-weight:600;
-  line-height:1.3;
-  color:#fff;
-}
-header .logo-area{
-  font-size:11px;
-  color:rgba(255,255,255,0.55);
-  text-align:right;
-  white-space:nowrap;
-  padding-top:0.2rem;
-}
-/* ── Navigation ─────────────────────────── */
-nav{
-  background:#f0f2f5;
-  border:1px solid #d4d8df;
-  border-radius:6px;
-  padding:1rem 1.25rem;
-  margin-bottom:2rem;
-}
-nav h2{font-size:0.85rem;font-family:Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;color:#1B2E4B}
-nav a{color:#1B2E4B;text-decoration:none;font-size:0.875rem;font-family:Arial,sans-serif}
-nav a:hover{text-decoration:underline}
-/* ── Section headings ───────────────────── */
-h2.section-title{
-  font-size:1.2rem;
-  font-family:Arial,sans-serif;
-  font-weight:700;
-  color:#1B2E4B;
-  border-bottom:2px solid #C0392B;
-  padding-bottom:0.4rem;
-  margin:2rem 0 1rem;
-}
-h3.sub-title{
-  font-size:1rem;
-  font-family:Arial,sans-serif;
-  font-weight:600;
-  color:#C0392B;
-  margin:1.5rem 0 0.5rem;
-}
-/* ── Body text ──────────────────────────── */
-p{margin-bottom:0.85rem}
-strong{font-weight:600}
-em{font-style:italic}
-/* ── Lists ──────────────────────────────── */
-ul,ol{margin:0.5rem 0 0.85rem 1.5rem}
-li{margin-bottom:0.4rem}
-/* ── Definition boxes ───────────────────── */
-.def-box{
-  border-left:4px solid #1B2E4B;
-  background:#eef1f6;
-  padding:0.85rem 1.1rem;
-  margin:1rem 0;
-  border-radius:0 6px 6px 0;
-}
-.def-box .def-label{
-  font-size:0.75rem;
-  text-transform:uppercase;
-  letter-spacing:0.07em;
-  font-family:Arial,sans-serif;
-  font-weight:700;
-  color:#1B2E4B;
-  margin-bottom:0.35rem;
-}
-/* ── Zimbabwe example boxes ─────────────── */
-.zim-box{
-  border-left:4px solid #C0392B;
-  background:#fdf3f2;
-  padding:0.85rem 1.1rem;
-  margin:1rem 0;
-  border-radius:0 6px 6px 0;
-}
-.zim-box .zim-label{
-  font-size:0.75rem;
-  text-transform:uppercase;
-  letter-spacing:0.07em;
-  font-family:Arial,sans-serif;
-  font-weight:700;
-  color:#C0392B;
-  margin-bottom:0.35rem;
-}
-/* ── Keypoint boxes ─────────────────────── */
-.key-box{
-  border:1.5px solid #1B2E4B;
-  background:#f7f9fc;
-  padding:0.85rem 1.1rem;
-  margin:1rem 0;
-  border-radius:6px;
-}
-.key-box .key-label{
-  font-size:0.75rem;
-  text-transform:uppercase;
-  letter-spacing:0.07em;
-  font-family:Arial,sans-serif;
-  font-weight:700;
-  color:#1B2E4B;
-  margin-bottom:0.35rem;
-}
-/* ── Think and reflect ──────────────────── */
-.think-box{
-  border:1.5px solid #C0392B;
-  background:#fff7f6;
-  padding:0.85rem 1.1rem;
-  margin:1rem 0;
-  border-radius:6px;
-}
-.think-box .think-label{
-  font-size:0.75rem;
-  text-transform:uppercase;
-  letter-spacing:0.07em;
-  font-family:Arial,sans-serif;
-  font-weight:700;
-  color:#C0392B;
-  margin-bottom:0.35rem;
-}
-/* ── Table ──────────────────────────────── */
-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;font-family:Arial,sans-serif}
-th{background:#1B2E4B;color:#fff;padding:8px 12px;text-align:left}
-td{padding:7px 12px;border-bottom:1px solid #d4d8df}
-tr:nth-child(even) td{background:#f7f9fc}
-/* ── Self-test ──────────────────────────── */
-.self-test{
-  background:#1B2E4B;
-  color:#fff;
-  border-radius:8px;
-  padding:1.25rem 1.5rem;
-  margin:1.5rem 0;
-}
-.self-test h3{font-size:1rem;font-family:Arial,sans-serif;color:#fff;margin-bottom:0.75rem}
-.self-test ol{margin-left:1.25rem}
-.self-test li{margin-bottom:0.65rem;color:#e0e6ef}
-.self-test .answers{
-  background:rgba(255,255,255,0.08);
-  border-radius:6px;
-  padding:0.85rem 1rem;
-  margin-top:0.85rem;
-  font-size:0.88rem;
-}
-.self-test .answers p{color:#c8d5e8;margin-bottom:0.5rem}
-/* ── Summary panel ──────────────────────── */
-.summary-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin:1rem 0;
-}
-.summary-card{
-  background:#f0f2f5;
-  border-radius:6px;
-  padding:0.75rem 1rem;
-  border-top:3px solid #1B2E4B;
-}
-.summary-card h4{font-size:0.85rem;font-family:Arial,sans-serif;font-weight:700;color:#1B2E4B;margin-bottom:0.3rem}
-.summary-card p{font-size:0.87rem;color:#2a2a2a}
-/* ── References ─────────────────────────── */
-.refs{font-size:0.82rem;color:#4a4a4a;font-family:Arial,sans-serif;margin-top:0.5rem}
-.refs li{margin-bottom:0.5rem}
-/* ── Page number line ───────────────────── */
-.pageid{
-  font-size:0.78rem;
-  font-family:Arial,sans-serif;
-  color:#888;
-  margin:1.5rem 0 0.25rem;
-  border-top:1px solid #e0e0e0;
-  padding-top:0.5rem;
-}
-/* ── Footer ─────────────────────────────── */
-footer{
-  text-align:center;
-  font-size:0.78rem;
-  font-family:Arial,sans-serif;
-  color:#888;
-  border-top:1px solid #d4d8df;
-  padding-top:1rem;
-  margin-top:2rem;
-}
-/* ── Print ──────────────────────────────── */
-@media print{
-  header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .self-test{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  body{padding:0 1cm 2cm}
-  header{margin:0 -1cm 1.5rem}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE TITLE — edit this to match the module/topic
+       ════════════════════════════════════════════════════════════ -->
+  <title>Research Masterclass — Module 1, Topics 1 &amp; 2: Fundamentals of Epidemiology</title>
+
+  <!-- Google Fonts — swap family names here if you want different fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       DESIGN TOKENS — change colours/sizes here to retheme the
+       whole document. These variables are used everywhere below.
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --nc-navy:        #1B2E4B;   /* Newlands Clinic primary navy      */
+      --nc-red:         #C0392B;   /* Newlands Clinic accent red         */
+      --nc-red-light:   #fdf3f2;   /* Light red tint for Zimbabwe boxes  */
+      --nc-navy-light:  #eef1f6;   /* Light navy tint for def boxes      */
+      --nc-key-bg:      #f7f9fc;   /* Key point box background           */
+      --nc-think-bg:    #fff7f6;   /* Think & reflect box background     */
+      --nc-nav-bg:      #f0f2f5;   /* Table of contents background       */
+      --nc-nav-border:  #d4d8df;
+      --nc-text:        #1a1a1a;
+      --nc-muted:       #555555;
+      --nc-table-alt:   #f7f9fc;   /* Alternating table row              */
+      --nc-self-test:   #1B2E4B;   /* Self-test panel background         */
+      --nc-answer-bg:   rgba(255,255,255,0.09);
+
+      --font-body:      'Lora', Georgia, serif;
+      --font-ui:        'Inter', Arial, sans-serif;
+
+      --max-width:      760px;
+      --side-pad:       clamp(16px, 4vw, 32px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.78;
+      color: var(--nc-text);
+      background: #ffffff;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--side-pad) 64px;
+    }
+
+    /* ── Skip link for accessibility ─────── */
+    .skip-link {
+      position: absolute;
+      top: -999px;
+      left: 0;
+      background: var(--nc-navy);
+      color: #fff;
+      padding: 6px 12px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      z-index: 999;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HEADER
+       Edit the .brand text, h1, and .logo-area below in the HTML.
+       ═══════════════════════════════════════════════════════════ */
+    header {
+      background: var(--nc-navy);
+      color: #ffffff;
+      margin: 0 calc(-1 * var(--side-pad)) 2rem;
+      padding: 1.5rem 2rem 1.35rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    header .brand {
+      font-family: var(--font-ui);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 0.35rem;
+    }
+    header h1 {
+      font-family: var(--font-ui);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      line-height: 1.3;
+      color: #fff;
+    }
+    header .logo-area {
+      font-family: var(--font-ui);
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       TABLE OF CONTENTS
+       ═══════════════════════════════════════════════════════════ */
+    nav {
+      background: var(--nc-nav-bg);
+      border: 1px solid var(--nc-nav-border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+    nav h2 {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--nc-navy);
+      margin-bottom: 0.5rem;
+    }
+    nav p { margin: 0; line-height: 1.9; }
+    nav a {
+      font-family: var(--font-ui);
+      font-size: 0.875rem;
+      color: var(--nc-navy);
+      text-decoration: none;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION & SUBSECTION HEADINGS
+       ═══════════════════════════════════════════════════════════ */
+    h2.section-title {
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--nc-navy);
+      border-bottom: 2.5px solid var(--nc-red);
+      padding-bottom: 0.45rem;
+      margin: 2.25rem 0 1.1rem;
+    }
+    h3.sub-title {
+      font-family: var(--font-ui);
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--nc-red);
+      margin: 1.6rem 0 0.55rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BODY TEXT & LISTS
+       ═══════════════════════════════════════════════════════════ */
+    p { margin-bottom: 0.9rem; }
+    strong { font-weight: 600; }
+    em { font-style: italic; }
+    ul, ol { margin: 0.5rem 0 0.9rem 1.6rem; }
+    li { margin-bottom: 0.45rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       CALLOUT BOXES
+       There are four types — edit the label text and body content
+       directly in the HTML sections below.
+
+       .def-box    = formal definition (navy left border)
+       .zim-box    = Zimbabwean example (red left border)
+       .key-box    = key point / methodological note (navy outline)
+       .think-box  = think & reflect exercise (red outline)
+       ═══════════════════════════════════════════════════════════ */
+
+    /* — Shared callout base — */
+    .def-box, .zim-box, .key-box, .think-box {
+      padding: 0.9rem 1.15rem;
+      margin: 1.1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .def-box .def-label,
+    .zim-box .zim-label,
+    .key-box .key-label,
+    .think-box .think-label {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    /* — Definition box — */
+    .def-box {
+      border-left: 4px solid var(--nc-navy);
+      background: var(--nc-navy-light);
+    }
+    .def-box .def-label { color: var(--nc-navy); }
+
+    /* — Zimbabwe example box — */
+    .zim-box {
+      border-left: 4px solid var(--nc-red);
+      background: var(--nc-red-light);
+    }
+    .zim-box .zim-label { color: var(--nc-red); }
+
+    /* — Key point box — */
+    .key-box {
+      border: 1.5px solid var(--nc-navy);
+      background: var(--nc-key-bg);
+      border-radius: 8px;
+    }
+    .key-box .key-label { color: var(--nc-navy); }
+
+    /* — Think & reflect box — */
+    .think-box {
+      border: 1.5px solid var(--nc-red);
+      background: var(--nc-think-bg);
+      border-radius: 8px;
+    }
+    .think-box .think-label { color: var(--nc-red); }
+
+    /* ═══════════════════════════════════════════════════════════
+       TABLES
+       ═══════════════════════════════════════════════════════════ */
+    .table-wrap { overflow-x: auto; margin: 1.1rem 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+    }
+    th {
+      background: var(--nc-navy);
+      color: #ffffff;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--nc-nav-border);
+      color: var(--nc-text);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: var(--nc-table-alt); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SELF-ASSESSMENT PANEL
+       ═══════════════════════════════════════════════════════════ */
+    .self-test {
+      background: var(--nc-self-test);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 1.35rem 1.6rem;
+      margin: 1.6rem 0;
+    }
+    .self-test h3 {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.85rem;
+    }
+    .self-test ol { margin-left: 1.35rem; }
+    .self-test li { margin-bottom: 0.7rem; color: #dce6f5; }
+    .self-test .answers {
+      background: var(--nc-answer-bg);
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+    }
+    .self-test .answers p {
+      color: #c5d6ee;
+      margin-bottom: 0.55rem;
+    }
+    .self-test .answers p:last-child { margin-bottom: 0; }
+
+    /* ═══════════════════════════════════════════════════════════
+       SUMMARY GRID
+       ═══════════════════════════════════════════════════════════ */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 1.1rem 0;
+    }
+    .summary-card {
+      background: var(--nc-nav-bg);
+      border-radius: 8px;
+      padding: 0.85rem 1.1rem;
+      border-top: 3px solid var(--nc-navy);
+    }
+    .summary-card h4 {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--nc-navy);
+      margin-bottom: 0.35rem;
+    }
+    .summary-card p {
+      font-size: 0.88rem;
+      margin-bottom: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       REFERENCES
+       ═══════════════════════════════════════════════════════════ */
+    .refs {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      color: var(--nc-muted);
+      margin: 0.5rem 0 0 1.4rem;
+    }
+    .refs li { margin-bottom: 0.55rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       PAGE-ID LABEL (section divider line)
+       ═══════════════════════════════════════════════════════════ */
+    .pageid {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      color: #999;
+      border-top: 1px solid #e4e4e4;
+      padding-top: 0.5rem;
+      margin: 1.75rem 0 0.25rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PREWORK BOX (bottom of document)
+       ═══════════════════════════════════════════════════════════ */
+    .prework {
+      font-family: var(--font-ui);
+      font-size: 0.87rem;
+      color: var(--nc-muted);
+      background: var(--nc-nav-bg);
+      border-radius: 8px;
+      padding: 0.9rem 1.15rem;
+      margin-top: 1.6rem;
+      border-left: 4px solid var(--nc-navy);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ */
+    footer {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      color: #999;
+      text-align: center;
+      border-top: 1px solid var(--nc-nav-border);
+      padding-top: 1rem;
+      margin-top: 2.5rem;
+      line-height: 1.8;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PRINT STYLES
+       These kick in when the user prints or saves as PDF.
+       ═══════════════════════════════════════════════════════════ */
+    @media print {
+      header,
+      .self-test,
+      .summary-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      body { padding: 0 1cm 2cm; font-size: 12pt; }
+      header { margin: 0 -1cm 1.5rem; }
+
+      nav { break-inside: avoid; }
+      .def-box, .zim-box, .key-box, .think-box,
+      .self-test, .summary-card { break-inside: avoid; }
+
+      a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #888; }
+      nav a::after, header a::after, footer a::after { content: ""; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE — narrow screens
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 520px) {
+      header { flex-direction: column; gap: 0.5rem; }
+      header .logo-area { text-align: left; }
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <div>
-    <div class="brand">Newlands Clinic · Research Masterclass for Clinicians</div>
-    <h1>Module 1 · Topics 1 &amp; 2<br>Fundamentals of Epidemiology &amp; The Epidemiological Focus</h1>
-  </div>
-  <div class="logo-area">RM Module 1<br>FE01 &amp; FE02<br>newlandsclinic.org.zw</div>
-</header>
-
-<a id="top"></a>
-
-<nav>
-  <h2>Contents</h2>
-  <p>
-    <a href="#s1">Section 1: Learning objectives</a><br>
-    <a href="#s2">Section 2: What is epidemiology?</a> &nbsp;|&nbsp;
-    <a href="#s2_1">2.1 Definition</a> &nbsp;|&nbsp;
-    <a href="#s2_2">2.2 The three core questions</a> &nbsp;|&nbsp;
-    <a href="#s2_3">2.3 Historical roots</a> &nbsp;|&nbsp;
-    <a href="#s2_4">2.4 Epidemiology in Zimbabwe today</a><br>
-    <a href="#s3">Section 3: Descriptive and analytical epidemiology</a> &nbsp;|&nbsp;
-    <a href="#s3_1">3.1 Descriptive</a> &nbsp;|&nbsp;
-    <a href="#s3_2">3.2 Analytical</a> &nbsp;|&nbsp;
-    <a href="#s3_3">3.3 Observational vs interventional</a><br>
-    <a href="#s4">Section 4: The role of epidemiology</a> &nbsp;|&nbsp;
-    <a href="#s4_1">4.1 Three functions</a> &nbsp;|&nbsp;
-    <a href="#s4_2">4.2 Limitations and confounding</a><br>
-    <a href="#s5">Section 5: The epidemiological focus — populations</a> &nbsp;|&nbsp;
-    <a href="#s5_1">5.1 Defining the population</a> &nbsp;|&nbsp;
-    <a href="#s5_2">5.2 Person, place, and time</a><br>
-    <a href="#s6">Section 6: Defining cases</a> &nbsp;|&nbsp;
-    <a href="#s6_1">6.1 Case definitions</a> &nbsp;|&nbsp;
-    <a href="#s6_2">6.2 Exposures and outcomes</a><br>
-    <a href="#s7">Section 7: Self-assessment</a><br>
-    <a href="#s8">Section 8: Summary</a><br>
-    <a href="#s9">Section 9: References</a>
-  </p>
-</nav>
-
-<p class="pageid">Section 1</p>
-<h2 class="section-title" id="s1">Section 1: Learning Objectives</h2>
-
-<p>After completing Topics 1 and 2, you should be able to:</p>
-<ul>
-  <li>Define epidemiology and explain the components of its definition.</li>
-  <li>Distinguish between descriptive and analytical epidemiology, and between observational and interventional approaches.</li>
-  <li>Articulate the three core functions of epidemiology.</li>
-  <li>Define what "population" means in epidemiological (rather than demographic) terms.</li>
-  <li>Describe any health-related event using the three dimensions of <em>person, place,</em> and <em>time</em>.</li>
-  <li>Distinguish between an exposure and an outcome in a given study.</li>
-  <li>Explain why case definitions matter and how they affect numerator counts.</li>
-</ul>
-
-<p class="pageid">Section 2</p>
-<h2 class="section-title" id="s2">Section 2: What is Epidemiology?</h2>
-
-<h3 class="sub-title" id="s2_1">2.1 The formal definition</h3>
-
-<p>Epidemiology is frequently in the news, often without being named as such. When you read a headline such as "HIV prevalence declines among young women in Zimbabwe" or "cholera cases concentrated in high-density Harare suburbs", you are reading the output of epidemiological thinking.</p>
-
-<div class="def-box">
-  <div class="def-label">Definition</div>
-  <p>"The study of the <strong>occurrence and distribution</strong> of health-related states or events in <strong>specified populations</strong>, including the study of the <strong>determinants</strong> influencing such states, and the application of this study to the <strong>control of health problems</strong>."</p>
-  <p style="font-size:0.82rem;color:#555;margin-top:0.4rem">Porta, Greenland &amp; Last — <em>Dictionary of Epidemiology</em>, 5th ed., Oxford University Press, 2008.</p>
-</div>
-
-<p>Let us unpack the definition phrase by phrase, because each component carries important meaning.</p>
-
-<p><strong>Occurrence and distribution.</strong> We are interested not just in whether a disease exists, but in <em>how common</em> it is and <em>how it is spread</em> across different groups and places. For example, knowing that hypertension exists among people living with HIV (PLHIV) is not particularly informative — but knowing that its prevalence among PLHIV aged &ge;50 at a Harare clinic is 41.2% versus an estimated 30% in the general Zimbabwean adult population gives us something to act on.</p>
-
-<p><strong>Health-related states or events.</strong> Our subject matter is deliberately broad. It encompasses diseases, injuries, health behaviours, biological measures (blood pressure, viral load, CD4 count), and even positive outcomes such as viral suppression or healthy birth weight. This breadth is important for clinicians: epidemiological reasoning applies whenever you are thinking about <em>patterns</em> rather than individual patients.</p>
-
-<p><strong>Specified populations.</strong> This is the feature that most distinguishes epidemiology from clinical medicine. A clinician cares for the individual patient in front of them; an epidemiologist asks how that patient's experience relates to the experience of a defined group. The population must be specified — it is the denominator that gives the numerator (cases) meaning.</p>
-
-<p><strong>Determinants.</strong> We seek to understand what drives the patterns we observe — biological, behavioural, social, economic, or environmental factors that increase or decrease risk.</p>
-
-<p><strong>Application and control.</strong> Epidemiology is not an academic exercise in pattern-description. Its purpose is to generate knowledge that can be translated into action: public health interventions, clinical guidelines, health policy, or programme evaluation.</p>
-
-<div class="zim-box">
-  <div class="zim-label">Zimbabwean example — all parts of the definition</div>
-  <p>The IeDEA–Newlands cohort study (Shamu et al., 2022 and related work) exemplifies the full definition. Researchers at Newlands Clinic, Harare, studied the <strong>occurrence</strong> of new hypertension (<em>health-related event</em>) among <strong>HIV-positive adults on ART</strong> (<em>specified population</em>). They examined whether the dolutegravir (DTG) ART regimen was a <strong>determinant</strong> of hypertension through its effect on weight gain. Findings fed back into <strong>application</strong>: clinical monitoring protocols for PLHIV on DTG across Southern Africa. Every component of the definition is present.</p>
-</div>
-
-<h3 class="sub-title" id="s2_2">2.2 The three core questions</h3>
-
-<p>A helpful way to remember what epidemiology does is through three fundamental questions that it asks of any health event:</p>
-
-<table>
-  <tr><th>Question</th><th>What it drives</th><th>Example</th></tr>
-  <tr><td><strong>How often?</strong></td><td>Measurement of frequency — prevalence, incidence, mortality</td><td>What proportion of PLHIV aged &ge;40 have hypertension?</td></tr>
-  <tr><td><strong>In whom, where, when?</strong></td><td>Distribution — by person, place, and time</td><td>Is hypertension more common in women or men, in Harare or rural districts, in 2010 vs 2020?</td></tr>
-  <tr><td><strong>Why?</strong></td><td>Determinants — risk factors, exposures</td><td>Is long ART duration, DTG use, or BMI the strongest predictor?</td></tr>
-</table>
-
-<p>A fourth implicit question is <strong>"So what?"</strong> — the application question that distinguishes a purely academic exercise from public health practice.</p>
-
-<h3 class="sub-title" id="s2_3">2.3 Historical roots — why history matters for method</h3>
-
-<p>Understanding the history of epidemiology is not mere trivia. The founders of the discipline made methodological choices — how to define a case, what denominator to use, how to compare groups — that remain directly relevant to your work today.</p>
-
-<p><strong>Hippocrates (~460 BC).</strong> Writing in <em>On Airs, Waters, and Places</em>, Hippocrates described how disease patterns varied with season, climate, water source, and personal behaviour. His framework — that disease has environmental and behavioural determinants that vary by place and time — is recognisably modern. The word <em>epidemiology</em> derives from the Greek <em>epi</em> (upon) and <em>demos</em> (people).</p>
-
-<p><strong>William Farr (England, 1839).</strong> Farr established England's first systematic death-registration system, enabling comparison of mortality rates across occupational groups, geographic areas, and time periods. His approach is the template for every routine surveillance system that exists today — including Zimbabwe's District Health Information Software (DHIS2), which was used to track the 2023–24 cholera outbreak in real time. Farr was also an early analytical thinker: he compared mortality in different populations and asked what factors explained the variation.</p>
-
-<p><strong>Ignaz Semmelweis (Vienna, 1840s).</strong> Semmelweis observed high maternal mortality from puerperal fever in a ward staffed by medical students compared with one staffed by midwives. By noticing that medical students performed post-mortem examinations without handwashing before attending deliveries, he hypothesised that unwashed hands were transmitting infection. When he introduced chlorinated handwashing, mortality fell dramatically. This is one of the earliest recorded examples of a <em>natural experiment</em> in epidemiology: he used an observed difference between groups to generate and then test a hypothesis.</p>
-
-<p><strong>John Snow (London, 1854).</strong> Snow's investigation of a cholera outbreak in Soho is perhaps the most celebrated case study in epidemiological history — and directly relevant to Zimbabwe, which has dealt with its own severe cholera outbreaks for decades. Snow worked before the germ theory was established. Nevertheless, by mapping cholera deaths and comparing the death rates among households served by two different water companies, he produced quantitative evidence linking contaminated water to disease. He calculated that households served by the Southwark and Vauxhall water company experienced 31.5 deaths per 1,000 houses compared with 3.8 per 1,000 for the Lambeth company — roughly an 8-fold difference. This ratio is recognisable today as a form of <em>rate ratio</em> or <em>relative risk</em>, concepts we will formalise in Module 1 Topic 3.</p>
-
-<div class="key-box">
-  <div class="key-label">Methodological lesson from Snow</div>
-  <p>Snow used both descriptive epidemiology (mapping cases by location and time) and analytical epidemiology (comparing rates across water-supply groups). He did not <em>prove</em> that contaminated water causes cholera — epidemiologists provide evidence for or against a hypothesis, they do not deliver proof. But his evidence was strong enough to guide action. This distinction between association and causation is central to the discipline and will recur throughout this course.</p>
-</div>
-
-<h3 class="sub-title" id="s2_4">2.4 Epidemiology in Zimbabwe today</h3>
-
-<p>Epidemiology is not a historical discipline. It is practised daily in Zimbabwe's health system, and many of you will encounter its outputs in your clinical work without necessarily identifying them as such.</p>
-
-<div class="zim-box">
-  <div class="zim-label">The 2023–2024 cholera outbreak — epidemiology in action</div>
-  <p>On 12 February 2023, Zimbabwe's first cholera case of the year was reported in Chegutu, Mashonaland West. By August 2024, when the outbreak was officially declared over, a cumulative total of <strong>34,549 suspected cases and 718 deaths</strong> had been recorded across all 10 provinces, with a case fatality rate of 2.1% (WHO, 2024).</p>
-  <p style="margin-top:0.5rem">The public health response required epidemiological thinking at every stage:</p>
-  <ul style="margin-top:0.5rem">
-    <li><strong>Surveillance and case counting</strong> — distinguishing suspected (clinical) from confirmed (laboratory) cases using a precise case definition, tracked through DHIS2.</li>
-    <li><strong>Distribution analysis</strong> — identifying that Harare, Manicaland, and Mashonaland Central accounted for over 77% of cases, enabling targeted resources.</li>
-    <li><strong>Risk factor investigation</strong> — linking transmission to contaminated water supply, breakdown of sanitation infrastructure, and population displacement.</li>
-    <li><strong>Intervention evaluation</strong> — over 2.4 million oral cholera vaccine doses were deployed; surveillance data monitored whether case incidence declined in vaccinated areas.</li>
-  </ul>
-  <p style="margin-top:0.5rem;font-size:0.85rem;color:#777">Sources: WHO AFRO, 2024; Marumure et al., <em>Journal of Tropical Medicine</em>, 2024.</p>
-</div>
-
-<p class="pageid">Section 3</p>
-<h2 class="section-title" id="s3">Section 3: Descriptive and Analytical Epidemiology</h2>
-
-<h3 class="sub-title" id="s3_1">3.1 Descriptive epidemiology</h3>
-
-<div class="def-box">
-  <div class="def-label">Descriptive epidemiology</div>
-  <p>Studies designed to describe the <strong>frequency and distribution</strong> of an exposure or outcome, without seeking to explain the distribution by looking for associations.</p>
-  <p style="margin-top:0.3rem">Key question: <em>"What is happening, and in whom, where, and when?"</em></p>
-</div>
-
-<p>Descriptive epidemiology is the essential first step in any investigation. Before we can ask why something is happening, we need to characterise what is happening. This requires:</p>
-<ul>
-  <li>A reliable <strong>numerator</strong> — an accurate count of cases, using a consistent case definition.</li>
-  <li>A reliable <strong>denominator</strong> — an accurate count of the population at risk, so that we can calculate a rate or proportion rather than just a raw count.</li>
-  <li>Stratification by <strong>person, place, and time</strong> (discussed in Section 5).</li>
-</ul>
-
-<div class="zim-box">
-  <div class="zim-label">Descriptive example — Newlands Clinic elderly cohort</div>
-  <p>Chimbetete et al. (2020, <em>Southern African Journal of HIV Medicine</em>) conducted a cross-sectional analysis of 1,688 patients aged &ge;50 years receiving HIV care at Newlands Clinic as of 1 October 2019 — 25.8% of the total clinic population. They reported: median ART duration 10.9 years; viral load &lt;50 copies/mL in over 90%; hypertension prevalence 41.2%; arthritis 19.9%; chronic kidney disease 11.6%. Women were more likely to be overweight or obese than men.</p>
-  <p style="margin-top:0.5rem">This is descriptive epidemiology: the study describes the frequency and distribution of conditions in a defined group. It does not test whether any factor caused the hypertension — that would require analytical methods.</p>
-</div>
-
-<p>Routine data sources are the backbone of descriptive epidemiology. In Zimbabwe, these include:</p>
-<ul>
-  <li>DHIS2 — the national Health Management Information System used for routine facility-level data.</li>
-  <li>ZIMSTAT — the Zimbabwe National Statistics Agency, including census data.</li>
-  <li>The Zimbabwe Population-Based HIV Impact Assessment (ZIMPHIA) — repeated nationally representative HIV surveys.</li>
-  <li>Clinic-based cohort databases such as the IeDEA–Newlands dataset.</li>
-</ul>
-
-<h3 class="sub-title" id="s3_2">3.2 Analytical epidemiology</h3>
-
-<div class="def-box">
-  <div class="def-label">Analytical epidemiology</div>
-  <p>Studies designed to examine <strong>associations</strong> between exposures and outcomes, often with the aim of identifying possible causes of an outcome.</p>
-  <p style="margin-top:0.3rem">Key question: <em>"Why is this pattern occurring? What is driving it?"</em></p>
-  <p style="margin-top:0.3rem;font-size:0.85rem;color:#555">Also called aetiological studies.</p>
-</div>
-
-<p>Analytical epidemiology moves beyond description to comparison. We compare groups — those exposed to a risk factor versus those not exposed, or those who developed the outcome versus those who did not — to quantify the association between the exposure and the outcome.</p>
-
-<div class="zim-box">
-  <div class="zim-label">Analytical example — DTG and hypertension at Newlands Clinic</div>
-  <p>Shamu et al. (published in <em>JIAS</em>, 2022) studied 9,487 PLHIV at Newlands Clinic who were starting or switching to dolutegravir (DTG), efavirenz (EFV), or atazanavir/ritonavir (ATV/r). Over two years, DTG was associated with weight gain of approximately 4 kg, compared with lower gains on EFV and ATV/r. The proportion with hypertension continued to increase in the DTG group even after accounting for this weight gain. Statistical models (linear mixed-effects regression) were used to adjust for potential confounders including age, sex, baseline BMI, and CD4 count.</p>
-  <p style="margin-top:0.5rem">This is analytical epidemiology: the study tests a specific association (between ART regimen and hypertension), accounts for confounding, and produces an estimate of the size of the association. It demonstrates association — it does not prove causation.</p>
-</div>
-
-<p>A central caution in analytical epidemiology: <strong>association does not equal causation.</strong> John Snow found that altitude above sea level was associated with cholera — but this was because lower-lying areas happened to be served by contaminated water. The association was real, but the mechanism was not altitude itself. William Farr's "miasma" theory (that unclean low-altitude air caused cholera) was a plausible but incorrect causal interpretation of a genuine association. The discipline of causal inference — how to move from association to causal conclusions — will be covered in later modules.</p>
-
-<h3 class="sub-title" id="s3_3">3.3 Observational vs interventional epidemiology</h3>
-
-<p>All epidemiological studies fall into one of two broad categories:</p>
-
-<table>
-  <tr><th>Type</th><th>Definition</th><th>Subtypes</th><th>Example</th></tr>
-  <tr>
-    <td><strong>Observational</strong></td>
-    <td>We examine the distribution or determinants of an outcome without attempting to influence them.</td>
-    <td>Can be descriptive or analytical</td>
-    <td>Cross-sectional survey of hypertension prevalence among PLHIV in Zimbabwe</td>
-  </tr>
-  <tr>
-    <td><strong>Interventional</strong></td>
-    <td>We modify an exposure within the study population and measure the effect on the outcome.</td>
-    <td>Always analytical (we are testing an effect)</td>
-    <td>Randomised trial of community-based BP screening vs standard care at Newlands Clinic</td>
-  </tr>
-</table>
-
-<p>The distinction matters because interventional studies — particularly randomised controlled trials (RCTs) — can provide stronger evidence for causal relationships than observational studies, because randomisation balances known and unknown confounders between comparison groups. However, RCTs are expensive, ethically constrained, and sometimes infeasible. Most of the knowledge base in clinical epidemiology in sub-Saharan Africa is built from observational studies.</p>
-
-<div class="think-box">
-  <div class="think-label">Think and reflect</div>
-  <p>James Lind's 1747 scurvy experiment at sea is considered one of the first controlled clinical trials in history. He gave 12 scurvy patients different dietary supplements and measured outcomes over six days. Those given citrus fruits recovered; those given other treatments did not. Would you classify this as observational or interventional? Descriptive or analytical? Discuss with a colleague before reading on.</p>
-  <p style="margin-top:0.5rem"><em>Answer:</em> Interventional (Lind actively modified the exposure — the dietary supplement) and analytical (he compared outcomes across groups to identify a causal factor).</p>
-</div>
-
-<p class="pageid">Section 4</p>
-<h2 class="section-title" id="s4">Section 4: The Role of Epidemiology</h2>
-
-<h3 class="sub-title" id="s4_1">4.1 Three core functions</h3>
-
-<p>The purpose of epidemiology is ultimately practical. Its three core functions can be understood as a cycle:</p>
-
-<p><strong>Function 1: Describe.</strong> Quantify the frequency and distribution of health events in a population. This gives us the baseline — who is affected, where, and when. Without accurate description, we cannot identify priorities, allocate resources, or detect emerging threats. The Zimbabwe PHIA surveys, which periodically estimate HIV prevalence and incidence across the country, are a national-scale example of descriptive epidemiology serving a planning function.</p>
-
-<p><strong>Function 2: Interpret.</strong> Investigate risk factors and determinants by examining associations between exposures and outcomes. This is where analytical methods — regression models, survival analyses, measures of association — come in. For example, understanding that PLHIV on longer-duration ART carry a higher burden of hypertension and type 2 diabetes informs integrated NCD screening protocols.</p>
-
-<p><strong>Function 3: Apply and evaluate.</strong> Translate findings into health interventions, guidelines, or policies. Then evaluate whether they work — which is itself an epidemiological exercise. The evaluation of Zimbabwe's oral cholera vaccine campaign during the 2023–24 outbreak (tracking incidence before and after vaccination in targeted areas) is a current example.</p>
-
-<div class="zim-box">
-  <div class="zim-label">All three functions — hypertension cascade at Newlands Clinic</div>
-  <p><strong>Describe:</strong> The Newlands cohort documented that hypertension prevalence among PLHIV aged &ge;50 is 41.2%, substantially higher than in younger patients.</p>
-  <p style="margin-top:0.4rem"><strong>Interpret:</strong> Analytical work investigated whether this excess burden was explained by ART duration, regimen choice (particularly DTG), increasing BMI over time, or background age-related cardiovascular risk.</p>
-  <p style="margin-top:0.4rem"><strong>Apply and evaluate:</strong> These findings contributed to the design of integrated HIV-NCD care pathways at Newlands Clinic and provided the evidence base for the EVAH grant proposal (AI-enabled cardiovascular screening for PLHIV in Zimbabwe and Zambia), which aims to evaluate the impact of a systematic screening intervention in a Hybrid Type I implementation trial.</p>
-</div>
-
-<h3 class="sub-title" id="s4_2">4.2 Limitations — confounding and error</h3>
-
-<p>Epidemiology is not conducted in a controlled laboratory. We work with real populations in complex social environments where multiple factors operate simultaneously and are often correlated with each other. This creates two fundamental challenges:</p>
-
-<p><strong>Confounding.</strong> A confounder is a third variable that is associated with both the exposure and the outcome, and can create a spurious association or mask a real one. Farr's elevation-altitude-cholera example is the textbook case. In the IeDEA–Newlands DTG study, age and baseline BMI are confounders — older and heavier patients may be both more likely to switch to DTG and more likely to develop hypertension. Statistical adjustment is required to estimate the independent association of DTG with hypertension.</p>
-
-<p><strong>Bias and error.</strong> Systematic errors can arise in how we select study participants (selection bias), how we measure our exposures and outcomes (information bias), or how we lose participants to follow-up (attrition bias). Recognising and minimising these sources of error is a core skill that this Masterclass will develop over subsequent modules.</p>
-
-<p class="pageid">Section 5</p>
-<h2 class="section-title" id="s5">Section 5: The Epidemiological Focus — Populations</h2>
-
-<h3 class="sub-title" id="s5_1">5.1 Defining the population</h3>
-
-<p>The key question in epidemiology is always: <strong>"What is the denominator?"</strong></p>
-
-<p>In demography, "population" means the inhabitants of a geographic area — a country, province, or city. In epidemiology, the population is the <em>defined collection of units from which our sample is drawn</em>. These units are most commonly people, but they could be clinical consultations, households, or health facilities. The epidemiological population is defined by its characteristics, not just its geography.</p>
-
-<p>Consider the difference between these two statements:</p>
-<ul>
-  <li>"There were 50 new HIV diagnoses in Harare in June 2026." — This is a count (numerator only). Without knowing the denominator (how many HIV-negative people were tested? how many people live in Harare?), we cannot interpret whether 50 is high or low.</li>
-  <li>"The HIV incidence rate among sexually active adults aged 15–49 in Harare in 2026 was estimated at 0.8 per 100 person-years." — This is a rate (numerator divided by denominator, with a time unit), and it is interpretable and comparable.</li>
-</ul>
-
-<div class="key-box">
-  <div class="key-label">Always ask: what is the denominator?</div>
-  <p>A clinician presenting a poster at a conference says "We saw 80 cases of peripheral arterial disease in our clinic this year." An epidemiologist immediately asks: out of how many patients? What was the population at risk? What was the follow-up time? Without the denominator, the 80 is descriptively interesting but epidemiologically uninformative.</p>
-</div>
-
-<h3 class="sub-title" id="s5_2">5.2 Person, place, and time</h3>
-
-<p>The fundamental framework for describing the distribution of a health event is to characterise it across three dimensions: <strong>person, place, and time</strong>. This framework applies to every health event you will ever investigate, from a single ward outbreak to a national chronic disease burden analysis.</p>
-
-<p><strong>Person</strong> refers to the characteristics of individuals: age, sex, occupation, socioeconomic status, HIV status, ART regimen, BMI, smoking status, and so on. Person characteristics help us identify which groups carry the greatest burden of disease and may generate hypotheses about risk factors.</p>
-
-<p><strong>Place</strong> refers to the geographic or institutional location: country, province, urban versus rural, catchment clinic, residential type (high-density vs low-density suburb). Geographic patterns often reflect differences in environmental exposures, healthcare access, or population characteristics.</p>
-
-<p><strong>Time</strong> refers to when events occur: the calendar period, secular trends over years or decades, seasonal patterns (rainy season vs dry season), or epidemic curves (the time distribution of cases in an outbreak). Time patterns can reveal the incubation period of an infectious disease, the lag between exposure and outcome in chronic disease, or the impact of an intervention.</p>
-
-<div class="zim-box">
-  <div class="zim-label">Worked example — identify person, place, and time</div>
-  <p><em>Statement:</em> "The prevalence of hypertension among <strong>HIV-positive women aged 50–59 receiving ART</strong> at <strong>Newlands Clinic, Harare</strong>, as of <strong>1 October 2019</strong>, was higher than among men in the same age group."</p>
-  <ul style="margin-top:0.5rem">
-    <li><strong>Person:</strong> HIV-positive adults on ART aged 50–59, with comparison by sex.</li>
-    <li><strong>Place:</strong> Newlands Clinic, Harare (a private HIV clinic with predominantly urban patients).</li>
-    <li><strong>Time:</strong> Cross-sectional — a single point in time, 1 October 2019.</li>
-  </ul>
-  <p style="margin-top:0.5rem">Knowing the place is important here: Newlands Clinic serves a predominantly employed urban population with long ART duration. The results may not be directly generalisable to rural public sector clinics with different patient demographics.</p>
-</div>
-
-<div class="zim-box">
-  <div class="zim-label">Worked example 2 — cholera 2023–2024</div>
-  <p><em>Statement:</em> "As of 11 February 2024, cumulative cholera cases in Zimbabwe were highest in <strong>Harare (including Chitungwiza), Manicaland, and Masvingo</strong>, accounting for 77.4% of all cases. The outbreak began on <strong>12 February 2023</strong> in Chegutu and spread to all 10 provinces within 12 months."</p>
-  <ul style="margin-top:0.5rem">
-    <li><strong>Person:</strong> (Not specified in this extract — but surveillance data stratified by age and sex were collected separately.)</li>
-    <li><strong>Place:</strong> Zimbabwe, all 10 provinces; highest burden in Harare/Chitungwiza, Manicaland, Masvingo.</li>
-    <li><strong>Time:</strong> February 2023 to February 2024; epidemic curve showed weekly fluctuations with peaks in the rainy season.</li>
-  </ul>
-</div>
-
-<p class="pageid">Section 6</p>
-<h2 class="section-title" id="s6">Section 6: Defining Cases, Exposures, and Outcomes</h2>
-
-<h3 class="sub-title" id="s6_1">6.1 Case definitions</h3>
-
-<p>A <strong>case definition</strong> is the set of clinical, laboratory, and/or epidemiological criteria that must be met for a person to be counted as a "case" in a study or surveillance system. It determines who goes in the numerator.</p>
-
-<p>Case definitions must balance two competing concerns:</p>
-<ul>
-  <li><strong>Sensitivity:</strong> capturing all true cases (avoiding false negatives). A more sensitive definition casts a wider net — useful for outbreak detection when you do not want to miss cases.</li>
-  <li><strong>Specificity:</strong> excluding non-cases (avoiding false positives). A more specific definition is stricter — useful for estimating true disease prevalence without inflating the count with borderline cases.</li>
-</ul>
-
-<div class="key-box">
-  <div class="key-label">Why case definitions matter — a cautionary example</div>
-  <p>In Zimbabwe's cholera surveillance, the distinction between a <em>suspected</em> case (acute watery diarrhoea, often &ge;3 loose stools in 24 hours, in an area with known cholera activity) and a <em>confirmed</em> case (laboratory isolation of <em>Vibrio cholerae</em> from stool) produced very different numbers: 34,549 suspected versus 4,217 confirmed cases by the end of the 2023–24 outbreak. The choice of case definition changes the numerator — and therefore every rate or proportion derived from it. Studies using different definitions cannot be directly compared without this caveat.</p>
-</div>
-
-<div class="zim-box">
-  <div class="zim-label">Case definition — hypertension in the Newlands cohort</div>
-  <p>In the Newlands Clinic cohort (IeDEA-SA), hypertension was defined as: a documented systolic blood pressure &gt;140 mmHg and/or diastolic blood pressure &gt;90 mmHg measured on at least <strong>two different days</strong>, <em>or</em> current use of antihypertensive medication.</p>
-  <p style="margin-top:0.5rem">This definition is important: requiring two readings on two different days reduces misclassification from isolated elevated measurements (anxiety, post-exercise, equipment error). Inclusion of antihypertensive medication use ensures that treated hypertensives — whose blood pressure may now be controlled — are not misclassified as "no hypertension" just because their current reading is normal.</p>
-</div>
-
-<h3 class="sub-title" id="s6_2">6.2 Exposures and outcomes</h3>
-
-<p>Two variables are measured in virtually every epidemiological study:</p>
-
-<div class="def-box">
-  <div class="def-label">Exposure (risk factor / determinant)</div>
-  <p>Any factor that may influence the outcome — biological, behavioural, environmental, structural, or pharmacological. The exposure precedes the outcome in time (or is hypothesised to).</p>
-</div>
-
-<div class="def-box">
-  <div class="def-label">Outcome</div>
-  <p>The disease, health event, biological state, or behaviour that we are interested in — the variable we are trying to explain or predict. Does not have to be a "bad" outcome: viral suppression and healthy birth weight are outcomes too.</p>
-</div>
-
-<p>A crucial insight: <strong>the same variable can be an exposure in one study and an outcome in another</strong>, depending on the research question.</p>
-
-<table>
-  <tr><th>Research question</th><th>Exposure</th><th>Outcome</th></tr>
-  <tr><td>Does smoking cause lung cancer?</td><td>Cigarette smoking</td><td>Lung cancer</td></tr>
-  <tr><td>Does cigarette advertising increase smoking uptake?</td><td>Exposure to advertising</td><td>Cigarette smoking</td></tr>
-  <tr><td>Does a midwife's advice increase breastfeeding?</td><td>Midwife's advice</td><td>Breastfeeding initiation</td></tr>
-  <tr><td>Does breastfeeding reduce diarrhoeal disease?</td><td>Breastfeeding</td><td>Diarrhoeal disease</td></tr>
-  <tr><td>Does DTG-based ART cause weight gain? (Newlands)</td><td>ART regimen (DTG vs EFV)</td><td>Weight gain / hypertension</td></tr>
-  <tr><td>Does weight gain mediate the DTG–hypertension link?</td><td>Weight gain</td><td>Hypertension</td></tr>
-</table>
-
-<p>In Snow's cholera investigation, the <strong>exposure</strong> of interest was the water source (Southwark and Vauxhall vs Lambeth Company). The <strong>outcome</strong> was death from cholera. Elevation above sea level was considered as a potential exposure initially (by Farr) but was ultimately found to be a proxy for water supply — a confounder, not a true cause.</p>
-
-<div class="think-box">
-  <div class="think-label">Think and reflect — identify the exposure and outcome</div>
-  <p>A research team at Newlands Clinic wants to investigate whether <strong>alcohol use</strong> (defined by AUDIT-C score &ge;3) is associated with <strong>failure to achieve viral suppression</strong> (HIV RNA &gt;200 copies/mL at 12 months on ART) among PLHIV in Harare.</p>
-  <ol style="margin-top:0.5rem">
-    <li>What is the exposure?</li>
-    <li>What is the outcome?</li>
-    <li>Name one potential confounder and explain why it might be one.</li>
-  </ol>
-  <p style="margin-top:0.75rem"><em>Suggested answers:</em></p>
-  <ol>
-    <li>Alcohol use (AUDIT-C &ge;3).</li>
-    <li>Viral non-suppression at 12 months on ART.</li>
-    <li>Possible confounders include: socioeconomic status (lower income may be associated with both higher alcohol use and poorer ART adherence); mental health status (depression is associated with both alcohol use and non-adherence); sex (men drink more and may have different adherence patterns). Any factor associated with both exposure and outcome, and not on the causal pathway between them, is a potential confounder.</li>
-  </ol>
-</div>
-
-<p class="pageid">Section 7</p>
-<h2 class="section-title" id="s7">Section 7: Self-Assessment Questions</h2>
-
-<div class="self-test">
-  <h3>Test your understanding — Topics 1 &amp; 2</h3>
-  <ol>
-    <li>Write your own one-sentence definition of epidemiology. Then compare it to the Porta 2008 definition and identify any components you missed.</li>
-    <li>A colleague tells you: "We had 120 patients with hypertension at our clinic this year." What critical piece of information is missing from this statement, and why does it matter?</li>
-    <li>Classify each of the following as descriptive or analytical, and observational or interventional:
-      <ol type="a">
-        <li>A survey of HIV prevalence among pregnant women attending antenatal care in Bulawayo in 2024.</li>
-        <li>A cohort study comparing time to viral suppression among PLHIV receiving DTG-based versus EFV-based ART at Newlands Clinic.</li>
-        <li>A randomised trial testing whether community health worker visits improve blood pressure control in hypertensive PLHIV in Harare.</li>
+  <!-- Skip navigation for keyboard/screen-reader users -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HEADER
+       Edit: brand line, h1 title, logo-area text
+       ═══════════════════════════════════════════════════════ -->
+  <header>
+    <div>
+      <div class="brand">Newlands Clinic · Research Masterclass for Clinicians</div>
+      <!-- ↓ EDIT: module and topic title ↓ -->
+      <h1>Module 1 · Topics 1 &amp; 2<br>Fundamentals of Epidemiology &amp; The Epidemiological Focus</h1>
+    </div>
+    <!-- ↓ EDIT: short module code and website ↓ -->
+    <div class="logo-area">
+      RM Module 1<br>
+      Topics FE01 &amp; FE02<br>
+      <a href="https://www.newlandsclinic.org.zw" style="color:rgba(255,255,255,0.5)">newlandsclinic.org.zw</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════
+         TABLE OF CONTENTS
+         Add or remove anchor links here as you add sections.
+         Format: <a href="#sX">Section X title</a>
+         ═══════════════════════════════════════════════════ -->
+    <nav aria-label="Table of contents">
+      <h2>Contents</h2>
+      <p>
+        <a href="#s1">Section 1: Learning objectives</a><br>
+        <a href="#s2">Section 2: What is epidemiology?</a>
+        &nbsp;|&nbsp; <a href="#s2_1">2.1 Definition</a>
+        &nbsp;|&nbsp; <a href="#s2_2">2.2 Three core questions</a>
+        &nbsp;|&nbsp; <a href="#s2_3">2.3 Historical roots</a>
+        &nbsp;|&nbsp; <a href="#s2_4">2.4 Epidemiology in Zimbabwe today</a><br>
+        <a href="#s3">Section 3: Descriptive and analytical epidemiology</a>
+        &nbsp;|&nbsp; <a href="#s3_1">3.1 Descriptive</a>
+        &nbsp;|&nbsp; <a href="#s3_2">3.2 Analytical</a>
+        &nbsp;|&nbsp; <a href="#s3_3">3.3 Observational vs interventional</a><br>
+        <a href="#s4">Section 4: The role of epidemiology</a>
+        &nbsp;|&nbsp; <a href="#s4_1">4.1 Three functions</a>
+        &nbsp;|&nbsp; <a href="#s4_2">4.2 Limitations and confounding</a><br>
+        <a href="#s5">Section 5: The epidemiological focus — populations</a>
+        &nbsp;|&nbsp; <a href="#s5_1">5.1 Defining the population</a>
+        &nbsp;|&nbsp; <a href="#s5_2">5.2 Person, place, and time</a><br>
+        <a href="#s6">Section 6: Defining cases, exposures, and outcomes</a>
+        &nbsp;|&nbsp; <a href="#s6_1">6.1 Case definitions</a>
+        &nbsp;|&nbsp; <a href="#s6_2">6.2 Exposures and outcomes</a><br>
+        <a href="#s7">Section 7: Self-assessment</a><br>
+        <a href="#s8">Section 8: Summary</a><br>
+        <a href="#s9">Section 9: References</a>
+      </p>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 1 — LEARNING OBJECTIVES
+         Edit: bullet list of objectives
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 1</p>
+    <h2 class="section-title" id="s1">Section 1: Learning Objectives</h2>
+
+    <p>After completing Topics 1 and 2, you should be able to:</p>
+    <ul>
+      <li>Define epidemiology and explain the components of its definition.</li>
+      <li>Distinguish between descriptive and analytical epidemiology, and between observational and interventional approaches.</li>
+      <li>Articulate the three core functions of epidemiology.</li>
+      <li>Define what "population" means in epidemiological (rather than demographic) terms.</li>
+      <li>Describe any health-related event using the three dimensions of <em>person, place,</em> and <em>time</em>.</li>
+      <li>Distinguish between an exposure and an outcome in a given study.</li>
+      <li>Explain why case definitions matter and how they affect numerator counts.</li>
+    </ul>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 2 — WHAT IS EPIDEMIOLOGY?
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 2</p>
+    <h2 class="section-title" id="s2">Section 2: What is Epidemiology?</h2>
+
+    <!-- 2.1 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s2_1">2.1 The formal definition</h3>
+
+    <p>Epidemiology is frequently in the news, often without being named as such. When you read a headline such as "HIV prevalence declines among young women in Zimbabwe" or "cholera cases concentrated in high-density Harare suburbs", you are reading the output of epidemiological thinking.</p>
+
+    <!-- EDIT: definition text and citation -->
+    <div class="def-box">
+      <div class="def-label">Definition</div>
+      <p>"The study of the <strong>occurrence and distribution</strong> of health-related states or events in <strong>specified populations</strong>, including the study of the <strong>determinants</strong> influencing such states, and the application of this study to the <strong>control of health problems</strong>."</p>
+      <p style="font-size:0.82rem; color:var(--nc-muted); margin-top:0.4rem; margin-bottom:0">
+        Porta, Greenland &amp; Last — <em>Dictionary of Epidemiology</em>, 5th ed., Oxford University Press, 2008.
+      </p>
+    </div>
+
+    <p>Let us unpack the definition phrase by phrase, because each component carries important meaning.</p>
+
+    <p><strong>Occurrence and distribution.</strong> We are interested not just in whether a disease exists, but in <em>how common</em> it is and <em>how it is spread</em> across different groups and places. For example, knowing that hypertension exists among people living with HIV (PLHIV) is not particularly informative — but knowing that its prevalence among PLHIV aged ≥50 at a Harare clinic is 41.2% versus an estimated 30% in the general Zimbabwean adult population gives us something to act on.</p>
+
+    <p><strong>Health-related states or events.</strong> Our subject matter is deliberately broad. It encompasses diseases, injuries, health behaviours, biological measures (blood pressure, viral load, CD4 count), and even positive outcomes such as viral suppression or healthy birth weight. This breadth is important for clinicians: epidemiological reasoning applies whenever you are thinking about <em>patterns</em> rather than individual patients.</p>
+
+    <p><strong>Specified populations.</strong> This is the feature that most distinguishes epidemiology from clinical medicine. A clinician cares for the individual patient in front of them; an epidemiologist asks how that patient's experience relates to the experience of a defined group. The population must be specified — it is the denominator that gives the numerator (cases) meaning.</p>
+
+    <p><strong>Determinants.</strong> We seek to understand what drives the patterns we observe — biological, behavioural, social, economic, or environmental factors that increase or decrease risk.</p>
+
+    <p><strong>Application and control.</strong> Epidemiology is not an academic exercise in pattern-description. Its purpose is to generate knowledge that can be translated into action: public health interventions, clinical guidelines, health policy, or programme evaluation.</p>
+
+    <!-- EDIT: Zimbabwe example text and source -->
+    <div class="zim-box">
+      <div class="zim-label">Zimbabwean example — all parts of the definition</div>
+      <p>The IeDEA–Newlands cohort study exemplifies the full definition. Researchers at Newlands Clinic, Harare, studied the <strong>occurrence</strong> of new hypertension (<em>health-related event</em>) among <strong>HIV-positive adults on ART</strong> (<em>specified population</em>). They examined whether the dolutegravir (DTG) ART regimen was a <strong>determinant</strong> of hypertension through its effect on weight gain. Findings fed back into <strong>application</strong>: clinical monitoring protocols for PLHIV on DTG across Southern Africa. Every component of the definition is present.</p>
+    </div>
+
+    <!-- 2.2 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s2_2">2.2 The three core questions</h3>
+
+    <p>A helpful way to remember what epidemiology does is through three fundamental questions that it asks of any health event:</p>
+
+    <!-- EDIT: table rows -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Question</th><th>What it drives</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>How often?</strong></td>
+            <td>Measurement of frequency — prevalence, incidence, mortality</td>
+            <td>What proportion of PLHIV aged ≥40 have hypertension?</td>
+          </tr>
+          <tr>
+            <td><strong>In whom, where, when?</strong></td>
+            <td>Distribution — by person, place, and time</td>
+            <td>Is hypertension more common in women or men, in Harare or rural districts, in 2010 vs 2020?</td>
+          </tr>
+          <tr>
+            <td><strong>Why?</strong></td>
+            <td>Determinants — risk factors, exposures</td>
+            <td>Is long ART duration, DTG use, or BMI the strongest predictor?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>A fourth implicit question is <strong>"So what?"</strong> — the application question that distinguishes a purely academic exercise from public health practice.</p>
+
+    <!-- 2.3 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s2_3">2.3 Historical roots — why history matters for method</h3>
+
+    <p>Understanding the history of epidemiology is not mere trivia. The founders of the discipline made methodological choices — how to define a case, what denominator to use, how to compare groups — that remain directly relevant to your work today.</p>
+
+    <p><strong>Hippocrates (~460 BC).</strong> Writing in <em>On Airs, Waters, and Places</em>, Hippocrates described how disease patterns varied with season, climate, water source, and personal behaviour. His framework — that disease has environmental and behavioural determinants that vary by place and time — is recognisably modern. The word <em>epidemiology</em> derives from the Greek <em>epi</em> (upon) and <em>demos</em> (people).</p>
+
+    <p><strong>William Farr (England, 1839).</strong> Farr established England's first systematic death-registration system, enabling comparison of mortality rates across occupational groups, geographic areas, and time periods. His approach is the template for every routine surveillance system that exists today — including Zimbabwe's District Health Information Software (DHIS2), which was used to track the 2023–24 cholera outbreak in real time.</p>
+
+    <p><strong>Ignaz Semmelweis (Vienna, 1840s).</strong> Semmelweis observed high maternal mortality from puerperal fever in a ward staffed by medical students compared with one staffed by midwives. By noticing that medical students performed post-mortem examinations without handwashing before attending deliveries, he hypothesised that unwashed hands were transmitting infection. When he introduced chlorinated handwashing, mortality fell dramatically. This is one of the earliest recorded examples of a <em>natural experiment</em> in epidemiology.</p>
+
+    <p><strong>John Snow (London, 1854).</strong> Snow's investigation of a cholera outbreak in Soho is perhaps the most celebrated case study in epidemiological history — and directly relevant to Zimbabwe, which has dealt with severe cholera outbreaks for decades. Working before germ theory was established, Snow mapped cholera deaths and compared death rates among households served by two different water companies. He found that households served by the Southwark and Vauxhall company experienced 31.5 deaths per 1,000 houses compared with 3.8 per 1,000 for the Lambeth company — roughly an 8-fold difference. This ratio is recognisable today as a form of <em>rate ratio</em>, a concept formalised in Module 1 Topic 3.</p>
+
+    <!-- EDIT: key point text -->
+    <div class="key-box">
+      <div class="key-label">Methodological lesson from Snow</div>
+      <p>Snow used both descriptive epidemiology (mapping cases by location and time) and analytical epidemiology (comparing rates across water-supply groups). He did not <em>prove</em> that contaminated water causes cholera — epidemiologists provide evidence for or against a hypothesis, they do not deliver proof. But his evidence was strong enough to guide action. This distinction between association and causation is central to the discipline and will recur throughout this course.</p>
+    </div>
+
+    <!-- 2.4 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s2_4">2.4 Epidemiology in Zimbabwe today</h3>
+
+    <p>Epidemiology is not a historical discipline. It is practised daily in Zimbabwe's health system, and many of you will encounter its outputs in your clinical work without necessarily identifying them as such.</p>
+
+    <!-- EDIT: Zimbabwe example text, statistics, and sources -->
+    <div class="zim-box">
+      <div class="zim-label">The 2023–2024 cholera outbreak — epidemiology in action</div>
+      <p>On 12 February 2023, Zimbabwe's first cholera case of the year was reported in Chegutu, Mashonaland West. By August 2024, when the outbreak was officially declared over, a cumulative total of <strong>34,549 suspected cases and 718 deaths</strong> had been recorded across all 10 provinces, with a case fatality rate of 2.1% (WHO, 2024).</p>
+      <p style="margin-top:0.5rem">The public health response required epidemiological thinking at every stage:</p>
+      <ul style="margin-top:0.4rem">
+        <li><strong>Surveillance and case counting</strong> — distinguishing suspected (clinical) from confirmed (laboratory) cases using a precise case definition, tracked through DHIS2.</li>
+        <li><strong>Distribution analysis</strong> — identifying that Harare, Manicaland, and Mashonaland Central accounted for over 77% of cases, enabling targeted resource allocation.</li>
+        <li><strong>Risk factor investigation</strong> — linking transmission to contaminated water supply, breakdown of sanitation infrastructure, and population displacement.</li>
+        <li><strong>Intervention evaluation</strong> — over 2.4 million oral cholera vaccine doses were deployed; surveillance data monitored whether case incidence declined in vaccinated areas.</li>
+      </ul>
+      <p style="margin-top:0.5rem; font-size:0.83rem; color:var(--nc-muted)">Sources: WHO AFRO, 2024; Marumure et al., <em>Journal of Tropical Medicine</em>, 2024.</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 3 — DESCRIPTIVE AND ANALYTICAL
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 3</p>
+    <h2 class="section-title" id="s3">Section 3: Descriptive and Analytical Epidemiology</h2>
+
+    <!-- 3.1 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s3_1">3.1 Descriptive epidemiology</h3>
+
+    <div class="def-box">
+      <div class="def-label">Descriptive epidemiology</div>
+      <p>Studies designed to describe the <strong>frequency and distribution</strong> of an exposure or outcome, without seeking to explain the distribution by looking for associations.</p>
+      <p style="margin-top:0.35rem; margin-bottom:0; font-style:italic">Key question: "What is happening, and in whom, where, and when?"</p>
+    </div>
+
+    <p>Descriptive epidemiology is the essential first step in any investigation. Before we can ask <em>why</em> something is happening, we need to characterise <em>what</em> is happening. This requires:</p>
+    <ul>
+      <li>A reliable <strong>numerator</strong> — an accurate count of cases, using a consistent case definition.</li>
+      <li>A reliable <strong>denominator</strong> — an accurate count of the population at risk, so that we can calculate a rate or proportion rather than just a raw count.</li>
+      <li>Stratification by <strong>person, place, and time</strong> (discussed in Section 5).</li>
+    </ul>
+
+    <div class="zim-box">
+      <div class="zim-label">Descriptive example — Newlands Clinic elderly cohort</div>
+      <p>Chimbetete et al. (2020, <em>Southern African Journal of HIV Medicine</em>) conducted a cross-sectional analysis of 1,688 patients aged ≥50 years receiving HIV care at Newlands Clinic as of 1 October 2019 — 25.8% of the total clinic population. They reported: median ART duration 10.9 years; viral load &lt;50 copies/mL in over 90%; hypertension prevalence 41.2%; arthritis 19.9%; chronic kidney disease 11.6%.</p>
+      <p style="margin-top:0.4rem">This is descriptive epidemiology: the study describes the frequency and distribution of conditions in a defined group. It does not test whether any factor caused the hypertension — that would require analytical methods.</p>
+    </div>
+
+    <p>Routine data sources are the backbone of descriptive epidemiology. In Zimbabwe, these include:</p>
+    <ul>
+      <li>DHIS2 — the national Health Management Information System used for routine facility-level data.</li>
+      <li>ZIMSTAT — the Zimbabwe National Statistics Agency, including census data.</li>
+      <li>The Zimbabwe Population-Based HIV Impact Assessment (ZIMPHIA) — repeated nationally representative HIV surveys.</li>
+      <li>Clinic-based cohort databases such as the IeDEA–Newlands dataset.</li>
+    </ul>
+
+    <!-- 3.2 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s3_2">3.2 Analytical epidemiology</h3>
+
+    <div class="def-box">
+      <div class="def-label">Analytical epidemiology</div>
+      <p>Studies designed to examine <strong>associations</strong> between exposures and outcomes, often with the aim of identifying possible causes of an outcome.</p>
+      <p style="margin-top:0.35rem; margin-bottom:0; font-style:italic">Key question: "Why is this pattern occurring? What is driving it?"</p>
+      <p style="margin-top:0.25rem; margin-bottom:0; font-size:0.85rem; color:var(--nc-muted)">Also called aetiological studies.</p>
+    </div>
+
+    <p>Analytical epidemiology moves beyond description to comparison. We compare groups — those exposed to a risk factor versus those not exposed, or those who developed the outcome versus those who did not — to quantify the association between the exposure and the outcome.</p>
+
+    <div class="zim-box">
+      <div class="zim-label">Analytical example — DTG and hypertension at Newlands Clinic</div>
+      <p>Shamu et al. (2022, <em>JIAS</em>) studied 9,487 PLHIV at Newlands Clinic starting or switching to dolutegravir (DTG), efavirenz (EFV), or atazanavir/ritonavir (ATV/r). Over two years, DTG was associated with weight gain of approximately 4 kg, compared with lower gains on the other regimens. The proportion with hypertension continued to increase in the DTG group. Statistical models adjusted for age, sex, baseline BMI, and CD4 count.</p>
+      <p style="margin-top:0.4rem">This is analytical epidemiology: a specific association is tested, confounding is addressed, and an estimate of association size is produced. It demonstrates association — it does not prove causation.</p>
+    </div>
+
+    <p>A central caution in analytical epidemiology: <strong>association does not equal causation.</strong> John Snow found that altitude above sea level was associated with cholera — but this was because lower-lying areas happened to be served by contaminated water. Farr's "miasma" theory was a plausible but incorrect causal interpretation of a genuine association. The discipline of causal inference will be covered in later modules.</p>
+
+    <!-- 3.3 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s3_3">3.3 Observational vs interventional epidemiology</h3>
+
+    <!-- EDIT: table rows -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Definition</th><th>Subtypes</th><th>Zimbabwe example</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Observational</strong></td>
+            <td>We examine the distribution or determinants of an outcome without attempting to influence them.</td>
+            <td>Can be descriptive or analytical</td>
+            <td>Cross-sectional survey of hypertension prevalence among PLHIV at Newlands Clinic</td>
+          </tr>
+          <tr>
+            <td><strong>Interventional</strong></td>
+            <td>We modify an exposure within the study population and measure the effect on the outcome.</td>
+            <td>Always analytical</td>
+            <td>Randomised trial testing community-based BP screening vs standard care in Harare</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Randomised controlled trials (RCTs) can provide stronger evidence for causal relationships than observational studies, because randomisation balances known and unknown confounders. However, RCTs are expensive, ethically constrained, and sometimes infeasible. Most of the knowledge base in clinical epidemiology in sub-Saharan Africa is built from observational studies.</p>
+
+    <!-- EDIT: think & reflect content and answers -->
+    <div class="think-box">
+      <div class="think-label">Think and reflect</div>
+      <p>James Lind's 1747 scurvy experiment at sea is considered one of the first controlled clinical trials in history. He gave 12 scurvy patients different dietary supplements and measured outcomes over six days. Those given citrus fruits recovered; others did not. Would you classify this as observational or interventional? Descriptive or analytical? Discuss with a colleague before reading on.</p>
+      <p style="margin-top:0.5rem"><em>Answer:</em> Interventional (Lind actively modified the exposure — the dietary supplement) and analytical (he compared outcomes across groups to identify a causal factor).</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 4 — ROLE OF EPIDEMIOLOGY
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 4</p>
+    <h2 class="section-title" id="s4">Section 4: The Role of Epidemiology</h2>
+
+    <!-- 4.1 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s4_1">4.1 Three core functions</h3>
+
+    <p>The purpose of epidemiology is ultimately practical. Its three core functions can be understood as a cycle:</p>
+
+    <p><strong>Function 1: Describe.</strong> Quantify the frequency and distribution of health events in a population. This gives us the baseline — who is affected, where, and when. Without accurate description, we cannot identify priorities, allocate resources, or detect emerging threats. The ZIMPHIA surveys, which periodically estimate HIV prevalence and incidence across Zimbabwe, are a national-scale example of descriptive epidemiology serving a planning function.</p>
+
+    <p><strong>Function 2: Interpret.</strong> Investigate risk factors and determinants by examining associations between exposures and outcomes. This is where analytical methods — regression models, survival analyses, measures of association — come in. Understanding that PLHIV on longer-duration ART carry a higher burden of hypertension and type 2 diabetes informs integrated NCD screening protocols.</p>
+
+    <p><strong>Function 3: Apply and evaluate.</strong> Translate findings into health interventions, guidelines, or policies. Then evaluate whether they work — which is itself an epidemiological exercise. The evaluation of Zimbabwe's oral cholera vaccine campaign during the 2023–24 outbreak is a current example.</p>
+
+    <!-- EDIT: Zimbabwe example -->
+    <div class="zim-box">
+      <div class="zim-label">All three functions — hypertension cascade at Newlands Clinic</div>
+      <p><strong>Describe:</strong> The Newlands cohort documented that hypertension prevalence among PLHIV aged ≥50 is 41.2%, substantially higher than in younger patients.</p>
+      <p style="margin-top:0.4rem"><strong>Interpret:</strong> Analytical work investigated whether this excess burden was explained by ART duration, regimen choice (particularly DTG), increasing BMI over time, or background age-related cardiovascular risk.</p>
+      <p style="margin-top:0.4rem"><strong>Apply and evaluate:</strong> These findings contributed to integrated HIV-NCD care pathways at Newlands Clinic, and provided the evidence base for the EVAH grant proposal (AI-enabled cardiovascular screening for PLHIV in Zimbabwe and Zambia).</p>
+    </div>
+
+    <!-- 4.2 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s4_2">4.2 Limitations — confounding and error</h3>
+
+    <p>Epidemiology is not conducted in a controlled laboratory. We work with real populations in complex social environments where multiple factors operate simultaneously and are often correlated with each other. This creates two fundamental challenges:</p>
+
+    <p><strong>Confounding.</strong> A confounder is a third variable that is associated with both the exposure and the outcome, and can create a spurious association or mask a real one. Farr's elevation-altitude-cholera example is the textbook case. In the IeDEA–Newlands DTG study, age and baseline BMI are confounders — statistical adjustment was required to estimate the independent association of DTG with hypertension.</p>
+
+    <p><strong>Bias and error.</strong> Systematic errors can arise in how we select study participants (selection bias), how we measure exposures and outcomes (information bias), or how we lose participants to follow-up (attrition bias). Recognising and minimising these sources of error is a core skill developed over subsequent modules.</p>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 5 — POPULATIONS
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 5</p>
+    <h2 class="section-title" id="s5">Section 5: The Epidemiological Focus — Populations</h2>
+
+    <!-- 5.1 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s5_1">5.1 Defining the population</h3>
+
+    <p>The key question in epidemiology is always: <strong>"What is the denominator?"</strong></p>
+
+    <p>In demography, "population" means the inhabitants of a geographic area. In epidemiology, the population is the <em>defined collection of units from which our sample is drawn</em>. These units are most commonly people, but they could be clinical consultations, households, or health facilities. The epidemiological population is defined by its characteristics, not just its geography.</p>
+
+    <p>Consider the difference between these two statements:</p>
+    <ul>
+      <li>"There were 50 new HIV diagnoses in Harare in June 2026." — A count (numerator only). Without knowing the denominator, we cannot interpret whether 50 is high or low.</li>
+      <li>"The HIV incidence rate among sexually active adults aged 15–49 in Harare in 2026 was estimated at 0.8 per 100 person-years." — A rate with a defined denominator: interpretable and comparable.</li>
+    </ul>
+
+    <div class="key-box">
+      <div class="key-label">Always ask: what is the denominator?</div>
+      <p>A clinician presents a poster: "We saw 80 cases of peripheral arterial disease in our clinic this year." An epidemiologist immediately asks: out of how many patients? What was the population at risk? What was the follow-up time? Without the denominator, the 80 is descriptively interesting but epidemiologically uninformative.</p>
+    </div>
+
+    <!-- 5.2 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s5_2">5.2 Person, place, and time</h3>
+
+    <p>The fundamental framework for describing the distribution of a health event is to characterise it across three dimensions: <strong>person, place,</strong> and <strong>time</strong>.</p>
+
+    <p><strong>Person</strong> refers to the characteristics of individuals: age, sex, occupation, socioeconomic status, HIV status, ART regimen, BMI, smoking status, and so on. Person characteristics help identify which groups carry the greatest burden and may generate hypotheses about risk factors.</p>
+
+    <p><strong>Place</strong> refers to geographic or institutional location: country, province, urban versus rural, catchment clinic, residential type. Geographic patterns often reflect differences in environmental exposures, healthcare access, or population characteristics.</p>
+
+    <p><strong>Time</strong> refers to when events occur: the calendar period, secular trends, seasonal patterns, or epidemic curves. Time patterns can reveal the incubation period of an infectious disease, the lag between exposure and outcome in chronic disease, or the impact of an intervention.</p>
+
+    <!-- EDIT: Zimbabwe examples -->
+    <div class="zim-box">
+      <div class="zim-label">Worked example — identify person, place, and time</div>
+      <p><em>Statement:</em> "The prevalence of hypertension among <strong>HIV-positive women aged 50–59 receiving ART</strong> at <strong>Newlands Clinic, Harare</strong>, as of <strong>1 October 2019</strong>, was higher than among men in the same age group."</p>
+      <ul style="margin-top:0.5rem">
+        <li><strong>Person:</strong> HIV-positive adults on ART aged 50–59, with comparison by sex.</li>
+        <li><strong>Place:</strong> Newlands Clinic, Harare.</li>
+        <li><strong>Time:</strong> Cross-sectional — 1 October 2019.</li>
+      </ul>
+      <p style="margin-top:0.4rem">Knowing the place is important: Newlands Clinic serves a predominantly employed urban population with long ART duration. The results may not generalise to rural public sector clinics.</p>
+    </div>
+
+    <div class="zim-box">
+      <div class="zim-label">Worked example 2 — cholera outbreak 2023–2024</div>
+      <p><em>Statement:</em> "As of 11 February 2024, cumulative cholera cases were highest in Harare (including Chitungwiza), Manicaland, and Masvingo, accounting for 77.4% of all cases. The outbreak began on 12 February 2023 in Chegutu and spread to all 10 provinces within 12 months."</p>
+      <ul style="margin-top:0.5rem">
+        <li><strong>Person:</strong> Not specified in this extract — surveillance data stratified by age and sex were collected separately.</li>
+        <li><strong>Place:</strong> Zimbabwe, all 10 provinces; highest burden in Harare/Chitungwiza, Manicaland, Masvingo.</li>
+        <li><strong>Time:</strong> February 2023 to February 2024; weekly epidemic curve showed rainy-season peaks.</li>
+      </ul>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 6 — CASES, EXPOSURES, OUTCOMES
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 6</p>
+    <h2 class="section-title" id="s6">Section 6: Defining Cases, Exposures, and Outcomes</h2>
+
+    <!-- 6.1 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s6_1">6.1 Case definitions</h3>
+
+    <p>A <strong>case definition</strong> is the set of clinical, laboratory, and/or epidemiological criteria that must be met for a person to be counted as a "case" in a study or surveillance system. It determines who goes in the numerator.</p>
+
+    <p>Case definitions must balance two competing concerns:</p>
+    <ul>
+      <li><strong>Sensitivity:</strong> capturing all true cases (avoiding false negatives). A more sensitive definition casts a wider net — useful for outbreak detection.</li>
+      <li><strong>Specificity:</strong> excluding non-cases (avoiding false positives). A stricter definition is useful for estimating true disease prevalence.</li>
+    </ul>
+
+    <div class="key-box">
+      <div class="key-label">Why case definitions matter — a cautionary example</div>
+      <p>In Zimbabwe's cholera surveillance, distinguishing a <em>suspected</em> case (acute watery diarrhoea in an area with known cholera activity) from a <em>confirmed</em> case (laboratory isolation of <em>Vibrio cholerae</em>) produced very different numbers: 34,549 suspected versus 4,217 confirmed cases. The choice of case definition changes the numerator — and therefore every rate or proportion derived from it. Studies using different definitions cannot be directly compared without this caveat.</p>
+    </div>
+
+    <div class="zim-box">
+      <div class="zim-label">Case definition — hypertension in the Newlands cohort</div>
+      <p>In the Newlands Clinic cohort (IeDEA-SA), hypertension was defined as: a documented systolic BP &gt;140 mmHg and/or diastolic BP &gt;90 mmHg measured on at least <strong>two different days</strong>, <em>or</em> current use of antihypertensive medication.</p>
+      <p style="margin-top:0.5rem">Requiring two readings on two different days reduces misclassification from isolated elevated measurements. Including antihypertensive use ensures that treated hypertensives with controlled BP are not misclassified as "no hypertension".</p>
+    </div>
+
+    <!-- 6.2 ─────────────────────────────────────────────── -->
+    <h3 class="sub-title" id="s6_2">6.2 Exposures and outcomes</h3>
+
+    <p>Two variables are measured in virtually every epidemiological study:</p>
+
+    <div class="def-box">
+      <div class="def-label">Exposure (risk factor / determinant)</div>
+      <p>Any factor that may influence the outcome — biological, behavioural, environmental, structural, or pharmacological. The exposure precedes the outcome in time (or is hypothesised to).</p>
+    </div>
+
+    <div class="def-box">
+      <div class="def-label">Outcome</div>
+      <p>The disease, health event, biological state, or behaviour that we are interested in. Does not have to be a "bad" outcome: viral suppression and healthy birth weight are outcomes too.</p>
+    </div>
+
+    <p>A crucial insight: <strong>the same variable can be an exposure in one study and an outcome in another</strong>, depending on the research question.</p>
+
+    <!-- EDIT: table rows — add your own study examples from Newlands here -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Research question</th><th>Exposure</th><th>Outcome</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Does smoking cause lung cancer?</td>
+            <td>Cigarette smoking</td>
+            <td>Lung cancer</td>
+          </tr>
+          <tr>
+            <td>Does cigarette advertising increase smoking uptake?</td>
+            <td>Exposure to advertising</td>
+            <td>Cigarette smoking</td>
+          </tr>
+          <tr>
+            <td>Does a midwife's advice increase breastfeeding?</td>
+            <td>Midwife's advice</td>
+            <td>Breastfeeding initiation</td>
+          </tr>
+          <tr>
+            <td>Does breastfeeding reduce diarrhoeal disease?</td>
+            <td>Breastfeeding</td>
+            <td>Diarrhoeal disease</td>
+          </tr>
+          <tr>
+            <td>Does DTG-based ART cause weight gain? (Newlands)</td>
+            <td>ART regimen (DTG vs EFV)</td>
+            <td>Weight gain / hypertension</td>
+          </tr>
+          <tr>
+            <td>Does weight gain mediate the DTG–hypertension link?</td>
+            <td>Weight gain</td>
+            <td>Hypertension</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>In Snow's cholera investigation, the <strong>exposure</strong> was the water source (Southwark and Vauxhall vs Lambeth Company). The <strong>outcome</strong> was death from cholera. Elevation above sea level — initially studied by Farr — turned out to be a proxy for water supply: a confounder, not a cause.</p>
+
+    <div class="think-box">
+      <div class="think-label">Think and reflect — identify the exposure and outcome</div>
+      <p>A research team at Newlands Clinic wants to investigate whether <strong>alcohol use</strong> (AUDIT-C score ≥3) is associated with <strong>failure to achieve viral suppression</strong> (HIV RNA &gt;200 copies/mL at 12 months on ART).</p>
+      <ol style="margin-top:0.5rem">
+        <li>What is the exposure?</li>
+        <li>What is the outcome?</li>
+        <li>Name one potential confounder and explain why it might be one.</li>
       </ol>
-    </li>
-    <li>The statement "The incidence of tuberculosis among <strong>male mineworkers aged 30–55</strong> working in <strong>gold mines in Matabeleland South</strong> between <strong>2018 and 2022</strong> was 4.2 per 100 person-years." — Identify the person, place, and time dimensions.</li>
-    <li>In a study examining whether elevated BMI at ART initiation predicts new-onset hypertension over 5 years, what is the exposure and what is the outcome? Could hypertension also be an exposure in a different study? Give an example.</li>
-    <li>Why might the case fatality rate calculated using suspected cases (n=34,549) differ from one calculated using confirmed cases (n=4,217) in the 2023–24 Zimbabwe cholera outbreak? Which denominator is more appropriate for which purpose?</li>
-  </ol>
+      <p style="margin-top:0.75rem"><em>Suggested answers:</em></p>
+      <ol>
+        <li>Alcohol use (AUDIT-C ≥3).</li>
+        <li>Viral non-suppression at 12 months on ART.</li>
+        <li>Possible confounders: socioeconomic status (associated with both higher alcohol use and poorer adherence); depression (associated with both alcohol use and non-adherence); sex (men drink more and may have different adherence patterns).</li>
+      </ol>
+    </div>
 
-  <div class="answers">
-    <p><strong>Outline answers (not comprehensive):</strong></p>
-    <p>2. The denominator — the population at risk — is missing. Without it, we cannot calculate a rate or proportion, and cannot assess whether 120 is high or low relative to the clinic's patient population.</p>
-    <p>3a. Descriptive, observational. 3b. Analytical, observational. 3c. Analytical, interventional.</p>
-    <p>4. Person: male mineworkers aged 30–55. Place: gold mines in Matabeleland South. Time: 2018–2022.</p>
-    <p>5. Exposure: BMI at ART initiation. Outcome: new-onset hypertension. Yes — e.g. in a study of whether hypertension causes accelerated kidney disease among PLHIV, hypertension becomes the exposure and CKD the outcome.</p>
-    <p>6. Using suspected cases as denominator gives a lower CFR (deaths/suspected cases) because the denominator is larger. Using confirmed cases gives a higher CFR but reflects only laboratory-confirmed cases, missing the majority who were treated clinically. The suspected-case CFR is better for population-level burden estimates; the confirmed-case CFR is better for clinical severity characterisation.</p>
-  </div>
-</div>
 
-<p class="pageid">Section 8</p>
-<h2 class="section-title" id="s8">Section 8: Summary</h2>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 7 — SELF-ASSESSMENT
+         Edit questions and answers as needed.
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 7</p>
+    <h2 class="section-title" id="s7">Section 7: Self-Assessment Questions</h2>
 
-<div class="summary-grid">
-  <div class="summary-card">
-    <h4>What is epidemiology?</h4>
-    <p>The study of occurrence, distribution, and determinants of health events in specified populations, applied to disease control.</p>
-  </div>
-  <div class="summary-card">
-    <h4>Descriptive vs analytical</h4>
-    <p>Descriptive: what, who, where, when? Analytical: why? Both can be observational; only interventional studies are always analytical.</p>
-  </div>
-  <div class="summary-card">
-    <h4>Three functions</h4>
-    <p>Describe frequency and distribution &rarr; Interpret associations and determinants &rarr; Apply findings and evaluate interventions.</p>
-  </div>
-  <div class="summary-card">
-    <h4>The epidemiological population</h4>
-    <p>A defined group of units from which the sample is drawn — not a geographic concept. Always identify the denominator.</p>
-  </div>
-  <div class="summary-card">
-    <h4>Person, place, and time</h4>
-    <p>The three dimensions for describing any health event. Every epidemiological statement should specify all three.</p>
-  </div>
-  <div class="summary-card">
-    <h4>Case definitions, exposures &amp; outcomes</h4>
-    <p>Case definitions determine the numerator. The same variable can be exposure in one study and outcome in another — context is everything.</p>
-  </div>
-</div>
+    <div class="self-test">
+      <h3>Test your understanding — Topics 1 &amp; 2</h3>
+      <ol>
+        <li>Write your own one-sentence definition of epidemiology. Compare it to the Porta 2008 definition and identify any components you missed.</li>
+        <li>A colleague says: "We had 120 patients with hypertension at our clinic this year." What critical piece of information is missing, and why does it matter?</li>
+        <li>Classify each as descriptive or analytical, and observational or interventional:
+          <ol type="a">
+            <li>A survey of HIV prevalence among pregnant women attending antenatal care in Bulawayo in 2024.</li>
+            <li>A cohort study comparing time to viral suppression among PLHIV receiving DTG-based versus EFV-based ART at Newlands Clinic.</li>
+            <li>A randomised trial testing whether community health worker visits improve blood pressure control in hypertensive PLHIV in Harare.</li>
+          </ol>
+        </li>
+        <li>"The incidence of tuberculosis among <strong>male mineworkers aged 30–55</strong> working in <strong>gold mines in Matabeleland South</strong> between <strong>2018 and 2022</strong> was 4.2 per 100 person-years." — Identify person, place, and time.</li>
+        <li>In a study examining whether elevated BMI at ART initiation predicts new-onset hypertension over 5 years, what is the exposure and what is the outcome? Could hypertension be an exposure in a different study? Give an example.</li>
+        <li>Why might the case fatality rate using suspected cases (n=34,549) differ from one using confirmed cases (n=4,217) in the 2023–24 Zimbabwe cholera outbreak? Which denominator is more appropriate for which purpose?</li>
+      </ol>
 
-<p class="pageid">Section 9</p>
-<h2 class="section-title" id="s9">Section 9: Key References</h2>
+      <!-- EDIT: outline answers -->
+      <div class="answers">
+        <p><strong>Outline answers (not comprehensive):</strong></p>
+        <p>2. The denominator — the population at risk — is missing. Without it we cannot calculate a rate or proportion, and cannot tell whether 120 is high or low.</p>
+        <p>3a. Descriptive, observational. &nbsp; 3b. Analytical, observational. &nbsp; 3c. Analytical, interventional.</p>
+        <p>4. Person: male mineworkers aged 30–55. &nbsp; Place: gold mines in Matabeleland South. &nbsp; Time: 2018–2022.</p>
+        <p>5. Exposure: BMI at ART initiation. Outcome: new-onset hypertension. Yes — e.g. in a study of whether hypertension causes accelerated kidney disease among PLHIV, hypertension becomes the exposure and CKD the outcome.</p>
+        <p>6. Using suspected cases gives a lower CFR because the denominator is larger. Using confirmed cases gives a higher CFR but covers only laboratory-confirmed cases. The suspected-case CFR is better for population-level burden estimates; the confirmed-case CFR is better for clinical severity characterisation.</p>
+      </div>
+    </div>
 
-<ol class="refs">
-  <li>Porta M, Greenland S, Last JM (eds). <em>A Dictionary of Epidemiology</em>, 5th ed. Oxford University Press; 2008.</li>
-  <li>Chimbetete C, Shamu T, Roelens M, et al. Mortality trends and causes of death among HIV positive patients at Newlands Clinic in Harare, Zimbabwe. <em>PLoS One</em>. 2020;15:e0237904. doi:10.1371/journal.pone.0237904</li>
-  <li>Chimbetete C, et al. Profile of elderly patients receiving antiretroviral therapy at Newlands Clinic in 2020: a cross-sectional study. <em>Southern African Journal of HIV Medicine</em>. 2020;21(1):1164. doi:10.4102/sajhivmed.v21i1.1164</li>
-  <li>Shamu T, Egger M, Mudzviti T, Chimbetete C, Anderegg N, et al. Weight change and hypertension associated with dolutegravir-based ART in a large Southern African HIV programme. <em>Journal of the International AIDS Society</em>. 2022;25:e26216. doi:10.1002/jia2.26216</li>
-  <li>Davis K, Moorhouse L, Maswera R, et al. Associations between HIV status and self-reported hypertension in a high HIV-prevalence sub-Saharan African population: a cross-sectional study. <em>BMJ Open</em>. 2023;13:e067327. doi:10.1136/bmjopen-2022-067327</li>
-  <li>Masunda K, Khan Z. The burden of hypertension in HIV-infected adults on retroviral therapy in Masvingo Province, Zimbabwe: a retrospective cohort study. <em>Cureus</em>. 2023;15(10):e46476. doi:10.7759/cureus.46476</li>
-  <li>WHO Regional Office for Africa. Zimbabwe declares cholera outbreak over. Harare: WHO; 9 August 2024. Available at: afro.who.int</li>
-  <li>Marumure J, et al. Cholera outbreaks in Zimbabwe: an in-depth analysis of drivers, constraints and reimagining the use of medicinal plants. <em>Journal of Tropical Medicine</em>. 2024. doi:10.1155/jotm/1981991</li>
-  <li>LSHTM EPM101 FE01 — Introduction to Epidemiology [core source for this module's conceptual framework]. London: LSHTM; 2018.</li>
-</ol>
 
-<p style="font-size:0.85rem;color:#555;margin-top:1.5rem">
-  <strong>Prework for Topic 3 (Session FE02):</strong> Before the next session, please read the definitions of incidence and prevalence in any standard epidemiology textbook (e.g., Bonita et al. <em>Basic Epidemiology</em>, WHO, freely available online). Think of one example of each from your clinical setting at Newlands Clinic or in your wider practice.
-</p>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 8 — SUMMARY
+         Edit the six summary cards below. Add or remove cards
+         as needed by copying a .summary-card div.
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 8</p>
+    <h2 class="section-title" id="s8">Section 8: Summary</h2>
 
-<footer>
-  <p>Newlands Clinic · Research Masterclass for Clinicians · Module 1, Topics 1 &amp; 2</p>
-  <p>Research Team Coordination Office · research@newlandsclinic.org.zw</p>
-  <p>www.newlandsclinic.org.zw</p>
-</footer>
+    <div class="summary-grid">
+
+      <div class="summary-card">
+        <h4>What is epidemiology?</h4>
+        <p>The study of occurrence, distribution, and determinants of health events in specified populations, applied to disease control.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>Descriptive vs analytical</h4>
+        <p>Descriptive: what, who, where, when? Analytical: why? Both can be observational; only interventional studies are always analytical.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>Three functions</h4>
+        <p>Describe frequency and distribution → Interpret associations and determinants → Apply findings and evaluate interventions.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>The epidemiological population</h4>
+        <p>A defined group of units from which the sample is drawn — not a geographic concept. Always identify the denominator.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>Person, place, and time</h4>
+        <p>The three dimensions for describing any health event. Every epidemiological statement should specify all three.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>Case definitions, exposures &amp; outcomes</h4>
+        <p>Case definitions determine the numerator. The same variable can be exposure in one study and outcome in another — context is everything.</p>
+      </div>
+
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 9 — REFERENCES
+         Add/remove <li> items as needed.
+         ═══════════════════════════════════════════════════ -->
+    <p class="pageid" aria-hidden="true">Section 9</p>
+    <h2 class="section-title" id="s9">Section 9: Key References</h2>
+
+    <ol class="refs">
+      <li>Porta M, Greenland S, Last JM (eds). <em>A Dictionary of Epidemiology</em>, 5th ed. Oxford University Press; 2008.</li>
+      <li>Chimbetete C, Shamu T, Roelens M, et al. Mortality trends and causes of death among HIV positive patients at Newlands Clinic in Harare, Zimbabwe. <em>PLoS One</em>. 2020;15:e0237904. doi:10.1371/journal.pone.0237904</li>
+      <li>Chimbetete C, et al. Profile of elderly patients receiving antiretroviral therapy at Newlands Clinic in 2020: a cross-sectional study. <em>Southern African Journal of HIV Medicine</em>. 2020;21(1):1164. doi:10.4102/sajhivmed.v21i1.1164</li>
+      <li>Shamu T, Egger M, Mudzviti T, Chimbetete C, Anderegg N, et al. Weight change and hypertension associated with dolutegravir-based ART in a large Southern African HIV programme. <em>Journal of the International AIDS Society</em>. 2022;25:e26216. doi:10.1002/jia2.26216</li>
+      <li>Davis K, Moorhouse L, Maswera R, et al. Associations between HIV status and self-reported hypertension in a high HIV-prevalence sub-Saharan African population: a cross-sectional study. <em>BMJ Open</em>. 2023;13:e067327. doi:10.1136/bmjopen-2022-067327</li>
+      <li>Masunda K, Khan Z. The burden of hypertension in HIV-infected adults on retroviral therapy in Masvingo Province, Zimbabwe. <em>Cureus</em>. 2023;15(10):e46476. doi:10.7759/cureus.46476</li>
+      <li>WHO Regional Office for Africa. Zimbabwe declares cholera outbreak over. Harare: WHO; 9 August 2024. Available at: afro.who.int</li>
+      <li>Marumure J, et al. Cholera outbreaks in Zimbabwe: an in-depth analysis of drivers, constraints and reimagining the use of medicinal plants. <em>Journal of Tropical Medicine</em>. 2024. doi:10.1155/jotm/1981991</li>
+      <li>LSHTM EPM101 FE01 — Introduction to Epidemiology [core conceptual framework]. London: LSHTM; 2018.</li>
+    </ol>
+
+    <!-- ═══════════════════════════════════════════════════
+         PREWORK NOTE — edit the module number and reading
+         ═══════════════════════════════════════════════════ -->
+    <div class="prework">
+      <strong>Prework for Topic 3 (Measures of Disease Occurrence):</strong> Before the next session, please read the definitions of incidence and prevalence in any standard epidemiology textbook (e.g., Bonita et al. <em>Basic Epidemiology</em>, WHO — freely available online). Think of one example of each from your clinical setting at Newlands Clinic or in your wider practice.
+    </div>
+
+  </main><!-- /main-content -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER — edit clinic name, course director, and URL
+       ═══════════════════════════════════════════════════════ -->
+  <footer>
+    <p>Newlands Clinic · Research Masterclass for Clinicians · Module 1, Topics 1 &amp; 2</p>
+    <p>Course Director: Ardele Mandiriri-Ndanga (MSc Epidemiology, PhD Candidate) · research@newlandsclinic.org.zw</p>
+    <p><a href="https://www.newlandsclinic.org.zw" style="color:#999">www.newlandsclinic.org.zw</a></p>
+  </footer>
 
 </body>
 </html>
