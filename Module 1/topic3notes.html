@@ -360,4 +360,290 @@ footer{
 
 <p class="key-point">Any specific measurement of disease occurrence is fundamentally uninterpretable unless three core parameters are explicitly locked down:</p>
 
-<h3 class="sub-title" id="s3_
+<h3 class="sub-title" id="s3_1">3.1 Case Definition</h3>
+<div class="def-box">
+  <div class="def-label">Operational Core</div>
+  <p>The standard, uniform clinical, diagnostic, or laboratory criteria used to differentiate a confirmed case from a non-case within a study protocol.</p>
+</div>
+<p>Varying the entry thresholds shifts the numerator count directly. For instance, evaluating metabolic complications in HIV care requires deciding whether to utilize standard WHO criteria (systolic blood pressure &ge;140 mmHg and/or diastolic blood pressure &ge;90 mmHg captured across distinct sessions) or specific regional research criteria. Similarly, outbreak tracing depends on separating suspected presentations (fever and acute rash) from strict laboratory confirmations (positive PCR assays).</p>
+
+<h3 class="sub-title" id="s3_2">3.2 Population Boundary</h3>
+<p>The denominator represents the precise aggregate group of observation units from which cases emerge. It is characterized by clinical and demographic bounds, rather than simple geographic residence lines. Local examples include:</p>
+<ul>
+  <li>Adult PLHIV aged &ge;18 years actively receiving specialized ART lines inside urban clinics.</li>
+  <li>High-risk healthcare workers systematically monitored following contact tracking.</li>
+  <li>Pregnant women entering sentinel antenatal screening lines within defined districts.</li>
+</ul>
+
+<h3 class="sub-title" id="s3_3">3.3 Time Reference</h3>
+<p>Because disease metrics shift dynamically, a clear time frame must be explicitly locked down. This can look like a static cross-sectional moment (e.g., active cohort metrics on 1 January 2024) or an elongated cumulative follow-up interval (e.g., tracking a cohort over a multi-year treatment trajectory).</p>
+
+<p class="pageid">Section 4</p>
+<h2 class="section-title" id="s4">Section 4: Prevalence</h2>
+
+<h3 class="sub-title" id="s4_1">4.1 Point Prevalence</h3>
+<p>Point prevalence measures the exact proportion of a defined population exhibiting a specific condition at one individual slice of time.</p>
+<div class="formula-display">
+  Point Prevalence = (Number of existing cases at a single point in time) / (Total population at that precise point in time)
+</div>
+
+<div class="zim-box">
+  <div class="zim-label">Applied Case: Uncontrolled Hypertension Cross-Section</div>
+  <p>A cross-sectional investigation evaluates metabolic risk among adult PLHIV on stable ART lines at an urban clinic. On the target date of 15 January 2024, a total pool of 500 patients are fully evaluated. Out of these, 115 meet the case definition for uncontrolled hypertension.</p>
+  <p class="calculation-block">Point Prevalence = 115 / 500 = 0.23 = 23.0%</p>
+  <p style="margin-top:0.4rem"><em>Interpretation:</em> On 15 January 2024, exactly 23.0% of the active clinician-tracked cohort exhibited uncontrolled hypertensive states, directly justifying daily embedded screening protocols.</p>
+</div>
+
+<h3 class="sub-title" id="s4_2">4.2 Period Prevalence</h3>
+<p>Period prevalence extends the analytical view to capture any individual who exhibited the condition at <em>any point</em> across an elongated calendar or clinical window. It incorporates cases already active at day one plus all new incident transitions emerging inside the window.</p>
+<div class="formula-display">
+  Period Prevalence = (Cases active at start + New cases emerging during period) / (Total population at start of period)
+</div>
+
+<div class="zim-box">
+  <div class="zim-label">Applied Case: Mpox Surveillance Tracing</div>
+  <p>During an active 12-month surveillance cycle (January–December 2024), public health teams monitor a cohort of 1,500 high-risk individuals. At the baseline start of the year (1 January), 12 individuals have confirmed active diagnoses. Over the course of the remaining year, an additional 38 new laboratory-confirmed cases emerge from the group.</p>
+  <p class="calculation-block">Period Prevalence = (12 + 38) / 1,500 = 50 / 1,500 = 0.033 = 3.3%</p>
+  <p style="margin-top:0.4rem"><em>Interpretation:</em> Exactly 3.3% of the monitored contact cohort experienced active disease burden at some phase during the 2024 calendar window.</p>
+</div>
+
+<h3 class="sub-title" id="s4_3">4.3 The Bathtub Principle</h3>
+<p>Prevalence is dynamically sustained by incidence and cleared by either death or absolute clinical cure. In steady-state conditions, this relationship is expressed via the classic formula:</p>
+<div class="formula-display">
+  Prevalence &asymp; Incidence &times; Average Duration of Disease
+</div>
+<div class="key-box">
+  <div class="key-label">The HIV Epidemiological Paradox</div>
+  <p>This equation explains a prominent trend in local public health data: as advanced antiretroviral therapies dramatically reduce mortality, the <em>duration</em> of life with the condition increases. Consequently, overall HIV prevalence can remain stable or increase inside a region even when new <em>incidence</em> rates decline due to successful prevention lines.</p>
+</div>
+
+<p class="pageid">Section 5</p>
+<h2 class="section-title" id="s5">Section 5: Incidence Risk</h2>
+
+<h3 class="sub-title" id="s5_1">5.1 Definition &amp; Key Characteristics</h3>
+<p>Incidence Risk (commonly designated as cumulative incidence or incidence proportion) measures the probability that a person who is completely free of the disease at baseline will transition into developing the disease over a fixed time block.</p>
+<div class="formula-display">
+  Incidence Risk = (Number of completely new cases during a defined block) / (Population at risk at start who are free of disease)
+</div>
+<p>Crucially, the denominator must strictly exclude any individual who already has the condition or lacks the functional biological organs/susceptibility to develop it. This calculation is ideal for structured closed cohorts with standardized, uniform follow-up periods where participant drops or early exits are minimal.</p>
+
+<h3 class="sub-title" id="s5_2">5.2 Cohort Risk Examples</h3>
+<div class="zim-box">
+  <div class="zim-label">Applied Case: Prospective TB/HIV Coinfection Cohort</div>
+  <p>A multi-site prospective investigation tracks advanced immunosuppressed patients (CD4 &lt;100 cells/mm&sup3;) who are confirmed free of active tuberculosis at baseline. A total of 450 patients enter the two-year risk monitoring window. Over the course of the two full years of follow-up, 72 participants develop documented active tuberculosis events.</p>
+  <p class="calculation-block">2-Year Incidence Risk = 72 / 450 = 0.16 = 16.0%</p>
+  <p style="margin-top:0.4rem"><em>Interpretation:</em> Any individual entering this clinical profile has a 16.0% prospective risk of developing active tuberculosis over a two-year horizon, providing clear evidence to support the use of routine tuberculosis preventive therapy (TPT).</p>
+</div>
+
+<p class="pageid">Section 6</p>
+<h2 class="section-title" id="s6">Section 6: Incidence Rate &amp; Person-Time</h2>
+
+<h3 class="sub-title" id="s6_1">6.1 The Concept of Person-Time</h3>
+<p>In standard long-term clinical research, open or dynamic cohorts are common. Patients enter at different times, default at varying intervals, or exit early due to competing mortality events. To handle this variable observation time, we switch to **Incidence Rate** (or Incidence Density), which replaces a count of people in the denominator with a precise sum of **Person-Time at Risk**.</p>
+<div class="formula-display">
+  Incidence Rate = (Number of completely new cases) / (Total sum of individual person-time spent at risk)
+</div>
+<p>Each participant contributes time only while they remain under active observation and free of the disease. A single participant stops contributing time to the denominator the moment they experience the clinical event, drop out, die, or the study ends.</p>
+
+<h3 class="sub-title" id="s6_2">6.2 Rate Calculations</h3>
+<div class="zim-box">
+  <div class="zim-label">Applied Case: Chronic Cohort Evaluation (TB/HIV Surveillance)</div>
+  <p>An ongoing clinical tracking protocol follows a small sample subset of 8 patients to monitor active tuberculosis developments over a maximum observation timeline. The individual breakdowns manifest as follows:</p>
+  <ul>
+    <li>Patients 1, 4, and 7: Remain fully active, retained, and tuberculosis-free for all 2.0 years $\rightarrow$ Contribute $3 \times 2.0 = 6.0$ person-years.</li>
+    <li>Patient 2: Develops confirmed tuberculosis at exactly 0.5 years $\rightarrow$ Exits tracking; contributes 0.5 person-years.</li>
+    <li>Patient 3: Defaults and is lost to follow-up at 0.83 years $\rightarrow$ Censored; contributes 0.83 person-years.</li>
+    <li>Patient 5: Develops confirmed tuberculosis at 0.67 years $\rightarrow$ Exits tracking; contributes 0.67 person-years.</li>
+    <li>Patient 6: Enters the cohort late, remaining safe for 1.5 years $\rightarrow$ Contribute 1.5 person-years.</li>
+    <li>Patient 8: Develops confirmed tuberculosis at 1.5 years $\rightarrow$ Exits tracking; contributes 1.5 person-years.</li>
+  </ul>
+  <p class="calculation-block">Total Denominator Person-Time = 2.0 + 0.5 + 0.83 + 2.0 + 0.67 + 1.5 + 2.0 + 1.5 = 10.9 Person-Years<br>Total Documented New Events = 3 Cases (Patients 2, 5, 8)</p>
+  <p style="margin-top:0.4rem">$$\text{Incidence Rate} = \frac{3 \text{ cases}}{10.9 \text{ person-years}} = 0.2752 \text{ cases per person-year}$$</p>
+  <p style="margin-top:0.4rem">Standardized for clear presentation, this is reported as: **27.5 cases per 100 person-years** of active observation.</p>
+</div>
+
+<p class="pageid">Section 7</p>
+<h2 class="section-title" id="s7">Section 7: Odds</h2>
+
+<h3 class="sub-title" id="s7_1">7.1 Odds vs. Probability (Risk)</h3>
+<p>While risk measures the number of cases relative to the *total population*, **Odds** represent the ratio of the probability of an event occurring to the probability of it *not occurring*.</p>
+<div class="formula-display">
+  Odds = P(Disease) / (1 - P(Disease)) = (Individuals with disease) / (Individuals remaining free of disease)
+</div>
+<p>Probability is strictly bounded between 0 and 1 (0% to 100%), whereas Odds are completely unbounded, extending from 0 to infinity. This mathematical property makes odds the natural metric used inside case-control study architectures and logistic regression models.</p>
+
+<h3 class="sub-title" id="s7_2">7.2 Clinical Application</h3>
+<div class="zim-box">
+  <div class="zim-label">Applied Case: Cross-Sectional Peripheral Neuropathy Evaluation</div>
+  <p>A cross-sectional screening of 250 adult patients on long-term antiretroviral regimens is executed at an urban clinic site to isolate peripheral neuropathy burden. Diagnostic evaluations confirm active neuropathy states in 60 individuals, while the remaining 190 patients are completely clear.</p>
+  <p class="calculation-block">Probability (Risk) = 60 / 250 = 0.24 = 24.0%<br>Odds = 60 / 190 = 0.316 (expressed as a ratio of roughly 3:10)</p>
+  <p style="margin-top:0.4rem"><em>Interpretation:</em> The cross-sectional risk of presenting with neuropathy is 24.0% (1 in 4), while the calculated odds are 0.316. This means that for every 3 patients presenting with neuropathy, there are approximately 10 patients who remain clear of the condition.</p>
+</div>
+
+<p class="pageid">Section 8</p>
+<h2 class="section-title" id="s8">Section 8: Comparison Matrix &amp; Selection Trees</h2>
+
+<p>Choosing the correct metric requires evaluating your underlying cohort style, your follow-up constraints, and your exact research question:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Measure</th>
+      <th>Core Numerator</th>
+      <th>Core Denominator</th>
+      <th>Mathematical Range</th>
+      <th>Ideal Scientific Use-Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Point Prevalence</strong></td>
+      <td>All active existing cases</td>
+      <td>Total population at that exact moment</td>
+      <td>0 to 1 (0% - 100%)</td>
+      <td>Cross-sectional burden profiling; clinic drug ordering.</td>
+    </tr>
+    <tr>
+      <td><strong>Period Prevalence</strong></td>
+      <td>Existing baseline + new cases</td>
+      <td>Total population size at start line</td>
+      <td>0 to 1 (0% - 100%)</td>
+      <td>Tracking total impact over an outbreak wave.</td>
+    </tr>
+    <tr>
+      <td><strong>Incidence Risk</strong></td>
+      <td>Strictly new incident cases</td>
+      <td>Disease-free susceptible pop at start</td>
+      <td>0 to 1 (0% - 100%)</td>
+      <td>Closed clinical trials; direct patient risk communication.</td>
+    </tr>
+    <tr>
+      <td><strong>Incidence Rate</strong></td>
+      <td>Strictly new incident cases</td>
+      <td>Sum aggregate person-time at risk</td>
+      <td>0 to &infin; (Unbounded)</td>
+      <td>Dynamic open cohorts; ongoing regional disease registries.</td>
+    </tr>
+    <tr>
+      <td><strong>Odds</strong></td>
+      <td>Active presenting cases</td>
+      <td>Strict non-case individuals</td>
+      <td>0 to &infin; (Unbounded)</td>
+      <td>Case-control study designs; logistic regression runs.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="key-box">
+  <div class="key-label">The Operational Decision Algorithm</div>
+  <ol>
+    <li>Are you measuring **existing status** or a **new transition**? If existing, use prevalence. If a new transition, use incidence.</li>
+    <li>If measuring incidence, did all participants have a **fixed, identical follow-up window** with minimal drops? If yes, use Incidence Risk. If participants had **variable follow-up windows**, entries, or drops, use Incidence Rate with a Person-Time denominator.</li>
+  </ol>
+</div>
+
+<p class="pageid">Section 9</p>
+<h2 class="section-title" id="s9">Section 9: Interactive Practice Exercises</h2>
+
+<p style="font-style:italic; font-size:0.95rem;">Review the clinical questions below and calculate your answers before clicking to reveal the worked solutions.</p>
+
+<div class="practice-exercise">
+  <h4>Exercise 1: Cross-Sectional Cardiovascular Risk Screening</h4>
+  <p>A clinic conducts an audit of cardiovascular disease (CVD) risk profiles using standardized risk calculators among older patients in chronic care. Out of 480 active patients screened on a specific day, 108 are flagged as presenting with high cardiovascular risk scores (&ge;20% over a 10-year horizon).</p>
+  <p><strong>Calculate and interpret the point prevalence of high cardiovascular risk within this cohort.</strong></p>
+  <button class="answer-btn" onclick="toggleAnswer('ex1')">Show Answer</button>
+  <div class="answer-box" id="ex1">
+    <p><strong>Worked Solution:</strong></p>
+    <div class="calculation-block">Point Prevalence = 108 / 480 = 0.225 = 22.5%</div>
+    <p><em>Interpretation:</em> On the exact date of the screening audit, 22.5% (nearly 1 in 4) of older patients in this clinic population presented with elevated cardiovascular risk profiles, demonstrating a clear structural need for integrated cardiovascular preventive management alongside routine chronic care packages.</p>
+  </div>
+</div>
+
+<div class="practice-exercise">
+  <h4>Exercise 2: 12-Month Closed Cohort Progression</h4>
+  <p>A prospective research protocol monitors a closed group of 320 newly entering patients with highly advanced immunosuppression (baseline CD4 counts &lt;50 cells/mm&sup3;). All individuals are confirmed free of active opportunistic infections at day one. Over exactly 12 months of standardized follow-up care, 54 individuals transition into developing a documented AIDS-defining illness (ADI).</p>
+  <p><strong>Calculate the 1-year incidence risk of developing an AIDS-defining illness inside this cohort.</strong></p>
+  <button class="answer-btn" onclick="toggleAnswer('ex2')">Show Answer</button>
+  <div class="answer-box" id="ex2">
+    <p><strong>Worked Solution:</strong></p>
+    <div class="calculation-block">1-Year Incidence Risk = 54 / 320 = 0.1687 = 16.9%</div>
+    <p><em>Interpretation:</em> The probability or individual risk of transitioning into an active AIDS-defining illness during the first year of treatment was 16.9% for this highly advanced patient subset, highlighting the critical importance of close monitoring during early immune reconstitution phases.</p>
+  </div>
+</div>
+
+<div class="practice-exercise">
+  <h4>Exercise 3: Outbreak Transmission Odds Tracking</h4>
+  <p>During an active field epidemiology investigation of a regional Mpox transmission chain, investigators perform a case-control analysis to evaluate exposure risks. They map out the following specific participant arrays:</p>
+  <ul>
+    <li>Among a group of 100 close contact exposures: 35 develop confirmed diagnoses, while 65 remain clear.</li>
+    <li>Among a group of 100 casual/low-risk exposures: 5 develop confirmed diagnoses, while 95 remain clear.</li>
+  </ul>
+  <p><strong>Calculate: (a) The odds of disease among the close contacts, (b) The odds of disease among casual contacts, and (c) The raw Odds Ratio (OR).</strong></p>
+  <button class="answer-btn" onclick="toggleAnswer('ex3')">Show Answer</button>
+  <div class="answer-box" id="ex3">
+    <p><strong>Worked Solution:</strong></p>
+    <div class="calculation-block">
+      (a) Odds inside close contact tier = 35 / 65 = 0.5385<br>
+      (b) Odds inside casual contact tier = 5 / 95 = 0.0526<br>
+      (c) Odds Ratio (OR) = 0.5385 / 0.0526 = 10.24
+    </div>
+    <p><em>Interpretation:</em> The odds of developing Mpox were 10.24 times higher among individuals with documented close contact relative to those with casual exposure lines, indicating a very strong association between contact proximity and transmission risk.</p>
+  </div>
+</div>
+
+<p class="pageid">Section 10</p>
+<h2 class="section-title" id="s10">Section 10: Summary</h2>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <h4>Prevalence vs. Incidence</h4>
+    <p>Prevalence measures the cross-sectional burden of existing disease at a point in time. Incidence tracks new transitions into disease over a specified time period.</p>
+  </div>
+  <div class="summary-card">
+    <h4>Denominators Rule Context</h4>
+    <p>Incidence Risk uses the baseline disease-free population at risk (closed cohorts). Incidence Rate uses total person-time at risk to account for variable follow-up (open cohorts).</p>
+  </div>
+  <div class="summary-card">
+    <h4>The Interdependence Rule</h4>
+    <p>Prevalence depends on both the rate of new disease (incidence) and how long cases survive with the condition (duration). Life-prolonging therapies can increase prevalence even as incidence falls.</p>
+  </div>
+  <div class="summary-card">
+    <h4>Core Study Alignment</h4>
+    <p>Always align your selected metric with your study design: risks and rates map naturally to clinical trials and cohort tracking, while odds support case-control structures.</p>
+  </div>
+</div>
+
+<p class="pageid">Section 11</p>
+<h2 class="section-title" id="s11">Section 11: Key References</h2>
+
+<ol class="refs">
+  <li>Porta M, Greenland S, Last JM (eds). <em>A Dictionary of Epidemiology</em>, 5th ed. Oxford University Press; 2008.</li>
+  <li>Chimbetete C, Shamu T, Roelens M, et al. Mortality trends and causes of death among HIV positive patients at Newlands Clinic in Harare, Zimbabwe. <em>PLoS One</em>. 2020;15:e0237904. doi:10.1371/journal.pone.0237904</li>
+  <li>Shamu T, Egger M, Mudzviti T, Chimbetete C, Anderegg N, et al. Weight change and hypertension associated with dolutegravir-based ART in a large Southern African HIV programme. <em>Journal of the International AIDS Society</em>. 2022;25:e26216. doi:10.1002/jia2.26216</li>
+  <li>WHO Regional Office for Africa. Zimbabwe declares cholera outbreak over. Harare: WHO; 9 August 2024. Available at: afro.who.int</li>
+  <li>Marumure J, et al. Cholera outbreaks in Zimbabwe: an in-depth analysis of drivers, constraints and reimagining the use of medicinal plants. <em>Journal of Tropical Medicine</em>. 2024. doi:10.1155/jotm/1981991</li>
+  <li>LSHTM EPM101 FE03 — Measures of Disease Occurrence [core source for this module's conceptual framework]. London: LSHTM; 2018.</li>
+</ol>
+
+<div class="think-box" style="margin-top:2rem;">
+  <div class="think-label">Prework Prep for Topic 4 (Measures of Effect)</div>
+  <p>Before entering the next masterclass block, ensure you are comfortable calculating baseline incidence risks and incidence rates. In Topic 4, we will introduce comparison metrics—using Risk Ratios (RR), Rate Ratios, and Odds Ratios (OR)—to determine whether a specific exposure systematically increases the risk of clinical outcomes across distinct patient cohorts.</p>
+</div>
+
+<footer>
+  <p>Newlands Clinic · Research Masterclass for Clinicians · Module 1, Topic 3</p>
+  <p>Research Coordination &amp; Training Office · research@newlandsclinic.org.zw</p>
+  <p>www.newlandsclinic.org.zw</p>
+</footer>
+
+<script>
+function toggleAnswer(exId) {
+  var box = document.getElementById(exId);
+  box.classList.toggle('show');
+  var btn = event.target;
+  btn.textContent = box.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+}
+</script>
+
+</body>
+</html>
