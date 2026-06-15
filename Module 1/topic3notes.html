@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Masterclass — Module 1, Topic 3: Measures of Disease Occurrence</title>
+<style>
+/* ── Reset ─────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+/* ── Body ──────────────────────────────── */
+body{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:15px;
+  line-height:1.75;
+  color:#1a1a1a;
+  background:#fff;
+  max-width:760px;
+  margin:0 auto;
+  padding:0 24px 60px;
+}
+/* ── Header ─────────────────────────────── */
+header{
+  background:#1B2E4B;
+  color:#fff;
+  margin:0 -24px 2rem;
+  padding:1.5rem 2rem 1.25rem;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1rem;
+}
+header .brand{
+  font-size:11px;
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+  opacity:0.65;
+  margin-bottom:0.3rem;
+}
+header h1{
+  font-size:1.35rem;
+  font-family:Arial,sans-serif;
+  font-weight:600;
+  line-height:1.3;
+  color:#fff;
+}
+header .logo-area{
+  font-size:11px;
+  color:rgba(255,255,255,0.55);
+  text-align:right;
+  white-space:nowrap;
+  padding-top:0.2rem;
+}
+/* ── Navigation ─────────────────────────── */
+nav{
+  background:#f0f2f5;
+  border:1px solid #d4d8df;
+  border-radius:6px;
+  padding:1rem 1.25rem;
+  margin-bottom:2rem;
+}
+nav h2{font-size:0.85rem;font-family:Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;color:#1B2E4B}
+nav a{color:#1B2E4B;text-decoration:none;font-size:0.875rem;font-family:Arial,sans-serif}
+nav a:hover{text-decoration:underline}
+/* ── Section headings ───────────────────── */
+h2.section-title{
+  font-size:1.2rem;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  color:#1B2E4B;
+  border-bottom:2px solid #C0392B;
+  padding-bottom:0.4rem;
+  margin:2rem 0 1rem;
+}
+h3.sub-title{
+  font-size:1rem;
+  font-family:Arial,sans-serif;
+  font-weight:600;
+  color:#C0392B;
+  margin:1.5rem 0 0.5rem;
+}
+h4.inner-title{
+  font-size:0.9rem;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  color:#1B2E4B;
+  margin:1rem 0 0.3rem;
+}
+/* ── Body text ──────────────────────────── */
+p{margin-bottom:0.85rem}
+strong{font-weight:600}
+em{font-style:italic}
+/* ── Lists ──────────────────────────────── */
+ul,ol{margin:0.5rem 0 0.85rem 1.5rem}
+li{margin-bottom:0.4rem}
+/* ── Definition boxes ───────────────────── */
+.def-box{
+  border-left:4px solid #1B2E4B;
+  background:#eef1f6;
+  padding:0.85rem 1.1rem;
+  margin:1rem 0;
+  border-radius:0 6px 6px 0;
+}
+.def-box .def-label{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:0.07em;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  color:#1B2E4B;
+  margin-bottom:0.35rem;
+}
+/* ── Zimbabwe example boxes ─────────────── */
+.zim-box{
+  border-left:4px solid #C0392B;
+  background:#fdf3f2;
+  padding:0.85rem 1.1rem;
+  margin:1rem 0;
+  border-radius:0 6px 6px 0;
+}
+.zim-box .zim-label{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:0.07em;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  color:#C0392B;
+  margin-bottom:0.35rem;
+}
+/* ── Keypoint boxes ─────────────────────── */
+.key-box{
+  border:1.5px solid #1B2E4B;
+  background:#f7f9fc;
+  padding:0.85rem 1.1rem;
+  margin:1rem 0;
+  border-radius:6px;
+}
+.key-box .key-label{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:0.07em;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  color:#1B2E4B;
+  margin-bottom:0.35rem;
+}
+/* ── Think and reflect ──────────────────── */
+.think-box{
+  border:1.5px solid #C0392B;
+  background:#fff7f6;
+  padding:0.85rem 1.1rem;
+  margin:1rem 0;
+  border-radius:6px;
+}
+.think-box .think-label{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:0.07em;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  color:#C0392B;
+  margin-bottom:0.35rem;
+}
+/* ── Formula display ────────────────────── */
+.formula-display {
+  background:#1B2E4B;
+  color:#fff;
+  font-family:'Courier New', Courier, monospace;
+  padding:1rem;
+  margin:1rem 0;
+  border-radius:6px;
+  text-align:center;
+  font-weight:600;
+  font-size:0.95rem;
+}
+/* ── Table ──────────────────────────────── */
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;font-family:Arial,sans-serif}
+th{background:#1B2E4B;color:#fff;padding:8px 12px;text-align:left;font-weight:600}
+td{padding:7px 12px;border-bottom:1px solid #d4d8df}
+tr:nth-child(even) td{background:#f7f9fc}
+/* ── Interactive Practice Boxes ──────────── */
+.practice-exercise {
+  border:2px dashed #C0392B;
+  background:#fff7f6;
+  padding:1.25rem;
+  margin:1.5rem 0;
+  border-radius:6px;
+}
+.practice-exercise h4 {
+  font-family:Arial,sans-serif;
+  color:#C0392B;
+  font-size:0.95rem;
+  font-weight:700;
+  margin-bottom:0.5rem;
+}
+button.answer-btn {
+  background:#1B2E4B;
+  color:#fff;
+  border:none;
+  padding:6px 14px;
+  font-size:13px;
+  font-family:Arial,sans-serif;
+  border-radius:4px;
+  cursor:pointer;
+  margin-top:0.5rem;
+  font-weight:600;
+}
+button.answer-btn:hover {
+  background:#C0392B;
+}
+.answer-box {
+  display:none;
+  background:#f8fafc;
+  border-left:4px solid #1B2E4B;
+  padding:1rem;
+  margin-top:1rem;
+  border-radius:0 6px 6px 0;
+}
+.answer-box.show {
+  display:block;
+}
+.calculation-block {
+  font-family:'Courier New', Courier, monospace;
+  background:#eef1f6;
+  padding:0.75rem;
+  border-radius:4px;
+  margin:0.5rem 0;
+  font-weight:600;
+}
+/* ── Summary panel ──────────────────────── */
+.summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:1rem 0;
+}
+.summary-card{
+  background:#f0f2f5;
+  border-radius:6px;
+  padding:0.75rem 1rem;
+  border-top:3px solid #1B2E4B;
+}
+.summary-card h4{font-size:0.85rem;font-family:Arial,sans-serif;font-weight:700;color:#1B2E4B;margin-bottom:0.3rem}
+.summary-card p{font-size:0.87rem;color:#2a2a2a}
+/* ── References ─────────────────────────── */
+.refs{font-size:0.82rem;color:#4a4a4a;font-family:Arial,sans-serif;margin-top:0.5rem}
+.refs li{margin-bottom:0.5rem}
+/* ── Page number line ───────────────────── */
+.pageid{
+  font-size:0.78rem;
+  font-family:Arial,sans-serif;
+  color:#888;
+  margin:1.5rem 0 0.25rem;
+  border-top:1px solid #e0e0e0;
+  padding-top:0.5rem;
+}
+/* ── Footer ─────────────────────────────── */
+footer{
+  text-align:center;
+  font-size:0.78rem;
+  font-family:Arial,sans-serif;
+  color:#888;
+  border-top:1px solid #d4d8df;
+  padding-top:1rem;
+  margin-top:2rem;
+}
+/* ── Print ──────────────────────────────── */
+@media print{
+  header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .practice-exercise{border:1px solid #C0392B;page-break-inside:avoid}
+  .answer-box{display:block !important;background:#fff;border:1px solid #1B2E4B}
+  button.answer-btn{display:none}
+  body{padding:0 1cm 2cm}
+  header{margin:0 -1cm 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="brand">Newlands Clinic · Research Masterclass for Clinicians</div>
+    <h1>Module 1 · Topic 3<br>Measures of Disease Occurrence: Prevalence, Incidence Risk, Incidence Rate &amp; Odds</h1>
+  </div>
+  <div class="logo-area">RM Module 1<br>FE03<br>newlandsclinic.org.zw</div>
+</header>
+
+<a id="top"></a>
+
+<nav>
+  <h2>Contents</h2>
+  <p>
+    <a href="#s1">Section 1: Learning objectives</a><br>
+    <a href="#s2">Section 2: Introduction to measuring occurrence</a> &nbsp;|&nbsp;
+    <a href="#s2_1">2.1 Why measure occurrence?</a> &nbsp;|&nbsp;
+    <a href="#s2_2">2.2 Two main approaches</a><br>
+    <a href="#s3">Section 3: Three essential elements</a> &nbsp;|&nbsp;
+    <a href="#s3_1">3.1 Case Definition</a> &nbsp;|&nbsp;
+    <a href="#s3_2">3.2 Population</a> &nbsp;|&nbsp;
+    <a href="#s3_3">3.3 Time reference</a><br>
+    <a href="#s4">Section 4: Prevalence</a> &nbsp;|&nbsp;
+    <a href="#s4_1">4.1 Point Prevalence</a> &nbsp;|&nbsp;
+    <a href="#s4_2">4.2 Period Prevalence</a> &nbsp;|&nbsp;
+    <a href="#s4_3">4.3 The Bathtub Principle</a><br>
+    <a href="#s5">Section 5: Incidence Risk</a> &nbsp;|&nbsp;
+    <a href="#s5_1">5.1 Definition &amp; Characteristics</a> &nbsp;|&nbsp;
+    <a href="#s5_2">5.2 Cohort Risk Examples</a><br>
+    <a href="#s6">Section 6: Incidence Rate &amp; Person-Time</a> &nbsp;|&nbsp;
+    <a href="#s6_1">6.1 Concept of Person-Time</a> &nbsp;|&nbsp;
+    <a href="#s6_2">6.2 Rate Calculations</a><br>
+    <a href="#s7">Section 7: Odds</a> &nbsp;|&nbsp;
+    <a href="#s7_1">7.1 Odds vs Probability</a> &nbsp;|&nbsp;
+    <a href="#s7_2">7.2 Clinical Application</a><br>
+    <a href="#s8">Section 8: Comparison Matrix &amp; Selection Trees</a><br>
+    <a href="#s9">Section 9: Interactive Practice Exercises</a><br>
+    <a href="#s10">Section 10: Summary</a> &nbsp;|&nbsp;
+    <a href="#s11">Section 11: References</a>
+  </p>
+</nav>
+
+<p class="pageid">Section 1</p>
+<h2 class="section-title" id="s1">Section 1: Learning Objectives</h2>
+
+<p>Upon satisfactory completion of this topic modules, you should be able to:</p>
+<ul>
+  <li><strong>Define and calculate:</strong> Point prevalence, period prevalence, incidence risk, incidence rate, and odds.</li>
+  <li><strong>Interpret</strong> each distinct measure of occurrence in an applied clinical research framework.</li>
+  <li><strong>Apply</strong> the three essential design elements (case definition, population boundary, time framework) to clinical protocols.</li>
+  <li><strong>Distinguish</strong> between different measures to match the appropriate metric with distinct cohort architectures.</li>
+  <li><strong>Calculate person-time</strong> parameters using variable participant follow-up dataset vectors.</li>
+  <li><strong>Understand</strong> the dynamic mathematical relationship linking incidence, prevalence, and chronic disease survival duration.</li>
+</ul>
+
+<p class="pageid">Section 2</p>
+<h2 class="section-title" id="s2">Section 2: Introduction to Measuring Disease Occurrence</h2>
+
+<h3 class="sub-title" id="s2_1">2.1 Why measure disease occurrence?</h3>
+<p>The core foundation of any structured epidemiological investigation involves moving away from qualitative case descriptions toward precise, quantifiable calculations of health states inside defined populations. For clinical investigators, measuring frequency serves key structural parameters:</p>
+<ul>
+  <li><strong>Monitor population health:</strong> Systematically tracking shifting trends in HIV prevalence or expanding hypertension multi-morbidities across Zimbabwe.</li>
+  <li><strong>Identify health priorities:</strong> Isolating which non-communicable conditions demand immediate structural optimization (e.g., establishing routine cardiovascular screening inside specialized HIV care settings).</li>
+  <li><strong>Detect outbreaks:</strong> Rapidly identifying unexpected deviations or cluster patterns within regional surveillance parameters (e.g., active tracking of Mpox contact clusters).</li>
+  <li><strong>Evaluate clinical interventions:</strong> Verifying whether therapeutic implementations or specific guidelines successfully reduce clinical outcomes over time.</li>
+</ul>
+
+<h3 class="sub-title" id="s2_2">2.2 Two main approaches</h3>
+<p>All structural frequencies are broadly divided into two complementary conceptual frameworks:</p>
+<div class="summary-grid">
+  <div class="summary-card">
+    <h4>Prevalence (Existing Burden)</h4>
+    <p>Answers how many people have the specific health state at an exact point or window. It focuses strictly on cross-sectional burden to drive clinical resource planning and management workflows.</p>
+  </div>
+  <div class="summary-card">
+    <h4>Incidence (New Transitions)</h4>
+    <p>Answers how many baseline-free individuals transition into active disease status over time. It isolates the velocity of new disease to drive structural investigations into risk factors and aetiological causes.</p>
+  </div>
+</div>
+
+<p class="pageid">Section 3</p>
+<h2 class="section-title" id="s3">Section 3: Three Essential Elements</h2>
+
+<p class="key-point">Any specific measurement of disease occurrence is fundamentally uninterpretable unless three core parameters are explicitly locked down:</p>
+
+<h3 class="sub-title" id="s3_
