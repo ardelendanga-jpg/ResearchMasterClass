@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 Topic 3: Measures of Disease Occurrence</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --nc-navy:#1B2E4B;
+  --nc-red:#C0392B;
+  --nc-red-light:#F5C4B3;
+  --nc-cream:#F8F6F2;
+  --nc-slate:#4A5568;
+  --nc-highlight:#FFF3CD;
+}
+body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;background:transparent}
+.deck{width:100%;max-width:700px;margin:0 auto;padding:0.5rem 0}
+.slide{display:none;border:0.5px solid #d4d8df;border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.05)}
+.slide.active{display:block}
+.slide-header{background:var(--nc-navy);color:#fff;padding:1.25rem 1.5rem 1rem}
+.slide-header .eyebrow{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.35rem}
+.slide-header h2{font-size:20px;font-weight:500;line-height:1.3;color:#fff}
+.slide-header .module-tag{display:inline-block;background:var(--nc-red);color:#fff;font-size:11px;padding:3px 10px;border-radius:4px;margin-bottom:0.5rem}
+.slide-body{padding:1.25rem 1.5rem}
+.slide-footer{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.5rem;border-top:0.5px solid #d4d8df;background:#f8fafc}
+.slide-counter{font-size:12px;color:var(--nc-slate)}
+.nav-row{display:flex;gap:8px}
+.nav-btn{padding:6px 16px;font-size:13px;border:0.5px solid #d4d8df;border-radius:6px;background:#fff;color:var(--nc-navy);cursor:pointer;font-weight:500}
+.nav-btn:hover{background:#f1f5f9}
+.nav-btn.primary{background:var(--nc-navy);color:#fff;border-color:var(--nc-navy)}
+.nav-btn.primary:hover{background:#243d63}
+.def-box{background:var(--nc-cream);border-left:3px solid var(--nc-red);padding:0.85rem 1rem;margin:0.75rem 0;border-radius:0 8px 8px 0}
+.def-box .def-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--nc-red);font-weight:500;margin-bottom:0.3rem}
+.def-box p{font-size:14px;color:#2d3748;line-height:1.6}
+.zim-box{background:#EAF3DE;border:0.5px solid #97C459;border-radius:6px;padding:0.85rem 1rem;margin:0.75rem 0}
+.zim-box .zim-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#3B6D11;font-weight:500;margin-bottom:0.3rem;display:flex;align-items:center;gap:6px}
+.zim-box p{font-size:14px;color:#27500A;line-height:1.6}
+.ppt{font-size:15px;color:#2d3748;line-height:1.65;margin:0.5rem 0}
+.ppt strong{font-weight:600}
+.bullets{list-style:none;margin:0.5rem 0}
+.bullets li{font-size:14px;color:#2d3748;line-height:1.6;padding:0.3rem 0 0.3rem 1.25rem;position:relative}
+.bullets li::before{content:"";position:absolute;left:0;top:0.72rem;width:7px;height:7px;border-radius:50%;background:var(--nc-red)}
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border:0.5px solid #d4d8df;border-radius:6px;background:#f1f5f9;color:var(--nc-navy);cursor:pointer;margin:0.5rem 0;font-weight:500}
+.reveal-btn:hover{background:#e2e8f0}
+.reveal-content{display:none;margin-top:0.5rem}
+.reveal-content.shown{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0.75rem 0}
+.card-sm{background:#f8fafc;border:0.5px solid #e2e8f0;border-radius:6px;padding:0.75rem 1rem}
+.card-sm .card-title{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--nc-slate);margin-bottom:0.4rem;font-weight:600}
+.card-sm p{font-size:13px;color:#2d3748;line-height:1.55}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;margin:0.75rem 0}
+.quiz-opt{padding:10px 14px;font-size:14px;border:0.5px solid #d4d8df;border-radius:6px;background:#fff;cursor:pointer;text-align:left;color:#2d3748;transition:all 0.2s}
+.quiz-opt:hover{background:#f1f5f9}
+.quiz-opt.correct{background:#EAF3DE;border-color:#97C459;color:#27500A;font-weight:500}
+.quiz-opt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
+.quiz-feedback{padding:0.75rem 1rem;border-radius:6px;margin-top:0.5rem;font-size:14px;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#EAF3DE;color:#27500A}
+.quiz-feedback.bad{background:#FCEBEB;color:#791F1F}
+.divider{border:none;border-top:0.5px solid #e2e8f0;margin:0.85rem 0}
+.progress-bar-wrap{height:4px;background:#e2e8f0;border-radius:2px;margin-bottom:1.25rem;overflow:hidden}
+.progress-bar{height:100%;background:var(--nc-red);border-radius:2px;transition:width 0.3s ease}
+.section-intro{text-align:center;padding:1.5rem 1rem}
+.section-intro .big-num{font-size:48px;font-weight:500;color:var(--nc-red);line-height:1}
+.section-intro .big-label{font-size:14px;color:var(--nc-slate);margin-top:0.25rem}
+.topic-badge{display:inline-block;background:var(--nc-navy);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:4px;vertical-align:middle}
+.table-simple{width:100%;border-collapse:collapse;font-size:13px;margin:0.75rem 0}
+.table-simple th{background:var(--nc-navy);color:#fff;padding:7px 10px;text-align:left;font-weight:500}
+.table-simple td{padding:7px 10px;border-bottom:0.5px solid #e2e8f0;color:#2d3748}
+.table-simple tr:last-child td{border-bottom:none}
+.table-simple tr:nth-child(even) td{background:#f8fafc}
+</style>
+</head>
+<body>
+
+<div class="deck">
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar" style="width:10%"></div></div>
+<div id="slide-wrap"></div>
+</div>
+
+<script>
+const slides = [
+
+{id:'cover', render(){return `
+<div class="slide-header">
+  <div class="module-tag">Module 1 · Topic 3</div>
+  <div class="eyebrow">Research Masterclass for Clinicians — Newlands Clinic</div>
+  <h2>Measures of Disease Occurrence: Prevalence &amp; Incidence</h2>
+</div>
+<div class="slide-body">
+  <div class="section-intro">
+    <div class="big-num">1</div>
+    <div class="big-label">Topic · ~25 minutes</div>
+  </div>
+  <p class="ppt" style="text-align:center;color:var(--nc-slate);margin-bottom:1rem;">Quantifying health states: Ratios, Proportions, Rates, and Person-Time.</p>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">Prevalence</div><p>Measuring the burden of a condition at a specific point or window in time.</p></div>
+    <div class="card-sm"><div class="card-title">Incidence</div><p>Tracking the velocity of new cases emerging within a population at risk.</p></div>
+  </div>
+  <p class="ppt" style="font-size:13px;color:var(--nc-slate);margin-top:0.5rem">By the end of this session you will be able to distinguish between a proportion and a rate, calculate point vs period prevalence, and compute person-time denominators for incidence rates.</p>
+</div>
+`}},
+
+{id:'t3a', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3</span> Foundations</div>
+  <h2>The Mathematical Toolkit: Ratios, Proportions &amp; Rates</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">In epidemiology, raw numbers (counts) don't tell the whole story. We convert counts into fractions to understand context. Let's define our three primary tools:</p>
+  <div class="grid2" style="margin-top:0.5rem">
+    <div class="card-sm">
+      <div class="card-title">Ratio</div>
+      <p>Numerator and denominator are mutually exclusive. $X$ is not included in $Y$.</p>
+      <p style="margin-top:0.3rem;font-size:11px;color:var(--nc-slate)">Example: Male-to-female ratio of clinic attendees (e.g., 1:3).</p>
+    </div>
+    <div class="card-sm">
+      <div class="card-title">Proportion</div>
+      <p>Numerator is strictly included in the denominator. Often shown as a percentage (%).</p>
+      <p style="margin-top:0.3rem;font-size:11px;color:var(--nc-slate)">Example: Percentage of patients virally suppressed (800/1000 = 80%).</p>
+    </div>
+  </div>
+  <div class="def-box" style="margin-top:0.5rem">
+    <div class="def-label">Epidemiological Rate</div>
+    <p>A true rate strictly incorporates <strong>time</strong> into the denominator. It measures the speed/velocity at which health events occur.</p>
+    <p style="font-size:12px;color:var(--nc-slate);margin-top:0.2rem">Units are expressed as: cases per $X$ person-years at risk.</p>
+  </div>
+</div>
+`}},
+
+{id:'t3b', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3</span> Prevalence</div>
+  <h2>Prevalence: Point vs. Period</h2>
+</div>
+<div class="slide-body">
+  <div class="def-box">
+    <div class="def-label">Prevalence Definition</div>
+    <p>The proportion of a population that has a specific health state or condition at a given time. It acts as a cross-sectional snapshot of disease burden.</p>
+  </div>
+  <div class="grid2">
+    <div class="card-sm" style="border-left:3px solid var(--nc-navy)">
+      <div class="card-title">Point Prevalence</div>
+      <p>Presence of disease at a single, exact moment in time.</p>
+      <p style="margin-top:0.4rem;font-size:12px;color:var(--nc-slate)">"Right now, what % of our active patient cohort has a documented diagnosis of depression?"</p>
+    </div>
+    <div class="card-sm" style="border-left:3px solid var(--nc-red)">
+      <div class="card-title">Period Prevalence</div>
+      <p>Presence of disease during a defined window/interval of time (e.g., a year).</p>
+      <p style="margin-top:0.4rem;font-size:12px;color:var(--nc-slate)">"Between Jan 1 and Dec 31, what % of patients experienced at least one episode of active TB?"</p>
+    </div>
+  </div>
+  <p class="ppt" style="font-size:13px;color:var(--nc-slate);margin-top:0.5rem"><strong>Note:</strong> Prevalence is a <em>proportion</em>, not a true rate, because it does not measure dynamic speed over time.</p>
+</div>
+`}},
+
+{id:'t3c', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3</span> Incidence</div>
+  <h2>Incidence Proportion (Cumulative Incidence)</h2>
+</div>
+<div class="slide-body">
+  <div class="def-box">
+    <div class="def-label">Incidence Proportion (Risk)</div>
+    <p>The probability or risk that an individual will develop a specific disease over a defined time period.</p>
+    <p style="font-size:13px;font-weight:500;margin-top:0.4rem">Formula: (New cases during period) / (Population at risk at start of period)</p>
+  </div>
+  <p class="ppt">Two strict criteria must be met to calculate cumulative incidence:</p>
+  <ul class="bullets">
+    <li>The denominator must include <strong>only people free of the disease</strong> at baseline (they must have the potential to become a new case).</li>
+    <li>It assumes a <strong>closed cohort</strong> where all participants are followed for the full duration of the specified window.</li>
+  </ul>
+  <div class="zim-box">
+    <div class="zim-label">Clinical Scenario</div>
+    <p>If you track 500 patients free of metabolic complications starting a new ART regimen for exactly 12 months, and 25 of them develop hyperglycemia, the 1-year cumulative incidence (risk) is <strong>5%</strong> ($25 / 500$).</p>
+  </div>
+</div>
+`}},
+
+{id:'t3d_quiz', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3 — Check your understanding</span></div>
+  <h2>Prevalence vs. Incidence</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">On June 1st, a clinic manager notes that <strong>150 out of 1,000 active patients are currently receiving treatment for hypertension</strong>. During the subsequent 6 months, 30 completely new patients are diagnosed with hypertension. </p>
+  <p class="ppt" style="margin-top:0.3rem">What was the <strong>point prevalence</strong> on June 1st?</p>
+  <div class="quiz-opts" id="q1opts">
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">3% — because 30 out of 1,000 developed it later</button>
+    <button class="quiz-opt" onclick="checkQ(this,'correct','q1fb')">15% — because 150 out of 1,000 active patients had it at that moment</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">18% — combining both old and new cases over the whole year</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">Can only be determined with person-years data</button>
+  </div>
+  <div class="quiz-feedback ok" id="q1fb_correct" style="display:none">
+    Correct! The point prevalence on June 1st is exactly $150 / 1000 = 15\%$. It represents the total proportion of existing cases at that precise baseline slice of time.
+  </div>
+  <div class="quiz-feedback bad" id="q1fb_wrong" style="display:none">
+    Not quite. Point prevalence is the snapshot of existing cases at that exact baseline date ($150 / 1000 = 15\%$). The 30 new diagnoses that occur later contribute to the <em>incidence</em> of the subsequent period.
+  </div>
+</div>
+`}},
+
+{id:'t3e', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3</span> Dynamic Cohorts</div>
+  <h2>Incidence Rate &amp; The Concept of Person-Time</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">In real clinical practice, cohorts are rarely closed. Patients enroll at different dates, migrate away, drop out, or experience the event early. To handle this dynamic flow, we use **Incidence Rate** with a **Person-Time** denominator.</p>
+  <div class="def-box">
+    <div class="def-label">Incidence Rate Formula</div>
+    <p>$$\text{Incidence Rate} = \frac{\text{Number of new cases occurring during a period}}{\text{Total person-time contributed by the population at risk}}$$</p>
+  </div>
+  <p class="ppt"><strong>What is Person-Time?</strong> It is the sum total of time that each individual participant spent in the study cohort while remaining completely free of the disease under investigation.</p>
+  <ul class="bullets">
+    <li>1 person followed for 5 years = 5 person-years.</li>
+    <li>5 people followed for 1 year each = 5 person-years.</li>
+    <li>Once a person develops the outcome or is lost to follow-up, they stop contributing time to the denominator.</li>
+  </ul>
+</div>
+`}},
+
+{id:'t3f', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3</span> Worked Example</div>
+  <h2>Calculating Person-Years</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Let's walk through an explicit tracking scenario of 3 hypothetical patients observed for development of an opportunistic infection over a maximum of 5 years:</p>
+  <table class="table-simple">
+    <thead>
+      <tr><th>Patient</th><th>Follow-up History</th><th>Person-Years Contribution</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Patient A</td><td>Remained healthy/uninfected for all 5 years</td><td>5.0 Person-Years</td></tr>
+      <tr><td>Patient B</td><td>Developed the infection at exactly year 2</td><td>2.0 Person-Years</td></tr>
+      <tr><td>Patient C</td><td>Defaulted / lost to follow-up at year 3.5</td><td>3.5 Person-Years</td></tr>
+      <tr><td style="font-weight:600;">Total</td><td style="font-weight:600; text-align:right;">Total Population Time at Risk:</td><td style="font-weight:600; color:var(--nc-red)">10.5 Person-Years</td></tr>
+    </tbody>
+  </table>
+  <button class="reveal-btn" onclick="toggle('pt_calc')"><i class="ti ti-eye" aria-hidden="true"></i> Show Rate Calculation</button>
+  <div class="reveal-content" id="pt_calc">
+    <div class="zim-box">
+      <p>With 1 case occurring across 10.5 total person-years, the Incidence Rate is calculated as:</p>
+      <p style="font-weight:600; margin-top:0.3rem;">$$1 / 10.5 = 0.095 \text{ cases per person-year}$$</p>
+      <p style="margin-top:0.2rem;">Multiplying by a standard base, this is expressed clearly as: **9.5 cases per 100 person-years** at risk.</p>
+    </div>
+  </div>
+</div>
+`}},
+
+{id:'t3g', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3</span> Interdependence</div>
+  <h2>The Shifting Scales of Prevalence vs. Incidence</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Prevalence and Incidence are interconnected. Think of a bathtub:</p>
+  <ul class="bullets">
+    <li><strong>Incidence</strong> is the tap water flowing in (new cases).</li>
+    <li><strong>Prevalence</strong> is the total water standing in the tub (all existing cases).</li>
+    <li><strong>Mortality or Cures</strong> represent the drain pipe (cases leaving the cohort).</li>
+  </ul>
+  <div class="def-box">
+    <div class="def-label">The Fundamental Relationship Equation</div>
+    <p>When a disease state is relatively stable in a population, prevalence is roughly equal to incidence multiplied by the average duration ($D$) of the condition:</p>
+    <p style="text-align:center; font-weight:600; font-size:16px; margin:0.3rem 0;">$$P \approx I \times D$$</p>
+  </div>
+  <p class="ppt" style="font-size:13px;color:var(--nc-slate)"><strong>Clinical Impact:</strong> If a new intervention extends survival for a chronic disease without producing a complete cure, the <em>prevalence</em> will go up over time, even though the <em>incidence</em> remains unchanged.</p>
+</div>
+`}},
+
+{id:'t3h_quiz', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 3 — Check your understanding</span></div>
+  <h2>Dynamic Rate Calculation</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">A study tracks an open group of patients for development of tuberculosis. The investigators compile a total pool of **2,000 person-years** of observational time at risk. Over the tracking duration, **10 new confirmed cases** of active TB are isolated.</p>
+  <p class="ppt" style="margin-top:0.3rem">What is the corresponding incidence rate per 1,000 person-years?</p>
+  <div class="quiz-opts" id="q2opts">
+    <button class="quiz-opt" onclick="checkQ2(this,'wrong')">0.5 cases per 1,000 person-years</button>
+    <button class="quiz-opt" onclick="checkQ2(this,'correct')">5.0 cases per 1,000 person-years</button>
+    <button class="quiz-opt" onclick="checkQ2(this,'wrong')">50 cases per 1,000 person-years</button>
+    <button class="quiz-opt" onclick="checkQ2(this,'wrong')">Cannot calculate without knowing baseline case counts</button>
+  </div>
+  <div class="quiz-feedback ok" id="q2fb_correct" style="display:none">
+    Correct! The calculation is $(10 / 2000) \times 1000 = 5.0 \text{ cases per 1,000 person-years}$. This cleanly standardizes the metric so it can be compared across distinct international study designs.
+  </div>
+  <div class="quiz-feedback bad" id="q2fb_wrong" style="display:none">
+    Not quite. Divide the 10 new cases by 2,000 total person-years ($10 / 2000 = 0.005$). To convert this fraction per 1,000 person-years, multiply by 1,000 to get exactly **5.0 cases**.
+  </div>
+</div>
+`}},
+
+{id:'summary', render(){return `
+<div class="slide-header">
+  <div class="eyebrow">Topic 3 — Summary</div>
+  <h2>Key Takeaways</h2>
+</div>
+<div class="slide-body">
+  <ul class="bullets">
+    <li><strong>Proportions vs. Rates:</strong> Proportions measure a cross-sectional fraction; true rates incorporate a unit of elapsed time directly into the denominator.</li>
+    <li><strong>Prevalence:</strong> Measures existing disease load at a moment (point) or window (period). Essential for resource allocation and planning.</li>
+    <li><strong>Incidence Proportion (Risk):</strong> Tracks new cases in a closed cohort over time. Denominator must only include people free of disease at baseline.</li>
+    <li><strong>Incidence Rate:</strong> Tracks velocity of new cases in open/dynamic cohorts using a **Person-Time** denominator.</li>
+    <li><strong>The Bathtub Principle:</strong> $P \approx I \times D$. Changes in disease duration (e.g., life-prolonging therapies) alter prevalence profiles independently of raw incidence changes.</li>
+  </ul>
+  <div style="margin-top:1rem; text-align:center;">
+    <p style="font-size:12px; color:var(--nc-slate); margin-bottom:0.5rem;">Save your files to GitHub to link these slides to your student reading materials.</p>
+  </div>
+</div>
+`}},
+
+];
+
+let current = 0;
+function render(){
+  const s = slides[current];
+  document.getElementById('slide-wrap').innerHTML = `<div class="slide active">${s.render()}<div class="slide-footer"><span class="slide-counter">${current+1} / ${slides.length}</span><div class="nav-row">${current>0?'<button class="nav-btn" onclick="go(-1)">&larr; Back</button>':''} ${current<slides.length-1?'<button class="nav-btn primary" onclick="go(1)">Next &rarr;</button>':''}</div></div></div>`;
+  document.getElementById('pbar').style.width = Math.round(((current+1)/slides.length)*100)+'%';
+  
+  // Re-render LaTeX elements if MathJax is loaded in context
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+}
+function go(d){current=Math.max(0,Math.min(slides.length-1,current+d));render();}
+function toggle(id){const el=document.getElementById(id);el.classList.toggle('shown');}
+function checkQ(btn,type,fb){
+  document.querySelectorAll('#q1opts .quiz-opt').forEach(b=>{b.disabled=true;});
+  btn.classList.add(type==='correct'?'correct':'wrong');
+  const ok=document.getElementById(fb+'_correct');
+  const bad=document.getElementById(fb+'_wrong');
+  if(type==='correct'){ok.classList.add('show');}else{bad.classList.add('show');}
+}
+function checkQ2(btn,type){
+  document.querySelectorAll('#q2opts .quiz-opt').forEach(b=>{b.disabled=true;});
+  btn.classList.add(type==='correct'?'correct':'wrong');
+  const ok=document.getElementById('q2fb_correct');
+  const bad=document.getElementById('q2fb_wrong');
+  if(type==='correct'){ok.classList.add('show');}else{bad.classList.add('show');}
+}
+
+// Add MathJax dynamically to handle LaTeX cleanly inside the slide engine strings
+(function () {
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  script.async = true;
+  document.head.appendChild(script);
+})();
+
+render();
+</script>
+
+</body>
+</html>
