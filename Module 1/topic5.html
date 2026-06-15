@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 Topic 4: Using Routine Data in Epidemiology</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --nc-navy:#1B2E4B;
+  --nc-red:#C0392B;
+  --nc-red-light:#F5C4B3;
+  --nc-cream:#F8F6F2;
+  --nc-slate:#4A5568;
+  --nc-highlight:#FFF3CD;
+}
+body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;background:transparent}
+.deck{width:100%;max-width:700px;margin:0 auto;padding:0.5rem 0}
+.slide{display:none;border:0.5px solid #d4d8df;border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.05)}
+.slide.active{display:block}
+.slide-header{background:var(--nc-navy);color:#fff;padding:1.25rem 1.5rem 1rem}
+.slide-header .eyebrow{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.35rem}
+.slide-header h2{font-size:20px;font-weight:500;line-height:1.3;color:#fff}
+.slide-header .module-tag{display:inline-block;background:var(--nc-red);color:#fff;font-size:11px;padding:3px 10px;border-radius:4px;margin-bottom:0.5rem}
+.slide-body{padding:1.25rem 1.5rem}
+.slide-footer{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.5rem;border-top:0.5px solid #d4d8df;background:#f8fafc}
+.slide-counter{font-size:12px;color:var(--nc-slate)}
+.nav-row{display:flex;gap:8px}
+.nav-btn{padding:6px 16px;font-size:13px;border:0.5px solid #d4d8df;border-radius:6px;background:#fff;color:var(--nc-navy);cursor:pointer;font-weight:500}
+.nav-btn:hover{background:#f1f5f9}
+.nav-btn.primary{background:var(--nc-navy);color:#fff;border-color:var(--nc-navy)}
+.nav-btn.primary:hover{background:#243d63}
+.def-box{background:var(--nc-cream);border-left:3px solid var(--nc-red);padding:0.85rem 1rem;margin:0.75rem 0;border-radius:0 8px 8px 0}
+.def-box .def-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--nc-red);font-weight:500;margin-bottom:0.3rem}
+.def-box p{font-size:14px;color:#2d3748;line-height:1.6}
+.zim-box{background:#EAF3DE;border:0.5px solid #97C459;border-radius:6px;padding:0.85rem 1rem;margin:0.75rem 0}
+.zim-box .zim-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#3B6D11;font-weight:500;margin-bottom:0.3rem;display:flex;align-items:center;gap:6px}
+.zim-box p{font-size:14px;color:#27500A;line-height:1.6}
+.ppt{font-size:15px;color:#2d3748;line-height:1.65;margin:0.5rem 0}
+.ppt strong{font-weight:600}
+.bullets{list-style:none;margin:0.5rem 0}
+.bullets li{font-size:14px;color:#2d3748;line-height:1.6;padding:0.3rem 0 0.3rem 1.25rem;position:relative}
+.bullets li::before{content:"";position:absolute;left:0;top:0.72rem;width:7px;height:7px;border-radius:50%;background:var(--nc-red)}
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border:0.5px solid #d4d8df;border-radius:6px;background:#f1f5f9;color:var(--nc-navy);cursor:pointer;margin:0.5rem 0;font-weight:500}
+.reveal-btn:hover{background:#e2e8f0}
+.reveal-content{display:none;margin-top:0.5rem}
+.reveal-content.shown{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0.75rem 0}
+.card-sm{background:#f8fafc;border:0.5px solid #e2e8f0;border-radius:6px;padding:0.75rem 1rem}
+.card-sm .card-title{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--nc-slate);margin-bottom:0.4rem;font-weight:600}
+.card-sm p{font-size:13px;color:#2d3748;line-height:1.55}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;margin:0.75rem 0}
+.quiz-opt{padding:10px 14px;font-size:14px;border:0.5px solid #d4d8df;border-radius:6px;background:#fff;cursor:pointer;text-align:left;color:#2d3748;transition:all 0.2s}
+.quiz-opt:hover{background:#f1f5f9}
+.quiz-opt.correct{background:#EAF3DE;border-color:#97C459;color:#27500A;font-weight:500}
+.quiz-opt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
+.quiz-feedback{padding:0.75rem 1rem;border-radius:6px;margin-top:0.5rem;font-size:14px;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#EAF3DE;color:#27500A}
+.quiz-feedback.bad{background:#FCEBEB;color:#791F1F}
+.divider{border:none;border-top:0.5px solid #e2e8f0;margin:0.85rem 0}
+.progress-bar-wrap{height:4px;background:#e2e8f0;border-radius:2px;margin-bottom:1.25rem;overflow:hidden}
+.progress-bar{height:100%;background:var(--nc-red);border-radius:2px;transition:width 0.3s ease}
+.section-intro{text-align:center;padding:1.5rem 1rem}
+.section-intro .big-num{font-size:48px;font-weight:500;color:var(--nc-red);line-height:1}
+.section-intro .big-label{font-size:14px;color:var(--nc-slate);margin-top:0.25rem}
+.topic-badge{display:inline-block;background:var(--nc-navy);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:4px;vertical-align:middle}
+.table-simple{width:100%;border-collapse:collapse;font-size:13px;margin:0.75rem 0}
+.table-simple th{background:var(--nc-navy);color:#fff;padding:7px 10px;text-align:left;font-weight:500}
+.table-simple td{padding:7px 10px;border-bottom:0.5px solid #e2e8f0;color:#2d3748}
+.table-simple tr:last-child td{border-bottom:none}
+.table-simple tr:nth-child(even) td{background:#f8fafc}
+</style>
+</head>
+<body>
+
+<div class="deck">
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar" style="width:10%"></div></div>
+<div id="slide-wrap"></div>
+</div>
+
+<script>
+const slides = [
+
+{id:'cover', render(){return `
+<div class="slide-header">
+  <div class="module-tag">Module 1 · Topic 4</div>
+  <div class="eyebrow">Research Masterclass for Clinicians — Newlands Clinic</div>
+  <h2>Using Routine Data in Epidemiology</h2>
+</div>
+<div class="slide-body">
+  <div class="section-intro">
+    <div class="big-num">4</div>
+    <div class="big-label">Objectives · ~30 minutes</div>
+  </div>
+  <p class="ppt" style="text-align:center;color:var(--nc-slate);margin-bottom:1rem;">Leveraging existing healthcare tracking infrastructure, vital registries, and electronic health databases for clinical research.</p>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">Strengths &amp; Pitfalls</div><p>Understanding data parameters, coverage boundaries, and interpretation limits.</p></div>
+    <div class="card-sm"><div class="card-title">Applied Metrics</div><p>Deriving true rates vs. proportional indicators from aggregated records.</p></div>
+  </div>
+</div>
+`}},
+
+{id:'t4_intro', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Introduction</div>
+  <h2>What is Routine Data?</h2>
+</div>
+<div class="slide-body">
+  <div class="def-box">
+    <div class="def-label">Definition</div>
+    <p>Data derived from ongoing, systematic collection engines within health, vital, and social registries that were <strong>not originally designed</strong> to address a specific primary research hypothesis.</p>
+  </div>
+  <p class="ppt"><strong>Why do clinical researchers rely on it?</strong></p>
+  <ul class="bullets">
+    <li><strong>Scale:</strong> Captures large target denominators up to full national tracking boundaries.</li>
+    <li><strong>Efficiency:</strong> Readily accessible and significantly cheaper than custom prospective recruitment.</li>
+    <li><strong>Speed:</strong> Offers rapid pathways to evaluate emerging field hypotheses.</li>
+  </ul>
+  <div class="zim-box">
+    <div class="zim-label">Local Reference Platforms</div>
+    <p>In Zimbabwe, key routine repositories include <strong>DHIS2</strong> (national facility tracking), <strong>ZIMSTAT</strong> census records, sentinel antenatal screening, and programmatic clinical databases like the <strong>IeDEA cohort network</strong>.</p>
+  </div>
+</div>
+`}},
+
+{id:'t4_pt', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Estimation Mechanics</div>
+  <h2>Estimating Person-Time from Aggregated Records</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">True person-time tracking requires monitoring precise individual tracking histories. When using aggregated routine data, we must <em>estimate</em> person-time at risk across stable population horizons:</p>
+  <div class="def-box">
+    <div class="def-label">The Mid-Point Estimation Equation</div>
+    <p>$$\text{Person-Time at Risk} = P_{1/2} \times T$$</p>
+    <p style="margin-top:0.3rem; font-size:13px; color:var(--nc-slate);">Where $P_{1/2}$ represents the population size exactly at the **mid-point** of the timeline, and $T$ represents the absolute length of the monitoring window.</p>
+  </div>
+  <p class="ppt" style="font-size:13px; color:var(--nc-slate);">⚠️ **Method Constraint:** This estimation is statistically valid only if the target population remains relatively stable across the observation interval and the condition remains rare.</p>
+</div>
+`}},
+
+{id:'t4_pt_calc', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Worked Example</div>
+  <h2>Calculating Rates from Mid-Point Population</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Let's walk through an evaluation using clinical registry summaries from a defined district over a 5-year monitoring horizon (2020–2024):</p>
+  <ul class="bullets" style="margin-bottom:0.5rem;">
+    <li>Total documented new cases of an opportunistic infection inside window = <strong>1,918 cases</strong></li>
+    <li>Mid-point population size calculated via the 2022 Census ($P_{1/2}$) = <strong>2,040,955 individuals</strong></li>
+  </ul>
+  <hr class="divider">
+  <button class="reveal-btn" onclick="toggle('calc_reveal')"><i class="ti ti-calculator" aria-hidden="true"></i> Execute Calculation Pipeline</button>
+  <div class="reveal-content" id="calc_reveal">
+    <div class="card-sm" style="background:var(--nc-cream); margin-bottom:0.5rem;">
+      <p style="font-family:monospace; font-size:13px; font-weight:600;">
+        1. Estimated Person-Years: 2,040,955 persons &times; 5 years = 10,204,775 person-years.<br>
+        2. Unadjusted Incident Velocity: 1,918 / 10,204,775 = 0.0001879 cases/person-year.
+      </p>
+    </div>
+    <p class="ppt">Standardizing the multiplier gives a clean clinical metric: **18.8 cases per 100,000 person-years** at risk.</p>
+  </div>
+</div>
+`}},
+
+{id:'t4_mort_cf', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Methodological Distinctions</div>
+  <h2>Mortality Rate vs. Case-Fatality Proportion</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">A common and dangerous mistake in medical literature is confusing mortality tracking with case-fatality parameters. They use entirely different denominators:</p>
+  <div class="grid2">
+    <div class="card-sm" style="border-top:3px solid var(--nc-navy)">
+      <div class="card-title">Mortality Rate</div>
+      <p><strong>Denominator:</strong> Entire population at risk (healthy + sick).</p>
+      <p style="margin-top:0.3rem; font-size:11px; color:var(--nc-slate);">Measures the general impact of death from a disease across the community.</p>
+    </div>
+    <div class="card-sm" style="border-top:3px solid var(--nc-red)">
+      <div class="card-title">Case-Fatality Proportion</div>
+      <p><strong>Denominator:</strong> ONLY individuals who already have the disease.</p>
+      <p style="margin-top:0.3rem; font-size:11px; color:var(--nc-slate);">Measures clinical severity and lethality among diagnosed cases.</p>
+    </div>
+  </div>
+  <div class="def-box" style="margin-top:0.5rem;">
+    <div class="def-label">The Interconnected Equation</div>
+    <p>When a target disease is rare and stable, the metrics connect as follows:</p>
+    <p style="text-align:center; font-weight:600; margin:0.2rem 0;">$$\text{Mortality} \approx \text{Incidence} \times \text{Case-Fatality}$$</p>
+  </div>
+</div>
+`}},
+
+{id:'t4_quiz1', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4 — Self-Test</span></div>
+  <h2>Distinguishing Vital Demarcations</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">A district tracking database registers <strong>100 new active cases of a severe infection</strong> among 50,000 tracked residents over a calendar year. Long-term tracing records show that **90 of these specific individuals died** within 12 months of their diagnosis date.</p>
+  <p class="ppt" style="margin-top:0.3rem;">What is the calculated **One-Year Case-Fatality Proportion**?</p>
+  <div class="quiz-opts" id="q1opts">
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">1.8 deaths per 1,000 individuals</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">2.0 cases per 1,000 individuals</button>
+    <button class="quiz-opt" onclick="checkQ(this,'correct','q1fb')">90% — because it measures deaths specifically out of the 100 diagnosed cases</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">Cannot be calculated without exact midpoint person-time data</button>
+  </div>
+  <div class="quiz-feedback ok" id="q1fb_correct" style="display:none">
+    Correct! The case-fatality proportion looks strictly at diagnosed cases: $90 / 100 = 90\%$. (Note: The general annual mortality risk across the community is $90 / 50,000 = 1.8 \text{ per } 1,000$).
+  </div>
+  <div class="quiz-feedback bad" id="q1fb_wrong" style="display:none">
+    Not quite. Remember that case-fatality isolates the diagnosed pool as the denominator ($90 / 100 = 90\%$). The value of 1.8 per 1,000 represents the general *mortality rate*, while 2.0 per 1,000 reflects the *incidence risk*.
+  </div>
+</div>
+`}},
+
+{id:'t4_prop_pitfall', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Interpretation Danger</div>
+  <h2>The Trap of Proportional Measures</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">When direct population denominators are missing (e.g., an isolated hospital serving unknown catchments), researchers often calculate **proportional indicators**:</p>
+  <div class="def-box" style="background:var(--nc-highlight); border-left-color:var(--nc-red);">
+    <p style="font-weight:600; font-size:14px; color:var(--nc-red); margin-bottom:0.2rem;">CRITICAL WARNING</p>
+    <p>Proportional indices are **not rates**. Their denominators are determined by the total volume of all combined clinical conditions, making them highly susceptible to artifact distortions.</p>
+  </div>
+  <p class="ppt"><strong>The Classic Paradox:</strong> In elderly demographics, the *proportion* of overall deaths attributed to malignant tumors often drops, even though the *true age-specific cancer mortality rate* climbs significantly. Why? Because the background surge of cardiovascular moralities eclipses cancer figures within the proportional denominator shell.</p>
+</div>
+`}},
+
+{id:'t4_analytical', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Research Applications</div>
+  <h2>Analytical Frameworks &amp; Data Linkage</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Beyond descriptive tracking, routine systems drive advanced analytical designs:</p>
+  <ul class="bullets">
+    <li><strong>Secular Shifts:</strong> Analyzing age, calendar period, and distinct birth cohort effects.</li>
+    <li><strong>Geographic Mapping:</strong> Tracking spatial clustering variations to generate environmental or structural hypotheses.</li>
+    <li><strong>Data Linkage:</strong> Programmatically matching distinct datasets (e.g., merging laboratory databases with secondary hospital networks using unique national identifiers).</li>
+  </ul>
+  <div class="card-sm" style="background:#f1f5f9; margin-top:0.5rem;">
+    <div class="card-title" style="color:var(--nc-navy);">Linkage Challenges</div>
+    <p style="font-size:12px; line-height:1.5;">Requires rigid protocols to protect confidentiality, resolve discordant variable fields across systems, and handle incomplete entry parameters across independent software ecosystems.</p>
+  </div>
+</div>
+`}},
+
+{id:'t4_interpretation', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Evaluation Checklists</div>
+  <h2>Rigid Evaluation Framework for Routine Datasets</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Before accepting findings extracted from a routine tracking registry, you must systematically audit these six criteria:</p>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">A. Case Continuity</div><p>Did diagnostic thresholds shift over time? (e.g., changing AIDS criteria).</p></div>
+    <div class="card-sm"><div class="card-title">B. Catchment Bounds</div><p>Is the true denominator boundary stable, or distorted by migration flows?</p></div>
+    <div class="card-sm"><div class="card-title">C. Completeness</div><p>Are rural entry pathways as thorough as urban clinic reporting hubs?</p></div>
+    <div class="card-sm"><div class="card-title">D. Coding Accuracy</div><p>What is the validated error margin for original diagnosis transcription?</p></div>
+    <div class="card-sm"><div class="card-title">E. Stigma Censorship</div><p>Has social stigma systematically suppressed the recording of causes of death?</p></div>
+    <div class="card-sm"><div class="card-title">F. Currency Lag</div><p>Is the dataset updating fast enough to guide actionable intervention lines?</p></div>
+  </div>
+</div>
+`}},
+
+{id:'summary', render(){return `
+<div class="slide-header">
+  <div class="eyebrow">Topic 4 — Summary</div>
+  <h2>Key Takeaways</h2>
+</div>
+<div class="slide-body">
+  <ul class="bullets">
+    <li><strong>Definition:</strong> Routine data systems leverage active, systemic healthcare pipelines but require vigilant validation before use in research.</li>
+    <li><strong>Denominators:</strong> Midpoint population steps ($P_{1/2} \times T$) allow effective person-time estimations inside stable, rare disease parameters.</li>
+    <li><strong>Demarcations:</strong> Never confuse mortality metrics (community population denominators) with case-fatality proportions (infected patient denominators).</li>
+    <li><strong>Proportional Trap:</strong> Proportions are driven by changes in *other competing conditions*; always use true population rates whenever possible.</li>
+    <li><strong>Audit Verification:</strong> Always run your dataset through the interpretation checklist (Definition, Catchment, Completeness, Accuracy, Stigma, Currency) before publishing.</li>
+  </ul>
+</div>
+`}},
+
+];
+
+let current = 0;
+function render(){
+  const s = slides[current];
+  document.getElementById('slide-wrap').innerHTML = `<div class=\"slide active\">${s.render()}<div class=\"slide-footer\"><span class=\"slide-counter\">${current+1} / ${slides.length}</span><div class=\"nav-row\">${current>0?'<button class=\"nav-btn\" onclick=\"go(-1)\">&larr; Back</button>':''} ${current<slides.length-1?'<button class=\"nav-btn primary\" onclick=\"go(1)\">Next &rarr;</button>':''}</div></div></div>`;
+  document.getElementById('pbar').style.width = Math.round(((current+1)/slides.length)*100)+'%';
+  if (window.MathJax) { MathJax.typesetPromise(); }
+}
+function go(d){current=Math.max(0,Math.min(slides.length-1,current+d));render();}
+function toggle(id){const el=document.getElementById(id);el.classList.toggle('shown');}
+function checkQ(btn,type,fb){
+  document.querySelectorAll('#q1opts .quiz-opt').forEach(b=>{b.disabled=true;});
+  btn.classList.add(type==='correct'?'correct':'wrong');
+  const ok=document.getElementById(fb+'_correct');
+  const bad=document.getElementById(fb+'_wrong');
+  if(type==='correct'){ok.classList.add('show');}else{bad.classList.add('show');}
+}
+function checkQ2(btn,type){
+  document.querySelectorAll('#q2opts .quiz-opt').forEach(b=>{b.disabled=true;});
+  btn.classList.add(type==='correct'?'correct':'wrong');
+  const ok=document.getElementById('q2fb_correct');
+  const bad=document.getElementById('q2fb_wrong');
+  if(type==='correct'){ok.classList.add('show');}else{bad.classList.add('show');}
+}
+(function () {
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  script.async = true;
+  document.head.appendChild(script);
+})();
+render();
+</script>
+</body>
+</html>
