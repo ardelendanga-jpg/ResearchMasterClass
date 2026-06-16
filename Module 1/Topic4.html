@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<title>FE04: Utilising Routine Data in Epidemiology - Study Guide</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+  line-height: 1.6;
+  color: #2B3E50;
+  background-color: #F4F6F8;
+}
+
+header {
+  background: linear-gradient(135deg, #112233 0%, #254E70 100%);
+  color: white;
+  padding: 2.5rem 2rem;
+  border-bottom: 4px solid #D62246;
+}
+
+header h1 {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+header p {
+  font-size: 15px;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+nav {
+  background-color: #254E70;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+nav h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  color: #A3CEF1;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+nav a:hover, nav a.active {
+  background-color: #D62246;
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  display: none; /* Controlled dynamically by JavaScript */
+  background-color: white;
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-top: 4px solid #D62246;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 6px;
+  animation: fadeIn 0.4s ease;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  color: #112233;
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #E9ECEF;
+}
+
+h3 {
+  color: #D62246;
+  font-size: 20px;
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  color: #254E70;
+  font-size: 16px;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+
+ul, ol {
+  margin-left: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.6rem;
+}
+
+.definition-box {
+  background-color: #EBF3F9;
+  border-left: 5px solid #254E70;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.example-box {
+  background-color: #EEF7F2;
+  border-left: 5px solid #28A745;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.highlight-box {
+  background-color: #FFF9E6;
+  border-left: 5px solid #F39C12;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.limitation-box {
+  background-color: #FDF2F4;
+  border-left: 5px solid #D62246;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background-color: white;
+  font-size: 14px;
+}
+
+table thead {
+  background-color: #254E70;
+  color: white;
+}
+
+table th, table td {
+  border: 1px solid #DEE2E6;
+  padding: 1rem;
+  text-align: left;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #F8F9FA;
+}
+
+table tbody tr:hover {
+  background-color: #EBF3F9;
+}
+
+.learning-objectives {
+  background-color: #EBF3F9;
+  border: 1.5px solid #254E70;
+  padding: 1.8rem;
+  border-radius: 6px;
+}
+
+.learning-objectives h3 {
+  color: #254E70;
+  margin-top: 0;
+}
+
+.key-point {
+  border-left: 4px solid #D62246;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-weight: 600;
+  color: #112233;
+}
+
+.calculation {
+  background-color: #112233;
+  color: #00FFCC;
+  padding: 1.2rem;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-weight: bold;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.comparison-item {
+  padding: 1.2rem;
+  background-color: #F8F9FA;
+  border: 1px solid #DEE2E6;
+  border-radius: 6px;
+}
+
+.comparison-item h4 {
+  color: #D62246;
+  margin-top: 0;
+}
+
+.practice-exercise {
+  background-color: #FFFDF5;
+  border: 2px dashed #D62246;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+}
+
+.practice-exercise h4 {
+  color: #D62246;
+  margin-top: 0;
+}
+
+.answer-box {
+  background-color: #EBF3F9;
+  border: 1px solid #254E70;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  display: none;
+}
+
+.answer-box.show {
+  display: block;
+}
+
+button.answer-btn {
+  background-color: #254E70;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+button.answer-btn:hover {
+  background-color: #112233;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+button.nav-btn {
+  background-color: #D62246;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.nav-btn:hover {
+  background-color: #112233;
+}
+
+footer {
+  background-color: #112233;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 4rem;
+  font-size: 13px;
+  border-top: 4px solid #D62246;
+}
+
+@media print {
+  body { background-color: white; }
+  .section { display: block !important; opacity: 1; box-shadow: none; border: none; page-break-inside: avoid; }
+  nav, .button-container, button.answer-btn { display: none !important; }
+  .answer-box { display: block !important; }
+}
+
+@media (max-width: 768px) {
+  .comparison-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 0.4rem; }
+  nav a { padding: 0.3rem 0.6rem; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>FE04: Utilising Routine Data in Epidemiology</h1>
+  <p>Comprehensive Study Guide | Newlands Clinic Research Masterclass</p>
+</header>
+
+<nav>
+  <h2>Quick Navigation</h2>
+  <div class="nav-links">
+    <a href="#s1" class="nav-link-item" onclick="showSection('s1')">1. Objectives</a>
+    <a href="#s2" class="nav-link-item" onclick="showSection('s2')">2. What is Routine Data?</a>
+    <a href="#s3" class="nav-link-item" onclick="showSection('s3')">3. Why Use Routine Data?</a>
+    <a href="#s4" class="nav-link-item" onclick="showSection('s4')">4. Sources of Routine Data</a>
+    <a href="#s5" class="nav-link-item" onclick="showSection('s5')">5. Zimbabwe Health Systems</a>
+    <a href="#s6" class="nav-link-item" onclick="showSection('s6')">6. Calculating Measures</a>
+    <a href="#s7" class="nav-link-item" onclick="showSection('s7')">7. Data Linkage</a>
+    <a href="#s8" class="nav-link-item" onclick="showSection('s8')">8. Strengths & Limitations</a>
+    <a href="#s9" class="nav-link-item" onclick="showSection('s9')">9. Critical Interpretation</a>
+    <a href="#s10" class="nav-link-item" onclick="showSection('s10')">10. Exercises</a>
+    <a href="#s11" class="nav-link-item" onclick="showSection('s11')">11. Summary</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- Section 1: Learning Objectives -->
+<section class="section" id="s1">
+  <h2>1. Learning Objectives</h2>
+  <div class="learning-objectives">
+    <h3>By the end of this topic, you will be able to:</h3>
+    <ul>
+      <li><strong>Define</strong> routine data and distinguish it clearly from primary research data.</li>
+      <li><strong>List</strong> the major sources of routine data operating within Southern African health systems.</li>
+      <li><strong>Explain</strong> why routine data assets are invaluable for locally relevant epidemiological cohorts.</li>
+      <li><strong>Calculate</strong> key metrics of disease frequency (prevalence, incidence) using standard clinical data denominators.</li>
+      <li><strong>Describe</strong> how administrative datasets are synthesised into descriptive and analytical public health tracks.</li>
+      <li><strong>Understand</strong> the mechanisms, utility, and ethical frameworks of data linkage.</li>
+      <li><strong>Identify</strong> internal strengths and external pitfalls unique to secondary, continuous health registries.</li>
+      <li><strong>Interpret</strong> routine epidemiological datasets critically, assessing reporting completeness, diagnostic accuracy, and selection bias.</li>
+      <li><strong>Apply</strong> clean data methodologies to real-world operational health challenges across Zimbabwe.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Section 2: What is Routine Data -->
+<section class="section" id="s2">
+  <h2>2. What is Routine Data?</h2>
+  <h3>Definition</h3>
+  <div class="definition-box">
+    <strong>Routine data</strong> refers to health, demographic, or operational information systematically collected via established administrative processes and ongoing health service systems. Crucially, these structures are <em>not</em> initially initiated to answer a specific hypothesis, but rather designed to facilitate continuous patient management, clinic workflows, and statutory public health surveillance.
+  </div>
+  
+  <h3>Routine vs. Primary Data: Key Differences</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Core Aspect</th>
+        <th>Routine Data Assets</th>
+        <th>Primary Data (Research-Driven)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Primary Motivation</strong></td>
+        <td>Clinical care tracking, operational auditing, national monitoring</td>
+        <td>Answering a narrow, predefined clinical or academic research question</td>
+      </tr>
+      <tr>
+        <td><strong>Data Collection Agent</strong></td>
+        <td>Frontline nurses, medical officers, monitoring & evaluation clerks</td>
+        <td>Dedicated clinical research coordinators or field enumerators</td>
+      </tr>
+      <tr>
+        <td><strong>Quality Controls</strong></td>
+        <td>Variable (reliant on standard facility tools, shifting definitions)</td>
+        <td>Highly standardized (strict protocols, uniform source verification)</td>
+      </tr>
+      <tr>
+        <td><strong>Research Cost Profile</strong></td>
+        <td>Highly economical (data footprint pre-exists in the system)</td>
+        <td>Substantial (demands field teams, direct stipends, logistical overheads)</td>
+      </tr>
+      <tr>
+        <td><strong>Population Coverage</strong></td>
+        <td>Universal catchment (captures everyone actively utilizing services)</td>
+        <td>Highly selected (restricted to strict inclusion/exclusion criteria)</td>
+      </tr>
+      <tr>
+        <td><strong>Information Depth</strong></td>
+        <td>Limited to operational inputs and essential medical outcomes</td>
+        <td>Exhaustive, featuring custom behavioral, clinical, or genetic arrays</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h3>Examples of Regional Routine Data Sources</h3>
+  <ul>
+    <li>Hospital admission and discharge summaries (e.g., Parirenyatwa or Mpilo Central Hospital records).</li>
+    <li>Primary healthcare registers, electronic patient logs, and facility triage charts.</li>
+    <li>National statutory notification databases for conditions of public health importance (e.g., Tuberculosis, Malaria, Cholera).</li>
+    <li>National population and housing census outputs (ZIMSTAT registries).</li>
+    <li>Compulsory civil registries managing birth notifications and death certificates.</li>
+    <li>Extended Programme on Immunisation (EPI) facility logbooks.</li>
+    <li>National pharmaceutical logistical and dispensing databases.</li>
+  </ul>
+</section>
+
+<!-- Section 3: Why Use Routine Data -->
+<section class="section" id="s3">
+  <h2>3. Why Use Routine Data in Epidemiology?</h2>
+  <h3>Core Strategic Advantages</h3>
+  
+  <div class="highlight-box">
+    <h4>1. Expansive Population Denominators</h4>
+    <p>Routine structures track massive, unselected treatment groups. Unlike selective randomized controlled trials (RCTs) that frequently rule out patients due to complex comorbidities, routine data accounts for everyone accessing standard clinical pathways. This dramatically reduces selection bias and improves the external validity of your findings.</p>
+    <p><strong>Regional Context:</strong> The Zimbabwean National Health Management Information System (HMIS) synthesizes data from over 1,700 public facilities, thereby offering an overview of the vast majority of the population interacting with the formal public health tier.</p>
+  </div>
+  
+  <div class="highlight-box">
+    <h4>2. Immediate Availability & Resource Optimization</h4>
+    <p>Because the data footprint is generated dynamically during daily healthcare provision, investigators face minimal delays before data manipulation can begin. This makes it ideal for local clinical audits and academic studies with constrained timelines.</p>
+    <p><strong>Example:</strong> The Newlands Clinic Electronic Health Record (EHR) database spans years of longitudinal clinical entry, which can be extracted safely for cohort analyses without waiting for a new recruitment wave.</p>
+  </div>
+  
+  <div class="highlight-box">
+    <h4>3. Cost-Effectiveness</h4>
+    <p>Developing a de novo prospective cohort study can be financially prohibitive for local institutions. Utilizing pre-existing datasets bypasses the need for high-cost data collection networks, participant tracking infrastructure, or supplementary data entry personnel.</p>
+    <p><strong>Estimated Relative Budgets:</strong> A comprehensive electronic medical registry query might incur minimal administrative overheads (~$2,500 for parsing and validation), whereas a comparable primary community-based cohort study could exceed $120,000.</p>
+  </div>
+  
+  <div class="highlight-box">
+    <h4>4. Longitudinal Trend Assessment</h4>
+    <p>Continuous data systems compile outputs steadily, offering a historical perspective on public health indicators. This enables researchers to observe long-term secular trends across generations or directly measure the impact of nationwide policy switches.</p>
+    <p><strong>Example:</strong> Monitoring shifts in national HIV/TB co-infection dynamics or tracking trends in viral load suppression margins over successive decades of Antiretroviral Therapy (ART) scale-up.</p>
+  </div>
+  
+  <div class="highlight-box">
+    <h4>5. Rapid Translation to Real-World Evidence</h4>
+    <p>Because these data matrices mirror routine clinical practice, rather than the artificial, optimized conditions of a clinical trial, the insights generated can be translated directly back into local standard operating procedures (SOPs).</p>
+  </div>
+</section>
+
+<!-- Section 4: Sources of Routine Data -->
+<section class="section" id="s4">
+  <h2>4. Major Sources of Routine Data</h2>
+  <p>Epidemiological indices require two distinct computational building blocks:</p>
+  <ul>
+    <li><strong>Numerator data:</strong> Information characterizing the precise frequency of the health event or diagnosis under investigation.</li>
+    <li><strong>Denominator data:</strong> Information detailing the underlying population at risk of experiencing that specific health event.</li>
+  </ul>
+  
+  <h3>A. Denominator Foundations: Population Matrices</h3>
+  <h4>National Population and Housing Census</h4>
+  <div class="definition-box">
+    <strong>The Census:</strong> A complete, countrywide enumeration executed at structured intervals (typically every 10 years) that categorizes the complete citizenry by age cohorts, gender distribution, geographical localization, and socio-economic indicators.
+  </div>
+  <p><strong>Southern African Landscape:</strong> Census exercises (such as those led by ZIMSTAT in Zimbabwe) provide critical, baseline data. Intercensal projection models bridge the intermediate years by adjusting for localized birth yields, mortality trends, and migratory flux patterns.</p>
+  <p><strong>Core Pitfalls:</strong> Projections can lose precision during extended intercensal periods, and migration can skew sub-national denominator estimates.</p>
+  
+  <h4>Civil Registration and Vital Statistics (CRVS)</h4>
+  <div class="definition-box">
+    <strong>Vital Registration:</strong> The continuous, permanent, compulsory, and universal recording of the occurrence and characteristics of vital events, primarily births and deaths, within a population.
+  </div>
+  <p><strong>Operational Challenges:</strong> In rural or remote areas across Southern Africa, the formal notification of neonatal events or community-based deaths can face significant under-reporting due to distance, cultural practices, or administrative barriers. This requires secondary calibration strategies when calculating infant and maternal mortality ratios.</p>
+</section>
+
+<!-- Section 5: Zimbabwe Health Systems -->
+<section class="section" id="s5">
+  <h2>5. Routine Data Architecture in the Zimbabwean Health Framework</h2>
+  
+  <h3>A. The National Electronic Health Management Platform (DHIS2)</h3>
+  <div class="definition-box">
+    <strong>DHIS2 (District Health Information Software 2):</strong> The standardized web-based platform utilized by the Ministry of Health and Child Care (MoHCC) to aggregate operational health outputs on a monthly basis from community posts, clinics, district facilities, and provincial central referral complexes.
+  </div>
+  
+  <h4>Primary Domains Documented in DHIS2:</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Functional Domain</th>
+        <th>Core Data Elements Recorded</th>
+        <th>Epidemiological Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Maternal & Neonatal Health</strong></td>
+        <td>Antenatal Care (ANC) booking weeks, institutional delivery volumes, maternal mortalities, PMTCT interventions.</td>
+        <td>Tracks regional maternal safety outcomes and models the effectiveness of vertical transmission prevention programmes.</td>
+      </tr>
+      <tr>
+        <td><strong>Childhood Health & Expanded Immunisation</strong></td>
+        <td>BCG, DTP-HepB-Hib, Measles-Rubella vaccine doses delivered, acute malnutrition screenings (MUAC).</td>
+        <td>Monitors protective immunisation coverage benchmarks and flags localized nutritional emergencies.</td>
+      </tr>
+      <tr>
+        <td><strong>Communicable Disease Surveillance</strong></td>
+        <td>Weekly and monthly tallies of Malaria, Cholera, Typhoid, Measles, and acute respiratory infections.</td>
+        <td>Drives early outbreak detection and coordinates rapid public health responses.</td>
+      </tr>
+      <tr>
+        <td><strong>HIV/AIDS Programme Portfolios</strong></td>
+        <td>Total HIV tests conducted, new ART initiations, viral load coverage metrics, longitudinal retention indicators.</td>
+        <td>Evaluates progress toward global 95-95-95 targets and guides national resource allocation.</td>
+      </tr>
+      <tr>
+        <td><strong>Tuberculosis Registries</strong></td>
+        <td>Sputum/GeneXpert notifications, drug-resistant TB (DR-TB) cases, treatment completion rates.</td>
+        <td>Identifies shifts in multi-drug resistant patterns and measures therapeutic success rates.</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h3>B. Specialised National Disease Registries</h3>
+  <h4>The National ART Monitoring Framework</h4>
+  <p>This longitudinal system monitors patients on lifetime antiretroviral therapy. It records baseline WHO clinical staging, CD4 and viral load measurements, regimen updates (e.g., transitions to Dolutegravir-based combinations), adherence metrics, and key clinic outcomes like transfers, treatment interruptions, or deaths.</p>
+  
+  <h4>The Zimbabwe National Cancer Registry (ZNCR)</h4>
+  <p>Based in major urban centers like Harare and Bulawayo, this register captures histopathological and clinical notifications for oncological malignancies. It is an invaluable resource for studying the incidence of HIV-associated malignancies, such as Kaposi Sarcoma and Cervical Squamous Cell Carcinoma, in the region.</p>
+</section>
+
+<!-- Section 6: Calculating Measures -->
+<section class="section" id="s6">
+  <h2>6. Calculating Measures of Disease Frequency from Routine Data</h2>
+  <h3>The Fundamental Mathematical Operator</h3>
+  <div class="highlight-box" style="font-size: 18px; padding: 1.5rem; text-align: center;">
+    $$ \text{Epidemiological Metric} = \frac{\text{Numerator (Events/Cases captured via Routine System)}}{\text{Denominator (Population at Risk from Census/Projections)}} \times k $$
+    <br>
+    <small>Where $k$ represents a transforming scaling factor (e.g., per 1,000 or per 100,000 population at risk).</small>
+  </div>
+  
+  <h3>Balancing Your Terms</h3>
+  <div class="comparison-grid">
+    <div class="comparison-item">
+      <h4>Numerator Sources (The Cases)</h4>
+      <ul>
+        <li>Inpatient discharge codification logs.</li>
+        <li>Aggregated monthly facility summary sheets.</li>
+        <li>Statutory weekly notification reports.</li>
+        <li>Centralized laboratory diagnostic feeds.</li>
+      </ul>
+    </div>
+    <div class="comparison-item">
+      <h4>Denominator Sources (The Base)</h4>
+      <ul>
+        <li>ZIMSTAT district population tables.</li>
+        <li>Empirically calculated clinic catchment populations.</li>
+        <li>Total unique patients active within an Electronic Medical Record (EMR) system during a specific time frame.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <h3>Core Metrics Derived from Routine Registries</h3>
+  <h4>1. Point Prevalence</h4>
+  <p>Measures the proportion of a population that has a specific clinical condition at a precise point in time. It provides a helpful cross-sectional snapshot to inform resource planning.</p>
+  <div class="calculation">
+    Point Prevalence = (Active cases on a given date) / (Total active population at risk on that date)
+  </div>
+  
+  <h4>2. Period Prevalence</h4>
+  <p>Captures all cases (both pre-existing and newly diagnosed) that were active at any stage during a specified time window (e.g., a fiscal quarter or a calendar year).</p>
+  
+  <h4>3. Incidence Proportion (Cumulative Incidence)</h4>
+  <p>Measures the probability that an individual free of a specific condition will develop it within a defined time frame. This is a helpful tool for tracking the speed of new disease transmission.</p>
+  <div class="calculation">
+    Incidence Proportion = (Newly diagnosed cases within a specific period) / (Total disease-free population at risk at baseline)
+  </div>
+</section>
+
+<!-- Section 7: Data Linkage -->
+<section class="section" id="s7">
+  <h2>7. Data Linkage: Synthesising Disparate Routine Data Elements</h2>
+  <h3>The Concept of Linkage</h3>
+  <div class="definition-box">
+    <strong>Data Linkage:</strong> The method of connecting distinct records relating to the same individual, institution, or geographical area across multiple separate databases. This approach allows researchers to build a richer, more comprehensive longitudinal profile without the cost of initiating new primary research projects.
+  </div>
+  
+  <h3>Methodological Modalities</h3>
+  <h4>Deterministic Linkage</h4>
+  <p>Relies on an exact, character-for-character match across unique personal identifiers present in both databases. Common examples include using a National Identity Number, a standardized electronic patient index token, or a unique corporate payroll reference.</p>
+  <p><strong>Limitation:</strong> Typos, omissions, or formatting inconsistencies can lead to missed matches and undercount true clinical associations.</p>
+  
+  <h4>Probabilistic Linkage</h4>
+  <p>Evaluates a combination of shared non-unique identifiers—such as first name, surname, date of birth, biological sex, and residential district. It uses statistical weights to calculate the probability that two records belong to the same individual.</p>
+  
+  <h3>Regional Examples of Linkage Applications</h3>
+  <div class="example-box">
+    <h4>Optimising TB/HIV Co-management Studies</h4>
+    <p>By securely linking the national Electronic ART Registry with the National Laboratory database (GeneXpert logs), investigators can systematically identify gaps in TB preventive therapy (TPT) and trace long-term therapeutic outcomes among co-infected cohorts.</p>
+  </div>
+  
+  <div class="limitation-box">
+    <h4>Ethical Safeguards & Data Governance</h4>
+    <p>Data linkage carries inherent risks of accidental re-identification, which requires strict data governance. Researchers must secure formal approval from institutional review boards (e.g., the Medical Research Council of Zimbabwe - MRCZ), use robust anonymization protocols, and ensure that all records are processed within secure, encrypted environments.</p>
+  </div>
+</section>
+
+<!-- Section 8: Strengths and Limitations -->
+<section class="section" id="s8">
+  <h2>8. Strengths and Limitations of Routine Data Assets</h2>
+  
+  <h3>The Strategic Strengths</h3>
+  <div class="highlight-box">
+    <strong>✓ Exceptional Statistical Power:</strong> Captures large, diverse populations across multiple clinical settings, which minimizes the selection biases often found in tightly controlled academic trials.
+  </div>
+  <div class="highlight-box">
+    <strong>✓ Pragmatic Clinical Insight:</strong> Reflects real-world clinical conditions, taking into account everyday operational challenges like staffing levels and supply chain constraints.
+  </div>
+  <div class="highlight-box">
+    <strong>✓ Financial and Operational Efficiency:</strong> Minimizes research costs by repurposing data that has already been collected, enabling rapid analysis and quicker insights.
+  </div>
+  <div class="highlight-box">
+    <strong>✓ Long-term Tracking:</strong> Provides continuous, multi-year data streams that make it possible to analyze long-term health trends over time.
+  </div>
+  
+  <h3>The Operational Limitations</h3>
+  <div class="limitation-box">
+    <strong>✗ Inconsistent Data Quality:</strong> Data is often entered by busy frontline clinicians with varying levels of training on record keeping, which can lead to transcription errors or missing information.
+  </div>
+  <div class="limitation-box">
+    <strong>✗ Missing or Incomplete Records:</strong> Important clinical fields, such as key laboratory results, staging forms, or referral outcomes, may be left blank or incomplete.
+  </div>
+  <div class="limitation-box">
+    <strong>✗ Institutional Selection Bias:</strong> The data only reflects individuals who actively seek care at a formal health facility, meaning it can miss wider community health trends or people who cannot access care.
+  </div>
+  <div class="limitation-box">
+    <strong>✗ Unmeasured Confounding:</strong> Administrative datasets rarely collect detailed information on lifestyle factors like diet, smoking, or socioeconomic status, which can make it difficult to fully adjust for confounding variables in analytical studies.
+  </div>
+</section>
+
+<!-- Section 9: Critical Interpretation -->
+<section class="section" id="s9">
+  <h2>9. Navigating Routine Data: A Framework for Critical Appraisal</h2>
+  <p>Before using routine health data to guide clinical policies or academic papers, it is essential to evaluate its validity using these key quality checks:</p>
+  
+  <h3>1. Reporting Completeness and Delayed Notifications</h3>
+  <ul>
+    <li>What percentage of facilities submitted their monthly summary matrices on time?</li>
+    <li>How are delayed or missing submissions managed in the overall trend analysis?</li>
+  </ul>
+  
+  <h3>2. Diagnostic Consistency and Case Definitions</h3>
+  <ul>
+    <li>Are clinical conditions diagnosed using objective laboratory tests, or do they rely on subjective syndromic assessments?</li>
+    <li>Has the national case definition changed over the study period, which could create the false appearance of a sudden shift in disease trends?</li>
+  </ul>
+  
+  <h3>3. Denominator Alignment</h3>
+  <ul>
+    <li>Is the population baseline derived from a recent census, or is it based on older projections that may not reflect recent migration patterns?</li>
+  </ul>
+  
+  <h3>4. Misclassification and Coding Errors</h3>
+  <ul>
+    <li>Are diagnoses coded consistently using international standards (e.g., ICD-10), or is there significant variation in how different facilities record the same condition?</li>
+  </ul>
+</section>
+
+<!-- Section 10: Exercises -->
+<section class="section" id="s10">
+  <h2>10. Interactive Practice Exercises</h2>
+  
+  <div class="practice-exercise">
+    <h4>Exercise 1: Mapping Data Needs for a Local Health Audit</h4>
+    <p><strong>Scenario:</strong> You are tasked with designing a study to answer the following question: <em>"What is the point prevalence of unmanaged Hypertension among adults living with HIV actively enrolled at a large clinical site in Harare?"</em></p>
+    <p>Identify the ideal routine numerator and denominator components, and outline potential data quality challenges.</p>
+    <button class="answer-btn" onclick="toggleAnswer('ans1')">View Solution Framework</button>
+    <div class="answer-box" id="ans1">
+      <h5>Methodological Solution:</h5>
+      <ul>
+        <li><strong>Ideal Numerator:</strong> Active patients on ART whose last two routine electronic clinic visits recorded a blood pressure reading $\ge 140/90 \text{ mmHg}$, or who have an active prescription for antihypertensive medication.</li>
+        <li><strong>Ideal Denominator:</strong> The total number of adult HIV patients listed as active within the site's Electronic Medical Record (EMR) database on the specified audit date.</li>
+        <li><strong>Common Quality Challenges:</strong> Missing or unrecorded blood pressure entries in the system, variations in cuff sizes across triage rooms, and a lack of clear documentation on whether patients are taking their prescribed blood pressure medications regularly.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="practice-exercise">
+    <h4>Exercise 2: Calculating Point Prevalence from Clinic Records</h4>
+    <p><strong>Scenario:</strong> A clinical researcher reviews data from an EHR system to understand metabolic health trends on a specific day (30 June):</p>
+    <ul>
+      <li>Total active adult patients with HIV tracked on that date: $3,200$</li>
+      <li>Total patients with a confirmed diagnosis of Type 2 Diabetes Mellitus recorded in the system: $160$</li>
+    </ul>
+    <p>Calculate the point prevalence of Diabetes Mellitus within this clinical population.</p>
+    <button class="answer-btn" onclick="toggleAnswer('ans2')">View Calculation</button>
+    <div class="answer-box" id="ans2">
+      <h5>Mathematical Calculation:</h5>
+      <div class="calculation">
+        Point Prevalence = (Number of Existing Cases) / (Total Population at Risk)
+                         = 160 / 3,200
+                         = 0.05
+                         = 5.0%
+      </div>
+      <h5>Clinical Interpretation:</h5>
+      <p>On the audit date, exactly 5.0% of the clinic's active adult patient population had a documented diagnosis of diabetes. This insight helps the clinic plan its medication supply chain and ensure appropriate staffing for metabolic health screenings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 11: Summary -->
+<section class="section" id="s11">
+  <h2>11. Summary: Core Takeaways</h2>
+  <div class="key-point">
+    Routine health data consists of information collected systematically during daily clinical operations and administrative workflows. While not initially designed for research, it serves as a powerful resource for generating real-world clinical evidence.
+  </div>
+  <h3>Key Takeaways Checklist:</h3>
+  <ul>
+    <li><strong>Broad Reach:</strong> Provides large, real-world patient samples that make research findings highly relevant to daily clinical practice.</li>
+    <li><strong>Resource-Efficient:</strong> Lowers research costs by safely utilizing data that has already been captured within existing health systems.</li>
+    <li><strong>Local Adaptability:</strong> Southern African data platforms like DHIS2, national disease registers, and electronic health records are invaluable for tracking local public health trends and identifying gaps in care.</li>
+    <li><strong>Critical Review:</strong> Always evaluate routine datasets for missing entries, reporting delays, changes in case definitions, or selection biases before using them to guide clinical or policy decisions.</li>
+  </ul>
+</section>
+
+<div class="button-container">
+  <button class="nav-btn" id="prevBtn" onclick="navigateSection(-1)">Previous Section</button>
+  <button class="nav-btn" id="nextBtn" onclick="navigateSection(1)">Next Section</button>
+</div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Newlands Clinic Research Department | Masterclass Series for Clinicians</p>
+  <p>FE04: Utilising Routine Data in Epidemiology | Dynamic Interactive Learning Module</p>
+</footer>
+
+<script>
+// Array containing ordered section IDs
+const sections = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11'];
+let currentSectionIndex = 0;
+
+function showSection(sectionId) {
+  // Update section visibility
+  sections.forEach(id => {
+    const secElement = document.getElementById(id);
+    if (id === sectionId) {
+      secElement.classList.add('active');
+    } else {
+      secElement.classList.remove('active');
+    }
+  });
+
+  // Update navbar link highlights
+  const navLinks = document.querySelectorAll('.nav-link-item');
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === '#' + sectionId) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Sync index counter
+  currentSectionIndex = sections.indexOf(sectionId);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function navigateSection(direction) {
+  let newIndex = currentSectionIndex + direction;
+  if (newIndex >= 0 && newIndex < sections.length) {
+    showSection(sections[newIndex]);
+  }
+}
+
+function toggleAnswer(answerId) {
+  const answerBox = document.getElementById(answerId);
+  answerBox.classList.toggle('show');
+  const btn = event.target;
+  btn.textContent = answerBox.classList.contains('show') ? 'Hide Solution Framework' : 'View Solution Framework';
+}
+
+// Initialise module view on page load
+document.addEventListener("DOMContentLoaded", function() {
+  showSection('s1');
+});
+</script>
+
+</body>
+</html>
