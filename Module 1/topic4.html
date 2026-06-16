@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Slide Deck: FE04 - Utilising Routine Data in Epidemiology</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+  background-color: #111e2e;
+  color: #ffffff;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deck-container {
+  position: relative;
+  width: 90vw;
+  height: 85vh;
+  max-width: 1200px;
+  max-height: 675px; /* Strict 16:9 Aspect Ratio Boundary */
+  background: linear-gradient(135deg, #112233 0%, #1a3652 100%);
+  border: 1px solid #254E70;
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  flex: 1;
+  padding: 3rem;
+  overflow-y: auto;
+  animation: slideFadeIn 0.3s ease-out;
+}
+
+.slide.active {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: scale(0.99); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Slide Typography & Layouts */
+h2.slide-title {
+  font-size: 32px;
+  color: #ffffff;
+  border-bottom: 3px solid #D62246;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+h3.slide-subtitle {
+  font-size: 20px;
+  color: #A3CEF1;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  font-size: 16px;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+strong {
+  color: #FFF9E6;
+}
+
+/* Callout Modules (Image Substitutes) */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 5px solid #254E70;
+  padding: 1.2rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.info-card.accent {
+  border-left-color: #D62246;
+  background: rgba(214, 34, 70, 0.04);
+}
+
+.info-card h4 {
+  font-size: 18px;
+  color: #A3CEF1;
+  margin-bottom: 0.5rem;
+}
+
+.info-card.accent h4 {
+  color: #D62246;
+}
+
+.formula-box {
+  background: #0d1724;
+  border: 1px dashed #254E70;
+  padding: 1.5rem;
+  border-radius: 6px;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Slide-Specific Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 13px;
+}
+
+table thead {
+  background-color: #254E70;
+  color: white;
+}
+
+table th, table td {
+  border: 1px solid #2d3748;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: rgba(255,255,255,0.02);
+}
+
+/* Control Interfaces */
+.controls-bar {
+  background-color: #0b1420;
+  border-top: 1px solid #254E70;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+button.control-btn {
+  background-color: #254E70;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+button.control-btn:hover {
+  background-color: #D62246;
+}
+
+button.control-btn:disabled {
+  background-color: #1a2635;
+  color: #4a5568;
+  cursor: not-allowed;
+}
+
+.slide-counter {
+  font-size: 13px;
+  color: #A3CEF1;
+  font-weight: 500;
+}
+
+/* Title Slide Styling Override */
+.slide.title-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #1a3652 0%, #112233 100%);
+}
+
+.slide.title-slide h1 {
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+
+.slide.title-slide h2 {
+  font-size: 20px;
+  color: #D62246;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 2rem;
+}
+
+.slide.title-slide .meta-text {
+  font-size: 14px;
+  color: #A3CEF1;
+}
+</style>
+</head>
+<body>
+
+<div class="deck-container">
+
+  <!-- Slide 1: Title Slide -->
+  <div class="slide title-slide active" id="slide1">
+    <h1>FE04: Utilising Routine Data in Epidemiology</h1>
+    <h2>Research Masterclass for Clinicians</h2>
+    <div class="meta-text">
+      <p><strong>Newlands Clinic Research Department</strong></p>
+      <p>Harare, Zimbabwe</p>
+    </div>
+  </div>
+
+  <!-- Slide 2: Objectives -->
+  <div class="slide" id="slide2">
+    <h2 class="slide-title">Learning Objectives</h2>
+    <p>By the end of this session, you will be able to:</p>
+    <ul>
+      <li><strong>Define</strong> routine data and contrast it clearly against primary data models[cite: 1].</li>
+      <li><strong>Map</strong> core components of the Zimbabwean Health Management Information System (HMIS)[cite: 1].</li>
+      <li><strong>Calculate</strong> point and period metrics using secondary health data registers[cite: 1].</li>
+      <li><strong>Construct</strong> logical frameworks for programmatic data linkage[cite: 1].</li>
+      <li><strong>Critically appraise</strong> administrative datasets for accuracy and selection biases[cite: 1].</li>
+    </ul>
+  </div>
+
+  <!-- Slide 3: What is Routine Data? -->
+  <div class="slide" id="slide3">
+    <h2 class="slide-title">What is Routine Data?</h2>
+    <div class="info-card">
+      <h4>Core Operational Definition</h4>
+      <p><strong>Routine data</strong> refers to health, demographic, or operational parameters continuously and systematically captured via established administrative infrastructures[cite: 1].</p>
+      <p>Crucially, these registries are <em>not initiated to answer a single research hypothesis</em>, but are instead maintained to sustain daily patient care, track clinic workflows, and satisfy statutory reporting requirements[cite: 1].</p>
+    </div>
+    <div class="grid-2col" style="margin-top: 0.8rem;">
+      <div class="info-card">
+        <h4>Denominator Assets</h4>
+        <p>Information outlining the baseline population at risk (e.g., ZIMSTAT national census projections)[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>Numerator Assets</h4>
+        <p>Specific tallies recording health events, clinical encounters, or new diagnoses[cite: 1].</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Southern African Data Sources -->
+  <div class="slide" id="slide4">
+    <h2 class="slide-title">Southern African Data Sources</h2>
+    <p class="slide-subtitle">How routine clinical data footprint is captured across the local landscape[cite: 1]:</p>
+    <div class="grid-2col">
+      <div class="info-card">
+        <h4>Facility-Level Footprints</h4>
+        <ul>
+          <li>Electronic Health Records (EHR) databases[cite: 1].</li>
+          <li>Primary clinical charts and registers[cite: 1].</li>
+          <li>Pharmacy dispensing logs and stock tallies[cite: 1].</li>
+          <li>Extended Programme on Immunisation (EPI) logbooks[cite: 1].</li>
+        </ul>
+      </div>
+      <div class="info-card accent">
+        <h4>National & Civil Registries</h4>
+        <ul>
+          <li>MoHCC web-based DHIS2 aggregate hubs[cite: 1].</li>
+          <li>ZIMSTAT Population & Housing Census data[cite: 1].</li>
+          <li>National Compulsory Civil Registration (CRVS)[cite: 1].</li>
+          <li>Statutory infectious outbreak alert systems[cite: 1].</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Routine vs. Primary Research Data -->
+  <div class="slide" id="slide5">
+    <h2 class="slide-title">Routine vs. Primary Research Data</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Routine Data Systems[cite: 1]</th>
+          <th>Primary Research Cohorts[cite: 1]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Motivation</strong></td>
+          <td>Continuous facility operations & service monitoring[cite: 1]</td>
+          <td>Answering a predefined clinical question[cite: 1]</td>
+        </tr>
+        <tr>
+          <td><strong>Collection Agent</strong></td>
+          <td>Frontline nursing staff & data entry clerks[cite: 1]</td>
+          <td>Dedicated clinical research coordinators[cite: 1]</td>
+        </tr>
+        <tr>
+          <td><strong>Standardisation</strong></td>
+          <td>Variable; highly dependent on shifting facility protocols[cite: 1]</td>
+          <td>Rigid; strictly guided by fixed study protocols[cite: 1]</td>
+        </tr>
+        <tr>
+          <td><strong>Marginal Cost</strong></td>
+          <td>Highly economical; information pre-exists in system[cite: 1]</td>
+          <td>Substantial; requires custom logistical frameworks[cite: 1]</td>
+        </tr>
+        <tr>
+          <td><strong>Population Reach</strong></td>
+          <td>Universal catchment within active service boundaries[cite: 1]</td>
+          <td>Highly selected using narrow eligibility parameters[cite: 1]</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Slide 6: Strategic Value in Epidemiology -->
+  <div class="slide" id="slide6">
+    <h2 class="slide-title">Strategic Value in Epidemiology</h2>
+    <div class="grid-2col">
+      <div class="info-card">
+        <h4>1. Immense Statistical Power</h4>
+        <p>Captures vast, unselected patient denominators across multiple facility tiers, reflecting actual public health realities rather than idealized trial environments[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>2. Longitudinal Continuity</h4>
+        <p>Continuous data tracking allows investigators to monitor long-term clinical trends and assess the real-world impact of national policy changes over decades[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>3. Resource Optimisation</h4>
+        <p>Significantly reduces operational research costs by securely repurposing data assets that have already been collected at the facility level[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>4. Rapid Public Health Translation</h4>
+        <p>Enables fast database queries to quickly test hypotheses, which supports rapid clinical audits and timely data-driven policy updates[cite: 1].</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: The National Framework (DHIS2) -->
+  <div class="slide" id="slide7">
+    <h2 class="slide-title">The National Framework: DHIS2</h2>
+    <p>The Ministry of Health and Child Care (MoHCC) utilizes the <strong>District Health Information Software 2 (DHIS2)</strong> platform to aggregate monthly clinical data summary matrices from all tiers of health delivery[cite: 1].</p>
+    
+    <div class="grid-2col" style="margin-top: 1rem;">
+      <div class="info-card">
+        <h4>Maternal & Child Tracking</h4>
+        <p>Tracks Antenatal Care (ANC) booking weeks, institutional delivery volumes, Prevention of Mother-to-Child Transmission (PMTCT) coverage, and infant immunisation trends[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>Infectious Disease Surveillance</h4>
+        <p>Monitors national treatment cohorts for HIV/AIDS and Tuberculosis, while driving early warning tracking for epidemic-prone conditions like Cholera, Typhoid, and Malaria[cite: 1].</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: Specialised National Registries -->
+  <div class="slide" id="slide8">
+    <h2 class="slide-title">Specialised National Registries</h2>
+    <p class="slide-subtitle">Southern Africa hosts key, highly specific tracking infrastructure[cite: 1]:</p>
+    <div class="grid-2col">
+      <div class="info-card accent">
+        <h4>The National Longitudinal ART Register</h4>
+        <p>Monitors millions of patients on lifetime antiretroviral therapy[cite: 1]. Tracks long-term clinical outcomes by recording baseline WHO clinical staging, CD4 cell recovery patterns, viral load suppression benchmarks, drug adherence logs, and therapeutic regimen changes[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>The Zimbabwe National Cancer Registry (ZNCR)</h4>
+        <p>Maintains centralized, high-quality histopathological data on oncological malignancies[cite: 1]. This dataset is essential for identifying shifts in the incidence of HIV-associated cancers, such as Kaposi Sarcoma and Cervical Squamous Cell Carcinoma, in the region[cite: 1].</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 9: Calculating Measures of Frequency -->
+  <div class="slide" id="slide9">
+    <h2 class="slide-title">Calculating Measures of Frequency</h2>
+    <p>Using routine facility data to calculate epidemiological metrics requires clear, well-aligned case criteria and population denominators[cite: 1]:</p>
+    
+    <div class="formula-box">
+      <p style="color: #00FFCC; font-family: monospace; font-size: 20px; font-weight: bold; margin-bottom: 0.5rem;">
+        Point Prevalence = (Active Cases on an Exact Date) / (Total Active Population at Risk)
+      </p>
+      <p style="font-size: 13px; color: #a0aec0;">Common example: Active diabetic cases open in EHR / Total unique active adult HIV entries on June 30[cite: 1]</p>
+    </div>
+
+    <div class="formula-box">
+      <p style="color: #00FFCC; font-family: monospace; font-size: 20px; font-weight: bold; margin-bottom: 0.5rem;">
+        Incidence Proportion = (New Diagnoses in a Time Window) / (Disease-Free Baseline Population)
+      </p>
+      <p style="font-size: 13px; color: #a0aec0;">Common example: Confirmed new TB cases within a 12-month window / Total active TB-free cohort at baseline[cite: 1]</p>
+    </div>
+  </div>
+
+  <!-- Slide 10: The Architecture of Data Linkage -->
+  <div class="slide" id="slide10">
+    <h2 class="slide-title">The Architecture of Data Linkage</h2>
+    <div class="info-card">
+      <p><strong>Data Linkage</strong> involves connecting separate records from different datasets that belong to the same individual or institution. This technique allows researchers to build detailed clinical profiles without the expense of running new primary studies[cite: 1].</p>
+    </div>
+    <div class="grid-2col" style="margin-top: 1rem;">
+      <div class="info-card">
+        <h4>Deterministic Linkage</h4>
+        <p>Relies on an exact, character-for-character match using a unique identifier, such as a National Identity Number or a standardized electronic health card token[cite: 1].</p>
+      </div>
+      <div class="info-card">
+        <h4>Probabilistic Linkage</h4>
+        <p>Calculates matching probabilities based on a combination of shared identifiers, including first name, surname, biological sex, date of birth, and home district[cite: 1].</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 11: Core Methodological Limitations -->
+  <div class="slide" id="slide11">
+    <h2 class="slide-title">Core Methodological Limitations</h2>
+    <p>Researchers must actively account for these typical limitations when working with secondary data registries[cite: 1]:</p>
+    <div class="grid-2col">
+      <div class="info-card accent">
+        <h4>Quality & Completeness Barriers</h4>
+        <ul>
+          <li><strong>Missing Information:</strong> Important field entries, such as staging forms or key laboratory values, are frequently left blank[cite: 1].</li>
+          <li><strong>Coding Inconsistencies:</strong> Busy frontline clinicians may interpret clinical case definitions differently[cite: 1].</li>
+        </ul>
+      </div>
+      <div class="info-card accent">
+        <h4>Structural Biases</h4>
+        <ul>
+          <li><strong>Facility Selection Bias:</strong> The dataset only includes individuals who actively seek care, which can hide broader community health needs[cite: 1].</li>
+          <li><strong>Unmeasured Confounding:</strong> Administrative data rarely records lifestyle factors like diet or smoking, which can mask confounding variables[cite: 1].</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12: Framework for Critical Appraisal -->
+  <div class="slide" id="slide12">
+    <h2 class="slide-title">Framework for Critical Appraisal</h2>
+    <p class="slide-subtitle">Always evaluate secondary datasets using these four key quality checks before applying them to clinical policy[cite: 1]:</p>
+    <ol>
+      <li><strong>Completeness:</strong> What percentage of expected facility records were actually submitted on time, and how are reporting delays handled[cite: 1]?</li>
+      <li><strong>Diagnostic Consistency:</strong> Are the underlying conditions verified through reliable laboratory tests, or do they rely on subjective clinical findings[cite: 1]?</li>
+      <li><strong>Denominator Validation:</strong> Is the population baseline derived from a recent census, or is it based on older, less reliable projections[cite: 1]?</li>
+      <li><strong>Data Governance:</strong> Has the study protocol been formally approved by relevant institutional review boards (e.g., MRCZ) to ensure strong patient privacy protections[cite: 1]?</li>
+    </ol>
+  </div>
+
+  <!-- Control Elements -->
+  <div class="controls-bar">
+    <div class="slide-counter">Slide <span id="currentSlideNum">1</span> of 12</div>
+    <div class="nav-buttons">
+      <button class="control-btn" id="prevSlideBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+      <button class="control-btn" id="nextSlideBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let activeSlideIndex = 1;
+const totalSlidesCount = 12;
+
+function changeSlide(direction) {
+  // Calculate new index bounded by slide limits
+  let targetIndex = activeSlideIndex + direction;
+  if (targetIndex >= 1 && targetIndex <= totalSlidesCount) {
+    // Remove active display state from current slide
+    document.getElementById(`slide${activeSlideIndex}`).classList.remove('active');
+    
+    // Assign active display state to target slide
+    document.getElementById(`slide${targetIndex}`).classList.add('active');
+    
+    // Update master counter index
+    activeSlideIndex = targetIndex;
+    
+    // Synchronise control elements
+    updateControls();
+  }
+}
+
+function updateControls() {
+  // Update text counter display
+  document.getElementById('currentSlideNum').textContent = activeSlideIndex;
+  
+  // Manage operational states of buttons
+  document.getElementById('prevSlideBtn').disabled = (activeSlideIndex === 1);
+  document.getElementById('nextSlideBtn').disabled = (activeSlideIndex === totalSlidesCount);
+}
+
+// Attach keyboard directional arrow support
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'ArrowLeft') {
+    changeSlide(-1);
+  } else if (event.key === 'ArrowRight') {
+    changeSlide(1);
+  }
+});
+</script>
+
+</body>
+</html>
