@@ -1,685 +1,272 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<meta charset="utf-8"/>
-<title>FE04: Utilising Routine Data in Epidemiology - HTML Slide Presentation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FE04: Using Routine Data in Epidemiology</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --nc-navy:#1B2E4B;
+  --nc-red:#C0392B;
+  --nc-red-light:#F5C4B3;
+  --nc-cream:#F8F6F2;
+  --nc-slate:#4A5568;
+  --nc-highlight:#FFF3CD;
 }
-
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  font-family: Calibri, Arial, sans-serif;
-  background: linear-gradient(135deg, #1F3A70 0%, #2B5A8C 100%);
-  display: flex;
-  flex-direction: column;
-}
-
-.slide-container {
-  flex: 1;
-  display: flex;
-  overflow: hidden;
-}
-
-.slides-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-}
-
-.slide {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  scroll-snap-align: start;
-  background: white;
-  margin-bottom: 0;
-  box-shadow: 0 0 40px rgba(0,0,0,0.2);
-}
-
-.slide:nth-child(odd) {
-  background: white;
-}
-
-.slide:nth-child(even) {
-  background: linear-gradient(to bottom, #F8F9FA, white);
-}
-
-.slide.title-slide {
-  background: linear-gradient(135deg, #1F3A70 0%, #457B9D 100%);
-  color: white;
-  justify-content: center;
-}
-
-.slide.section-slide {
-  background: linear-gradient(to bottom, #1F3A70, #2B5A8C);
-  color: white;
-}
-
-.slide-content {
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.slide h1 {
-  font-size: 48px;
-  margin-bottom: 1rem;
-  color: #1F3A70;
-}
-
-.slide.title-slide h1 {
-  font-size: 56px;
-  color: white;
-}
-
-.slide h2 {
-  font-size: 44px;
-  margin-bottom: 1.5rem;
-  color: #E63946;
-}
-
-.slide.section-slide h2 {
-  color: white;
-}
-
-.slide h3 {
-  font-size: 28px;
-  margin-top: 1.5rem;
-  margin-bottom: 0.8rem;
-  color: #457B9D;
-}
-
-.slide p {
-  font-size: 18px;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-  color: #2B3E50;
-}
-
-.slide.title-slide p {
-  font-size: 20px;
-  color: #A8DADC;
-}
-
-.slide ul, .slide ol {
-  font-size: 16px;
-  margin-left: 2rem;
-  margin-bottom: 1rem;
-  color: #2B3E50;
-}
-
-.slide li {
-  margin-bottom: 0.7rem;
-  line-height: 1.6;
-}
-
-.highlight-box {
-  background: #FFF3CD;
-  border-left: 4px solid #E63946;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 4px;
-}
-
-.definition-box {
-  background: #E8F4F8;
-  border-left: 4px solid #457B9D;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 4px;
-}
-
-.example-box {
-  background: #F0F8F4;
-  border-left: 4px solid #28A745;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 4px;
-}
-
-.two-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 1.5rem 0;
-}
-
-.three-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-}
-
-.card {
-  background: white;
-  border: 2px solid #457B9D;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.card h4 {
-  color: #E63946;
-  font-size: 18px;
-  margin-bottom: 0.8rem;
-}
-
-.card p {
-  font-size: 14px;
-  margin: 0;
-}
-
-.comparison-item {
-  background: #F8F9FA;
-  border-left: 4px solid #E63946;
-  padding: 1rem;
-  margin: 0.8rem 0;
-  border-radius: 4px;
-}
-
-.comparison-item strong {
-  color: #E63946;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 14px;
-}
-
-table thead {
-  background: #457B9D;
-  color: white;
-}
-
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 0.8rem;
-  text-align: left;
-}
-
-table tbody tr:nth-child(even) {
-  background: #F8F9FA;
-}
-
-.nav-footer {
-  background: #1F3A70;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  font-size: 14px;
-}
-
-.slide-number {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 12px;
-  color: #999;
-}
-
-.key-point {
-  border-left: 4px solid #E63946;
-  padding-left: 1rem;
-  margin: 0.8rem 0;
-  font-weight: 600;
-  color: #1F3A70;
-}
-
-.icon-box {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0.8rem 0;
-}
-
-.icon-box:before {
-  content: "✓";
-  width: 2rem;
-  height: 2rem;
-  background: #E63946;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-@media (max-width: 1024px) {
-  .slide {
-    padding: 2rem;
-  }
-  
-  .slide h1 {
-    font-size: 36px;
-  }
-  
-  .slide.title-slide h1 {
-    font-size: 42px;
-  }
-  
-  .two-column, .three-column {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media print {
-  body {
-    background: white;
-  }
-  
-  .slide {
-    page-break-after: always;
-    page-break-inside: avoid;
-    box-shadow: none;
-    min-height: auto;
-    padding: 1.5rem;
-  }
-  
-  .nav-footer {
-    display: none;
-  }
-}
+body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;background:transparent}
+.deck{width:100%;max-width:700px;margin:0 auto;padding:0.5rem 0}
+.slide{display:none;border:0.5px solid #d4d8df;border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.05)}
+.slide.active{display:block}
+.slide-header{background:var(--nc-navy);color:#fff;padding:1.25rem 1.5rem 1rem}
+.slide-header .eyebrow{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.35rem}
+.slide-header h2{font-size:20px;font-weight:500;line-height:1.3;color:#fff}
+.slide-header .module-tag{display:inline-block;background:var(--nc-red);color:#fff;font-size:11px;padding:3px 10px;border-radius:4px;margin-bottom:0.5rem}
+.slide-body{padding:1.25rem 1.5rem}
+.slide-footer{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.5rem;border-top:0.5px solid #d4d8df;background:#f8fafc}
+.slide-counter{font-size:12px;color:var(--nc-slate)}
+.nav-row{display:flex;gap:8px}
+.nav-btn{padding:6px 16px;font-size:13px;border:0.5px solid #d4d8df;border-radius:6px;background:#fff;color:var(--nc-navy);cursor:pointer;font-weight:500}
+.nav-btn:hover{background:#f1f5f9}
+.nav-btn.primary{background:var(--nc-navy);color:#fff;border-color:var(--nc-navy)}
+.nav-btn.primary:hover{background:#243d63}
+.def-box{background:var(--nc-cream);border-left:3px solid var(--nc-red);padding:0.85rem 1rem;margin:0.75rem 0;border-radius:0 8px 8px 0}
+.def-box .def-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--nc-red);font-weight:500;margin-bottom:0.3rem}
+.def-box p{font-size:14px;color:#2d3748;line-height:1.6}
+.zim-box{background:#EAF3DE;border:0.5px solid #97C459;border-radius:6px;padding:0.85rem 1rem;margin:0.75rem 0}
+.zim-box .zim-label{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#3B6D11;font-weight:500;margin-bottom:0.3rem;display:flex;align-items:center;gap:6px}
+.zim-box p{font-size:14px;color:#27500A;line-height:1.6}
+.ppt{font-size:15px;color:#2d3748;line-height:1.65;margin:0.5rem 0}
+.ppt strong{font-weight:600}
+.bullets{list-style:none;margin:0.5rem 0}
+.bullets li{font-size:14px;color:#2d3748;line-height:1.6;padding:0.3rem 0 0.3rem 1.25rem;position:relative}
+.bullets li::before{content:"";position:absolute;left:0;top:0.72rem;width:7px;height:7px;border-radius:50%;background:var(--nc-red)}
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:13px;border:0.5px solid #d4d8df;border-radius:6px;background:#f1f5f9;color:var(--nc-navy);cursor:pointer;margin:0.5rem 0;font-weight:500}
+.reveal-btn:hover{background:#e2e8f0}
+.reveal-content{display:none;margin-top:0.5rem}
+.reveal-content.shown{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0.75rem 0}
+.card-sm{background:#f8fafc;border:0.5px solid #e2e8f0;border-radius:6px;padding:0.75rem 1rem}
+.card-sm .card-title{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--nc-slate);margin-bottom:0.4rem;font-weight:600}
+.card-sm p{font-size:13px;color:#2d3748;line-height:1.55}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;margin:0.75rem 0}
+.quiz-opt{padding:10px 14px;font-size:14px;border:0.5px solid #d4d8df;border-radius:6px;background:#fff;cursor:pointer;text-align:left;color:#2d3748;transition:all 0.2s}
+.quiz-opt:hover{background:#f1f5f9}
+.quiz-opt.correct{background:#EAF3DE;border-color:#97C459;color:#27500A;font-weight:500}
+.quiz-opt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
+.quiz-feedback{padding:0.75rem 1rem;border-radius:6px;margin-top:0.5rem;font-size:14px;line-height:1.55;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#EAF3DE;color:#27500A}
+.quiz-feedback.bad{background:#FCEBEB;color:#791F1F}
+.divider{border:none;border-top:0.5px solid #e2e8f0;margin:0.85rem 0}
+.progress-bar-wrap{height:4px;background:#e2e8f0;border-radius:2px;margin-bottom:1.25rem;overflow:hidden}
+.progress-bar{height:100%;background:var(--nc-red);border-radius:2px;transition:width 0.3s ease}
+.section-intro{text-align:center;padding:1.5rem 1rem}
+.section-intro .big-num{font-size:48px;font-weight:500;color:var(--nc-red);line-height:1}
+.section-intro .big-label{font-size:14px;color:var(--nc-slate);margin-top:0.25rem}
+.topic-badge{display:inline-block;background:var(--nc-navy);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:4px;vertical-align:middle}
+.table-simple{width:100%;border-collapse:collapse;font-size:13px;margin:0.75rem 0}
+.table-simple th{background:var(--nc-navy);color:#fff;padding:7px 10px;text-align:left;font-weight:500}
+.table-simple td{padding:7px 10px;border-bottom:0.5px solid #e2e8f0;color:#2d3748}
+.table-simple tr:last-child td{border-bottom:none}
+.table-simple tr:nth-child(even) td{background:#f8fafc}
 </style>
 </head>
 <body>
 
-<div class="slide-container">
-  <div class="slides-wrapper">
-    
-    <div class="slide title-slide">
-      <div class="slide-content">
-        <h1>FE04: Utilising Routine Data in Epidemiology</h1>
-        <p style="margin-top: 2rem; font-size: 28px;">A Practical Guide for Clinicians in Zimbabwe</p>
-        <p style="margin-top: 3rem; font-size: 18px;">Research Masterclass for Clinicians<br>Newlands Clinic</p>
-      </div>
-      <div class="slide-number">1 / 18</div>
-    </div>
+<div class="deck">
+<div class="progress-bar-wrap"><div class="progress-bar" id="pbar" style="width:10%"></div></div>
+<div id="slide-wrap"></div>
+</div>
 
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Learning Objectives</h2>
-        <p>By the end of this topic, you will be able to:</p>
-        <ul>
-          <li><strong>Define</strong> routine data and explain why we utilise them in epidemiology.</li>
-          <li><strong>Identify</strong> major sources of routine data within Zimbabwean health systems.</li>
-          <li><strong>Calculate</strong> measures of disease occurrence from routine data sources.</li>
-          <li><strong>Understand</strong> the structural strengths and limitations of routine data.</li>
-          <li><strong>Apply</strong> routine data to descriptive and analytical epidemiological cohorts.</li>
-          <li><strong>Link</strong> different data sources safely to answer complex operational research questions.</li>
-          <li><strong>Interpret</strong> routine data critically, assessing completeness, diagnostic accuracy, and potential bias.</li>
-        </ul>
-      </div>
-      <div class="slide-number">2 / 18</div>
-    </div>
+<script>
+const slides = [
 
-    <div class="slide">
-      <div class="slide-content">
-        <h2>What is Routine Data?</h2>
-        <div class="definition-box">
-          <strong>Routine data:</strong> Data collected systematically through ongoing health, administrative, and social service systems, NOT originally collected to answer a specific research question.
-        </div>
-        <h3>Why Use Routine Data?</h3>
-        <div class="icon-box">Large populations providing national, regional, or clinic-wide coverage.</div>
-        <div class="icon-box">Readily available, accessible, and continuously compiled.</div>
-        <div class="icon-box">Highly cost-effective since data collection infrastructure already exists.</div>
-        <div class="icon-box">Enables rapid hypothesis testing and operational clinical auditing.</div>
-        <div class="icon-box">Continuous over time, allowing robust trend monitoring across decades.</div>
-        <div class="icon-box">Reflects real-world, unselected populations in daily clinical care.</div>
-      </div>
-      <div class="slide-number">3 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Two Main Uses of Routine Data</h2>
-        <div class="two-column">
-          <div class="card">
-            <h4>Descriptive Studies</h4>
-            <p>• Monitor disease burden and trends over time.<br>
-            • Compare disease frequency by geography, age, and sex.<br>
-            • Trace public health trajectories (increasing vs decreasing).<br>
-            • Identify underlying healthcare inequities.<br>
-            • <em>Example:</em> Mapping HIV viral suppression margins across Zimbabwean provinces.</p>
-          </div>
-          <div class="card">
-            <h4>Analytical Studies</h4>
-            <p>• Investigate potential causes of disease and comorbidities.<br>
-            • Compare health outcomes between exposed and unexposed groups.<br>
-            • Estimate relative and attributable risks within cohorts.<br>
-            • Execute rapid, database-driven hypothesis testing.<br>
-            • <em>Example:</em> Assessing metabolic syndrome risk factors using longitudinal electronic clinic records.</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-number">4 / 18</div>
-    </div>
-
-    <div class="slide section-slide">
-      <div class="slide-content">
-        <h2 style="color: white;">Major Sources of Routine Data</h2>
-      </div>
-      <div class="slide-number">5 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Denominator Data: Census & Population</h2>
-        <h3>Population Census</h3>
-        <p>National survey managed by ZIMSTAT counting total population by age, sex, location, and socio-economic characteristics.</p>
-        <div class="highlight-box">
-          <strong>Zimbabwe Update:</strong> The 2022 Census established a baseline population of ~15.1 million people. Intercensal projection models adjust these figures annually using localized birth, mortality, and migration dynamics.
-        </div>
-        <h3>Civil Registration & Vital Statistics (CRVS)</h3>
-        <ul>
-          <li><strong>Birth registration:</strong> Establishes vital cohort denominators; captures parameters like birthweight and gestational age.</li>
-          <li><strong>Death registration:</strong> Adjusts population denominators; provides mortality data across underlying and contributing causes.</li>
-        </ul>
-        <div class="key-point">⚠️ Limitation: Birth and death registration coverage can face significant under-reporting challenges in remote rural communities.</div>
-      </div>
-      <div class="slide-number">6 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Numerator Data: Hospital Records</h2>
-        <div class="definition-box">
-          <strong>Hospital Data:</strong> Inpatient admissions, outpatient consultations, and discharge summaries from secondary, tertiary, and quaternary referral facilities.
-        </div>
-        <h3>Core Parameters Logged:</h3>
-        <ul>
-          <li>Admissions and discharges categorized by standardized ICD diagnostic codes.</li>
-          <li>Length of hospital stay and bed occupancy rates.</li>
-          <li>Surgical or medical procedures performed during admission.</li>
-          <li>Demographic arrays (age, sex, referring facility).</li>
-          <li>Discharge outcomes (discharged home, died in facility, transferred out).</li>
-        </ul>
-        <div class="example-box">
-          <strong>Regional Application:</strong> Central referral complexes (e.g., Parirenyatwa or Mpilo Central Hospital) utilize automated summaries to monitor shifting admission burdens, such as rising cardiovascular admissions and persistent advanced HIV disease cases.
-        </div>
-      </div>
-      <div class="slide-number">7 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Numerator Data: Primary Care & Clinic Records</h2>
-        <h3>Clinic & Primary Health Care Data</h3>
-        <p>Operational footprints generated dynamically across municipal clinics, polyclinics, rural health centres, and partner NGO facilities.</p>
-        <ul>
-          <li>Patient demographics (age, biological sex, residential location).</li>
-          <li>Primary reason for presentation or clinical syndromic diagnosis.</li>
-          <li>Pharmaceutical prescriptions and immunisations delivered.</li>
-          <li>Downstream clinical referrals to district or provincial specialists.</li>
-        </ul>
-        <div class="example-box">
-          <strong>The EMR Advantage:</strong> Specialized hubs, including the Newlands Clinic, maintain rich Electronic Medical Record (EMR) architectures. This enables seamless, longitudinal extraction of longitudinal CD4 trajectories, viral load patterns, drug adherence metrics, and non-communicable comorbidities.
-        </div>
-      </div>
-      <div class="slide-number">8 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Numerator Data: Disease Registries</h2>
-        <div class="definition-box">
-          <strong>Disease Registry:</strong> A centralized, systematic database tracking all identified cases of a specific disease entity within a defined population boundary.
-        </div>
-        <h3>Prominent Registries operating in Zimbabwe:</h3>
-        <div class="comparison-item">
-          <strong>National TB Register:</strong> Tracks all notified Tuberculosis cases; logs diagnostic modes (GeneXpert), drug-resistance patterns, HIV co-infection status, and final treatment outcomes.
-        </div>
-        <div class="comparison-item">
-          <strong>National Longitudinal ART Register:</strong> Tracks over 1.3 million people living with HIV on lifetime antiretroviral therapy, monitoring regimen switches and retention cascades.
-        </div>
-        <div class="comparison-item">
-          <strong>Maternal Health Registries:</strong> Captures antenatal bookings, maternal complications, delivery interventions, and neonatal outcomes.
-        </div>
-        <div class="comparison-item">
-          <strong>Zimbabwe National Cancer Registry (ZNCR):</strong> Compiles histopathological and clinical notifications to trace oncological trends, primarily across major urban hubs.
-        </div>
-      </div>
-      <div class="slide-number">9 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Zimbabwe Health Management Information System (HMIS)</h2>
-        <div class="highlight-box">
-          <strong>The Platform (DHIS2):</strong> A web-based national architecture configured by the Ministry of Health and Child Care (MoHCC) to aggregate monthly health summaries from all reporting public, private, and NGO facilities.
-        </div>
-        <h3>Primary Aggregation Metrics in DHIS2:</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Functional Category</th>
-              <th>Core Programmatic Indicators Logged</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Maternal & Neonatal</strong></td>
-              <td>ANC presentation weeks, institutional births, maternal deaths, PMTCT updates.</td>
-            </tr>
-            <tr>
-              <td><strong>Child Health & EPI</strong></td>
-              <td>Vaccination coverage rates (BCG, MR), acute malnutrition screenings (MUAC).</td>
-            </tr>
-            <tr>
-              <td><strong>Disease Surveillance</strong></td>
-              <td>Weekly statutory notifications for Malaria, Cholera, Typhoid, and outbreak-prone conditions.</td>
-            </tr>
-            <tr>
-              <td><strong>HIV & TB Portfolios</strong></td>
-              <td>New ART initiations, viral load coverage, TB sputum alerts, co-infection treatment success.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="margin-top: 1.5rem; font-size: 14px;"><em>Data Challenges:</em> Facility data completeness can vary; reporting lags occur occasionally in rural environments with connectivity constraints.</p>
-      </div>
-      <div class="slide-number">10 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Antenatal Clinic (ANC) Surveillance: A National Model</h2>
-        <div class="definition-box">
-          <strong>ANC-based HIV Surveillance:</strong> Utilises routine HIV testing data from pregnant women to generate reliable estimates of national and sub-national HIV prevalence trends over time.
-        </div>
-        <h3>Operational Steps:</h3>
-        <ol>
-          <li>Every pregnant woman presenting at an ANC site undergoes routine opt-out HIV testing.</li>
-          <li>Testing metrics are systematically logged within the standardized facility ANC register.</li>
-          <li>Aggregated monthly summaries (Total tested, Total positive, Total negative) flow up to district levels.</li>
-          <li>National-tier epidemiologists compile and stratify these prevalence data by province and age brackets.</li>
-        </ol>
-        <div class="example-box">
-          <strong>Public Health Impact:</strong> Long-term ANC surveillance documented a substantial decline in national HIV prevalence from over 20% down to current stabilized margins around 11%, directly guiding localized resource allocation.
-        </div>
-      </div>
-      <div class="slide-number">11 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Data Linkage: Connecting Different Data Sources</h2>
-        <div class="definition-box">
-          <strong>Data Linkage:</strong> The methodology of connecting distinct data records from different tracking systems belonging to the same individual or institution to build a comprehensive clinical profile.
-        </div>
-        <h3>High-Yield Opportunities:</h3>
-        <div class="comparison-item">
-          <strong>TB/HIV Register Synthesis:</strong> Linking the National TB Register with Electronic ART Systems reveals specific screening omissions, maps co-infection tracking, and measures therapeutic interactions.
-        </div>
-        <div class="comparison-item">
-          <strong>Maternal-Child Linkage:</strong> Connecting maternal ANC cards with child immunisation logs provides long-term, real-world monitoring of PMTCT programme effectiveness.
-        </div>
-        <div class="comparison-item">
-          <strong>Hospital-Community Synthesis:</strong> Linking tertiary discharge records with local primary clinic charts tracks re-admission rates and continuity of chronic care.
-        </div>
-        <div class="key-point">✓ Core Advantage: Generates rich, deep clinical insight without requiring costly primary fieldwork.</div>
-        <div class="key-point">⚠️ Core Challenge: Demands robust matching tokens; requires rigorous ethical approvals and encryption safeguards.</div>
-      </div>
-      <div class="slide-number">12 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Calculating Measures of Occurrence from Routine Data</h2>
-        <h3>Key Formula:</h3>
-        <div class="highlight-box" style="font-size: 20px; text-align: center; padding: 2rem;">
-          <strong>Measure of Occurrence = Numerator (Cases) / Denominator (Population at Risk)</strong>
-        </div>
-        <h3>Data Components Required:</h3>
-        <div class="three-column">
-          <div class="card">
-            <h4>Numerator</h4>
-            <p>Events extracted from:<br>
-            • Hospital discharge logs<br>
-            • Electronic clinic records<br>
-            • Specialized disease registries<br>
-            • Civil death certificates</p>
-          </div>
-          <div class="card">
-            <h4>Denominator</h4>
-            <p>Population values from:<br>
-            • ZIMSTAT census projections<br>
-            • Catchment tracking tools<br>
-            • Aggregated ANC aggregates<br>
-            • Active medical registry boundaries</p>
-          </div>
-          <div class="card">
-            <h4>Time Dimension</h4>
-            <p>Boundaries from:<br>
-            • Annual programmatic outputs<br>
-            • Monthly DHIS2 summaries<br>
-            • Quarterly cohort reporting windows<br>
-            • Defined longitudinal follow-ups</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-number">13 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Worked Example: Calculating Point Prevalence</h2>
-        <div class="highlight-box">
-          <strong>Clinical Scenario:</strong> Evaluating metabolic comorbidity burdens within an active treatment cohort.
-        </div>
-        <h3>Data Parameters:</h3>
-        <ul>
-          <li><strong>Numerator (Cases):</strong> Unique patients active on ART with a confirmed, documented diagnosis of Type 2 Diabetes Mellitus on June 30 = 160 cases.</li>
-          <li><strong>Denominator (Population at Risk):</strong> Total unique adult patients living with HIV listed as actively enrolled at the facility on that exact date = 3,200 people.</li>
-          <li><strong>Time Reference:</strong> Fixed cross-sectional point (30 June).</li>
-        </ul>
-        <h3>Calculation:</h3>
-        <div class="definition-box" style="font-size: 18px; text-align: center; font-family: monospace; font-weight: bold;">
-          Point Prevalence = 160 / 3,200 = 0.05 = 5.0%
-        </div>
-        <p><strong>Clinical Interpretation:</strong> Exactly 5.0% of the active adult HIV cohort have a documented metabolic comorbidity. This point prevalence informs local pharmacy stock management and the design of integrated care protocols.</p>
-      </div>
-      <div class="slide-number">14 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Strengths of Routine Data</h2>
-        <div class="icon-box">Captures large, diverse populations, reducing selection biases found in tight trial environments.</div>
-        <div class="icon-box">Inexpensive and fast to access compared to launching primary cohort studies.</div>
-        <div class="icon-box">Maintains uninterrupted continuity, enabling long-term trend analysis across decades.</div>
-        <div class="icon-box">Provides granular clinical data, including lab values, vital signs, and drug regimens over time.</div>
-        <div class="icon-box">Allows for creative data linkage across separate databases, enriching research potential.</div>
-        <div class="icon-box">Minimises participant fatigue by safely utilising pre-existing administrative entries.</div>
-        <div class="icon-box">Highly sensitive for detecting rare clinical outcomes or localized disease clusters.</div>
-        <div class="icon-box">Generates practical, real-world evidence reflecting daily operational conditions.</div>
-      </div>
-      <div class="slide-number">15 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Limitations of Routine Data</h2>
-        <div class="comparison-item">
-          <strong>Variable Data Quality:</strong> Incomplete record fields, missing lab values, transcription errors, or shifting clinical case definitions.
-        </div>
-        <div class="comparison-item">
-          <strong>Institutional Selection Bias:</strong> Restricts findings to individuals who actively access formal care, potentially missing wider community needs.
-        </div>
-        <div class="comparison-item">
-          <strong>Unmeasured Confounding:</strong> Essential lifestyle, behavioral, and socio-economic variables are rarely captured in administrative logs.
-        </div>
-        <div class="comparison-item">
-          <strong>Loss to Follow-up:</strong> Inability to trace true patient outcomes once an individual leaves a facility's geographical boundaries.
-        </div>
-        <div class="comparison-item">
-          <strong>Privacy Risks:</strong> Linking disparate databases creates potential re-identification risks, demanding strict data governance.
-        </div>
-        <div class="comparison-item">
-          <strong>Reporting Lags:</strong> Processing delays can make information outdated by the time it is compiled and accessible for analysis.
-        </div>
-      </div>
-      <div class="slide-number">16 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>How to Interpret Routine Data: Critical Questions</h2>
-        <ul>
-          <li><strong>Completeness:</strong> What proportion of expected facility submissions were actually received on time?</li>
-          <li><strong>Diagnostic Accuracy:</strong> Are conditions confirmed through laboratory tests or subjective clinical assessments?</li>
-          <li><strong>Denominator Validity:</strong> Is the population baseline current, or does it rely on outdated projections?</li>
-          <li><strong>Timeliness:</strong> What is the time gap between initial field entry and final database finalisation?</li>
-          <li><strong>Standardisation:</strong> Have case criteria remained uniform across the entire study period?</li>
-          <li><strong>Confounding Controls:</strong> What crucial clinical or lifestyle variables are missing from this dataset?</li>
-          <li><strong>Selection Bias:</strong> How does the care-seeking population differ from the general community?</li>
-          <li><strong>Metadata Documentation:</strong> Are the underlying data dictionary and data collection methods clearly explained?</li>
-        </ul>
-      </div>
-      <div class="slide-number">17 / 18</div>
-    </div>
-
-    <div class="slide">
-      <div class="slide-content">
-        <h2>Key Takeaways</h2>
-        <div class="highlight-box">
-          <strong>Routine Data:</strong> A powerful, cost-effective resource for generating actionable epidemiological evidence in resource-limited settings.
-        </div>
-        <ul>
-          <li>Zimbabwe maintains robust tracking infrastructure, including DHIS2, national HIV/TB logs, and EMR platforms.</li>
-          <li>Repurposing routine records can support both descriptive tracking and analytical cohort studies.</li>
-          <li>Secure data linkage can expand research potential without the expense of primary field data collection.</li>
-          <li>Always assess data quality, completeness, and potential selection biases before making clinical decisions.</li>
-          <li>Critical appraisal turns raw administrative records into reliable, real-world health evidence.</li>
-        </ul>
-        <p style="margin-top: 2rem; text-align: center; font-size: 18px; font-weight: bold; color: #E63946;">
-          Next Module: Analytical Study Designs (Case-Control and Cohort Layouts)
-        </p>
-      </div>
-      <div class="slide-number">18 / 18</div>
-    </div>
-
+{id:'cover', render(){return `
+<div class="slide-header">
+  <div class="module-tag">Module FE04</div>
+  <div class="eyebrow">Research Masterclass for Clinicians — Newlands Clinic</div>
+  <h2>Using Routine Data in Epidemiology</h2>
+</div>
+<div class="slide-body">
+  <div class="section-intro">
+    <div class="big-num">04</div>
+    <div class="big-label">Objectives · ~40 minutes</div>
+  </div>
+  <p class="ppt" style="text-align:center;color:var(--nc-slate);margin-bottom:1rem;">Leveraging existing healthcare tracking infrastructure, vital registries, and electronic health databases for clinical research.</p>
+  <div class="grid2">
+    <div class="card-sm"><div class="card-title">Foundations & Sources</div><p>Mapping the Zimbabwean health data architecture (DHIS2, ZIMSTAT, EHRs).</p></div>
+    <div class="card-sm"><div class="card-title">Metrics & Appraisal</div><p>Calculating prevalence and critically appraising routine datasets.</p></div>
   </div>
 </div>
+`}},
 
-<div class="nav-footer">
-  <p>FE04: Utilising Routine Data in Epidemiology | Scroll through slides or print as PDF</p>
+{id:'t4_intro', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Introduction</div>
+  <h2>What is Routine Data?</h2>
 </div>
+<div class="slide-body">
+  <div class="def-box">
+    <div class="def-label">Definition</div>
+    <p>Data derived from ongoing, systematic collection engines within health, vital, and social registries that were <strong>not originally designed</strong> to address a specific primary research hypothesis.</p>
+  </div>
+  <p class="ppt"><strong>Why do clinical researchers rely on it?</strong></p>
+  <ul class="bullets">
+    <li><strong>Scale:</strong> Captures unselected populations, avoiding clinical trial selection bias.</li>
+    <li><strong>Efficiency:</strong> Readily accessible and highly cost-effective since the data already exists.</li>
+    <li><strong>Speed & Continuity:</strong> Enables rapid hypothesis testing and monitors long-term trends over decades.</li>
+  </ul>
+</div>
+`}},
 
-</body>
-</html>
+{id:'t4_sources', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Data Components</div>
+  <h2>Denominators vs. Numerators</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Epidemiological metrics require two fundamental building blocks:</p>
+  <div class="grid2">
+    <div class="card-sm" style="border-top:3px solid var(--nc-navy)">
+      <div class="card-title">Denominator (The Base)</div>
+      <p>Information detailing the underlying population at risk.</p>
+      <ul class="bullets" style="margin-top:0.5rem; font-size:12px;">
+        <li><strong>ZIMSTAT Census:</strong> National baselines and intercensal projections.</li>
+        <li><strong>Vital Registration:</strong> Birth and death certificates (adjusting the population).</li>
+      </ul>
+    </div>
+    <div class="card-sm" style="border-top:3px solid var(--nc-red)">
+      <div class="card-title">Numerator (The Cases)</div>
+      <p>Information characterising the precise health event.</p>
+      <ul class="bullets" style="margin-top:0.5rem; font-size:12px;">
+        <li><strong>Hospital Data:</strong> Discharge codings (e.g., Parirenyatwa Hospital).</li>
+        <li><strong>Clinic EHRs:</strong> Real-time outpatient logs (e.g., Newlands Clinic).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+`}},
+
+{id:'t4_hmis', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> National Infrastructure</div>
+  <h2>The Zimbabwe HMIS (DHIS2)</h2>
+</div>
+<div class="slide-body">
+  <div class="zim-box">
+    <div class="zim-label">National Aggregation Hub</div>
+    <p>The MoHCC uses the web-based <strong>DHIS2</strong> platform to aggregate monthly operational outputs from all public, private, and NGO facilities nationwide.</p>
+  </div>
+  <p class="ppt" style="margin-top:1rem;"><strong>Core Tracking Domains:</strong></p>
+  <table class="table-simple">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Key Programmatic Indicators</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Maternal & Neonatal</strong></td>
+        <td>ANC attendances, deliveries, PMTCT updates, maternal deaths.</td>
+      </tr>
+      <tr>
+        <td><strong>Child Health</strong></td>
+        <td>Immunisation (EPI) coverage, malnutrition screening.</td>
+      </tr>
+      <tr>
+        <td><strong>Disease Surveillance</strong></td>
+        <td>Cholera, Typhoid, and Malaria statutory notifications.</td>
+      </tr>
+      <tr>
+        <td><strong>HIV & TB</strong></td>
+        <td>New ART initiations, viral load coverage, TB co-infection.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`}},
+
+{id:'t4_registries', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Specialised Tracking</div>
+  <h2>Disease Registries & Data Linkage</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Beyond aggregate data, Zimbabwe maintains specific, individual-level registries:</p>
+  <ul class="bullets">
+    <li><strong>National Longitudinal ART Register:</strong> Tracks CD4, VL, and retention for >1.3 million PLHIV.</li>
+    <li><strong>National TB Register:</strong> Logs diagnostic modes (GeneXpert) and treatment outcomes.</li>
+    <li><strong>ANC Surveillance:</strong> Uses routine testing in pregnant women to estimate national HIV prevalence cleanly.</li>
+  </ul>
+  <div class="def-box" style="margin-top:1rem;">
+    <div class="def-label">The Power of Data Linkage</div>
+    <p>Connecting distinct databases (e.g., linking the TB Register with the ART Register) allows researchers to measure co-infection outcomes and programmatic gaps without executing expensive primary fieldwork.</p>
+  </div>
+</div>
+`}},
+
+{id:'t4_calc', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Applied Epidemiology</div>
+  <h2>Calculating Point Prevalence</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">Measures of occurrence from routine systems rely on a straightforward foundational formula:</p>
+  <div class="def-box" style="text-align:center;">
+    <p style="font-weight:600; margin:0.2rem 0;">$$\text{Measure} = \frac{\text{Numerator (Cases)}}{\text{Denominator (Population at Risk)}}$$</p>
+  </div>
+  <p class="ppt"><strong>Clinical Scenario:</strong> We are evaluating active Tuberculosis burdens within an urban HIV treatment cohort over a 6-month period.</p>
+  <ul class="bullets" style="margin-bottom:0.5rem;">
+    <li>Active TB cases identified in EHR screening (Numerator) = <strong>45 cases</strong></li>
+    <li>Total PLHIV currently registered & active on ART (Denominator) = <strong>2,800 people</strong></li>
+  </ul>
+  <hr class="divider">
+  <button class="reveal-btn" onclick="toggle('calc_reveal')"><i class="ti ti-calculator" aria-hidden="true"></i> Execute Calculation</button>
+  <div class="reveal-content" id="calc_reveal">
+    <div class="card-sm" style="background:var(--nc-cream); margin-bottom:0.5rem;">
+      <p style="font-family:monospace; font-size:14px; font-weight:600; text-align:center;">
+        Prevalence = 45 / 2,800 = 0.016
+      </p>
+    </div>
+    <p class="ppt"><strong>Result:</strong> 1.6% of PLHIV in the clinic have active TB, a metric that directly informs clinic screening operations.</p>
+  </div>
+</div>
+`}},
+
+{id:'t4_quiz1', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4 — Self-Test</span></div>
+  <h2>Interpreting Routine Parameters</h2>
+</div>
+<div class="slide-body">
+  <p class="ppt">You are reviewing a regional summary report derived from routine hospital discharge data. The report states: <em>"In 2023, 30% of all recorded mortalities at the provincial hospital were attributed to cardiovascular events."</em></p>
+  <p class="ppt" style="margin-top:0.3rem;">Based on epidemiological principles, what does this metric represent?</p>
+  <div class="quiz-opts" id="q1opts">
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">The true cardiovascular mortality rate for the province.</button>
+    <button class="quiz-opt" onclick="checkQ(this,'correct','q1fb')">A proportional mortality indicator, which is highly sensitive to changes in other diseases.</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">The cardiovascular case-fatality proportion.</button>
+    <button class="quiz-opt" onclick="checkQ(this,'wrong','q1fb')">The cumulative incidence of cardiovascular disease.</button>
+  </div>
+  <div class="quiz-feedback ok" id="q1fb_correct" style="display:none">
+    Correct! Because the denominator is "all recorded mortalities" rather than the total population at risk, this is a proportional measure. If infectious disease deaths drop sharply next year, this cardiovascular proportion will mathematically rise, even if the actual number of heart-related deaths remains flat.
+  </div>
+  <div class="quiz-feedback bad" id="q1fb_wrong" style="display:none">
+    Not quite. A true mortality rate requires the entire population at risk as the denominator. Because the denominator here is "all recorded mortalities," this is a proportional metric, which is heavily influenced by the frequencies of other competing causes of death.
+  </div>
+</div>
+`}},
+
+{id:'t4_limits', render(){return `
+<div class="slide-header">
+  <div class="eyebrow"><span class="topic-badge">Topic 4</span> Methodological Context</div>
+  <h2>Strengths vs. Limitations</h2>
+</div>
+<div class="slide-body">
+  <div class="grid2">
+    <div class="card-sm" style="border-top:3px solid #3B6D11">
+      <div class="card-title" style="color:#3B6D11">Core Strengths</div>
+      <ul class="bullets" style="font-size:12px;">
+        <li>Massive, unselected population coverage.</li>
+        <li>Continuous real-world tracking over time
