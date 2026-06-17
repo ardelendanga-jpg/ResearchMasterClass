@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Overview of Study Designs — Research Masterclass for Clinicians</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#25374F;
+    --navy-deep:#1B2A3D;
+    --red:#E63425;
+    --red-deep:#C32A1D;
+    --paper:#FFFFFF;
+    --light:#F4F5F7;
+    --line:#E3E7EB;
+    --ink:#27313B;
+    --slate:#5B6B7C;
+    --gold:#F2A93B;
+    --green:#5B9A56;
+    --teal:#2E8B9B;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Poppins',Segoe UI,Helvetica,Arial,sans-serif; margin:0; color:var(--navy);}
+  .mono{font-family:'IBM Plex Mono',Consolas,monospace;}
+  a{color:var(--red); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- progress bar ---------- */
+  #progress{position:fixed; top:0; left:0; height:3px; background:var(--red); width:0%; z-index:60; transition:width 0.1s linear;}
+
+  /* ---------- top bar ---------- */
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.96); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{max-width:var(--maxw); margin:0 auto; padding:10px 24px; display:flex; align-items:center; gap:14px;}
+  .brandmark{display:flex; align-items:center; gap:9px; flex:1; min-width:0;}
+  .brandmark svg{flex-shrink:0;}
+  .brandmark .name{font-family:'Poppins'; font-weight:700; font-size:14.5px; color:var(--navy); line-height:1.15;}
+  .brandmark .tag{font-size:10.5px; color:var(--slate); letter-spacing:.04em;}
+  #tocBtn{
+    appearance:none; border:1.5px solid var(--navy); background:var(--paper); color:var(--navy);
+    font-family:'Inter'; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px; cursor:pointer;
+    display:flex; align-items:center; gap:6px; white-space:nowrap;
+  }
+  #tocBtn:hover{background:var(--navy); color:#fff;}
+  #tocBtn svg{transition:transform .25s;}
+  #tocBtn.open svg{transform:rotate(180deg);}
+
+  #tocPanel{
+    position:fixed; top:0; right:0; height:100%; width:min(340px,86vw);
+    background:var(--navy); color:#fff; z-index:55; padding:26px 22px;
+    transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1);
+    overflow-y:auto; box-shadow:-12px 0 40px rgba(0,0,0,.25);
+  }
+  #tocPanel.open{transform:translateX(0);}
+  #tocPanel h4{color:var(--red); font-size:11.5px; letter-spacing:.08em; margin-bottom:18px;}
+  #tocClose{
+    position:absolute; top:22px; right:22px; background:none; border:none; color:#fff; cursor:pointer;
+    width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:50%;
+  }
+  #tocClose:hover{background:rgba(255,255,255,0.12);}
+  #tocPanel a{
+    display:flex; gap:10px; align-items:baseline; color:#E8ECF0; font-size:14px; font-weight:500;
+    padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.08); text-decoration:none;
+  }
+  #tocPanel a span.n{color:var(--red); font-family:'IBM Plex Mono'; font-size:11px; min-width:20px;}
+  #tocPanel a:hover{color:#fff; padding-left:4px;}
+  #tocOverlay{position:fixed; inset:0; background:rgba(10,16,24,.45); z-index:54; opacity:0; pointer-events:none; transition:opacity .25s;}
+  #tocOverlay.open{opacity:1; pointer-events:auto;}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--navy); color:#fff; padding:64px 0 56px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; right:-120px; top:-120px; width:340px; height:340px; border-radius:50%;
+    background:var(--navy-deep);
+  }
+  .hero::after{
+    content:""; position:absolute; right:60px; bottom:-160px; width:220px; height:220px; border-radius:50%;
+    border:2px solid rgba(230,52,37,0.35);
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .eyebrow{font-size:12.5px; font-weight:700; letter-spacing:.09em; color:var(--red); margin-bottom:14px;}
+  .hero h1{font-size:clamp(32px,5vw,46px); font-weight:800; color:#fff; line-height:1.08; margin-bottom:10px;}
+  .hero .sub{font-size:19px; color:var(--red); font-weight:600; margin-bottom:18px;}
+  .hero p.lead{max-width:640px; color:#C9D3DD; font-size:15.5px;}
+  .hero .meta{display:flex; gap:22px; margin-top:28px; flex-wrap:wrap;}
+  .hero .meta .item{font-size:12.5px; color:#9FB0C2;}
+  .hero .meta .item b{color:#fff; display:block; font-family:'Poppins'; font-size:20px; font-weight:700;}
+
+  /* ---------- section shell ---------- */
+  section{padding:54px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .sec-eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
+  .sec-eyebrow .dot{width:9px; height:9px; border-radius:50%; background:var(--red);}
+  .sec-eyebrow span{font-size:12px; font-weight:700; letter-spacing:.08em; color:var(--red); text-transform:uppercase;}
+  section h2{font-size:27px; font-weight:700; margin-bottom:14px;}
+  section > .wrap > p.intro{color:var(--slate); font-size:15.5px; max-width:760px; margin-bottom:28px;}
+
+  /* ---------- aim/objectives box (LSHTM-style) ---------- */
+  .objectives{background:var(--light); border-radius:14px; padding:26px 28px; margin-top:30px;}
+  .objectives h4{font-size:13px; color:var(--red); letter-spacing:.06em; margin-bottom:14px;}
+  .objectives ol{margin:0; padding-left:0; list-style:none; counter-reset:obj;}
+  .objectives li{counter-increment:obj; display:flex; gap:12px; margin-bottom:11px; font-size:14.5px;}
+  .objectives li::before{
+    content:counter(obj); flex-shrink:0; width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff;
+    font-family:'IBM Plex Mono'; font-size:12px; display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  /* ---------- pyramid ---------- */
+  .pyramid{display:flex; flex-direction:column; align-items:center; gap:6px; margin:34px 0 18px; width:100%;}
+  .pyramid .tier{
+    color:#fff; font-weight:600; font-size:13px; text-align:center; padding:11px 18px; border-radius:5px;
+    transition:transform .2s; max-width:640px; box-sizing:border-box;
+  }
+  .pyramid .tier:hover{transform:scale(1.02);}
+  .pyramid .arrow{font-size:12px; color:var(--slate); font-style:italic; margin-top:8px;}
+
+  /* ---------- stat row ---------- */
+  .statrow{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:10px;}
+  @media(max-width:640px){.statrow{grid-template-columns:1fr;}}
+  .statcard{background:var(--light); border-radius:12px; padding:20px 22px;}
+  .statcard .big{font-family:'Poppins'; font-weight:800; font-size:34px; color:var(--red); line-height:1;}
+  .statcard p{font-size:12.8px; color:var(--ink); margin-top:8px;}
+
+  /* ---------- two-column compare cards ---------- */
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px;}
+  @media(max-width:680px){.twocol{grid-template-columns:1fr;}}
+  .pcard{border-radius:14px; padding:24px 26px;}
+  .pcard.light{background:var(--light);}
+  .pcard.dark{background:var(--navy); color:#fff;}
+  .pcard .ptitle{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+  .pcard .badge{width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono'; font-size:9.5px; font-weight:600; color:#fff; flex-shrink:0;}
+  .pcard h3{font-size:16.5px;}
+  .pcard.dark h3{color:#fff;}
+  .pcard .row{display:flex; gap:10px; margin-top:9px; font-size:13px;}
+  .pcard .row b{color:var(--red); min-width:108px; flex-shrink:0;}
+  .pcard.dark p, .pcard.dark .row{color:#DCE3EA;}
+  .pcard .foot{font-size:12px; font-style:italic; color:var(--slate); margin-top:14px;}
+  .pcard.dark .foot{color:#9FB0C2;}
+
+  /* ---------- design subsection ---------- */
+  .design-block{margin-top:36px;}
+  .design-block:first-of-type{margin-top:8px;}
+  .design-head{display:flex; align-items:center; gap:10px; margin-bottom:8px;}
+  .design-head .swatch{width:13px; height:13px; border-radius:50%; flex-shrink:0;}
+  .design-head h3{font-size:17px;}
+  .design-block p.def{font-size:14.5px; color:var(--ink); margin:0 0 14px;}
+
+  /* ---------- reveal button + evidence card ---------- */
+  .reveal-btn{
+    appearance:none; border:1.5px solid var(--red); background:#fff; color:var(--red-deep);
+    font-family:'Inter'; font-weight:600; font-size:13px; padding:9px 16px; border-radius:999px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px; transition:.15s;
+  }
+  .reveal-btn:hover{background:var(--red); color:#fff;}
+  .reveal-btn svg{transition:transform .25s;}
+  .reveal-btn[aria-expanded="true"] svg{transform:rotate(180deg);}
+  .evidence-card{
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+  }
+  .evidence-card .inner{
+    background:var(--light); border-radius:12px; padding:20px 22px; margin-top:14px;
+  }
+  .evidence-card .tag{font-size:11px; font-weight:700; color:var(--red); letter-spacing:.06em; margin-bottom:8px;}
+  .evidence-card p{font-size:13.8px; margin:0 0 10px;}
+  .evidence-card p.finding{font-style:italic; color:var(--slate); margin:0; padding-top:8px; border-top:1px dashed var(--line);}
+  .evidence-card p.cite{font-size:11.5px; color:var(--slate); margin-top:10px; font-family:'IBM Plex Mono';}
+
+  /* ---------- timeline ---------- */
+  .timeline{display:flex; align-items:flex-start; justify-content:space-between; margin:30px 0 8px; position:relative;}
+  .timeline::before{content:""; position:absolute; top:24px; left:5%; right:5%; height:2px; background:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 14px);}
+  .timeline .step{display:flex; flex-direction:column; align-items:center; gap:10px; flex:1; position:relative; z-index:1;}
+  .timeline .circ{width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'IBM Plex Mono'; font-size:9.5px; font-weight:600; border:3px solid #fff; box-shadow:0 0 0 1px var(--line);}
+  .timeline .lab{font-size:12px; font-weight:600; color:var(--navy); text-align:center; max-width:130px;}
+  .timeline.reverse{flex-direction:row-reverse;}
+
+  /* ---------- tabs ---------- */
+  .tabs{margin-top:10px;}
+  .tabbtns{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:0;}
+  .tabbtn{
+    appearance:none; border:1.5px solid var(--line); background:#fff; color:var(--slate);
+    font-family:'Inter'; font-weight:600; font-size:13px; padding:10px 18px; border-radius:10px 10px 0 0; cursor:pointer;
+    border-bottom:none; position:relative; top:1px;
+  }
+  .tabbtn.active{background:var(--light); color:var(--navy); border-color:var(--line);}
+  .tabpanels{background:var(--light); border-radius:0 12px 12px 12px; padding:22px 24px;}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block;}
+  .tabpanel h4{font-size:14.5px; color:var(--red); margin-bottom:8px;}
+  .tabpanel p{font-size:13.8px; margin:0 0 10px;}
+  .tabpanel p.finding{font-style:italic; color:var(--slate); border-top:1px dashed var(--line); padding-top:8px;}
+
+  /* ---------- comparison table ---------- */
+  table.cmp{width:100%; border-collapse:collapse; margin-top:18px; font-size:13.8px;}
+  table.cmp th{background:var(--navy-deep); color:#fff; text-align:left; font-weight:600; padding:12px 14px; font-size:13px;}
+  table.cmp th:not(:first-child), table.cmp td:not(:first-child){text-align:center;}
+  table.cmp td{padding:12px 14px; border-bottom:1px solid var(--line);}
+  table.cmp tr:nth-child(even) td{background:var(--light);}
+  table.cmp td:first-child{font-weight:600; color:var(--navy);}
+
+  /* ---------- decision flow ---------- */
+  .qa-row{
+    display:flex; align-items:center; gap:14px; margin-bottom:10px; cursor:pointer; flex-wrap:wrap;
+  }
+  .qa-row .q{flex:1; min-width:240px; background:var(--light); border-radius:10px; padding:13px 16px; font-size:13.8px; transition:.15s;}
+  .qa-row:hover .q{background:#EBEEF1;}
+  .qa-row .arrow{color:var(--slate); flex-shrink:0;}
+  .qa-row .a{flex:0 0 230px; border-radius:10px; padding:13px 16px; font-size:13px; font-weight:700; color:#fff; text-align:center;}
+  @media(max-width:680px){.qa-row .a{flex-basis:100%;}}
+
+  /* ---------- pitfall cards ---------- */
+  .pitgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:10px;}
+  @media(max-width:680px){.pitgrid{grid-template-columns:1fr;}}
+  .pitcard{background:var(--light); border-radius:12px; padding:20px 22px;}
+  .pitcard .dot2{width:30px; height:30px; border-radius:50%; margin-bottom:12px;}
+  .pitcard h4{font-size:14px; margin-bottom:8px;}
+  .pitcard p{font-size:13.2px; color:var(--ink); margin:0;}
+
+  /* ---------- accordion ---------- */
+  .accordion .acc-item{border-bottom:1px solid var(--line);}
+  .acc-item button{
+    width:100%; text-align:left; background:none; border:none; padding:18px 4px; cursor:pointer;
+    display:flex; align-items:center; gap:14px; font-family:'Inter'; font-weight:600; font-size:15px; color:var(--navy);
+  }
+  .acc-item button .ico{
+    width:26px; height:26px; border-radius:50%; background:var(--red); color:#fff; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:13px; transition:transform .25s;
+  }
+  .acc-item button[aria-expanded="true"] .ico{transform:rotate(45deg);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .acc-body .pad{padding:0 4px 20px 40px; font-size:13.8px; color:var(--ink);}
+
+  /* ---------- quiz ---------- */
+  .quiz-card{background:var(--light); border-radius:14px; padding:24px 26px; margin-bottom:20px;}
+  .quiz-card .qn{font-size:11.5px; font-weight:700; color:var(--red); letter-spacing:.06em; margin-bottom:6px;}
+  .quiz-card .qtext{font-size:14.8px; color:var(--ink); margin-bottom:14px; font-weight:500;}
+  .opt{
+    display:block; width:100%; text-align:left; background:#fff; border:1.5px solid var(--line); border-radius:9px;
+    padding:11px 15px; margin-bottom:8px; font-family:'Inter'; font-size:13.6px; cursor:pointer; color:var(--ink); transition:.15s;
+  }
+  .opt:hover{border-color:var(--navy);}
+  .opt.correct{background:#EAF5EA; border-color:var(--green); color:#1E5C20; font-weight:600;}
+  .opt.wrong{background:#FCEAE8; border-color:var(--red); color:var(--red-deep);}
+  .opt[disabled]{cursor:default;}
+  .explain{display:none; margin-top:10px; padding:12px 15px; background:#fff; border-radius:9px; font-size:13.2px; color:var(--slate); border-left:3px solid var(--navy);}
+  .explain.show{display:block;}
+
+  /* ---------- references ---------- */
+  .reflist{font-size:13px; color:var(--ink); margin-top:14px;}
+  .reflist li{margin-bottom:14px; padding-left:4px;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy); color:#9FB0C2; padding:34px 0; font-size:12.5px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  footer a{color:#C9D3DD;}
+
+  .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important; scroll-behavior:auto !important;} }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 46 L24 14 C16 22 16 36 26 44 L50 62 L74 44 C84 36 84 22 76 14 L50 46Z" fill="#E63425"/>
+        <path d="M50 46 L36 88 L50 78 L64 88 L50 46Z" fill="#E63425"/>
+      </svg>
+      <div>
+        <div class="name">Newlands Clinic</div>
+        <div class="tag">Research Masterclass for Clinicians</div>
+      </div>
+    </div>
+    <button id="tocBtn" onclick="toggleToc()">
+      Contents
+      <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="tocOverlay" onclick="toggleToc()"></div>
+<nav id="tocPanel" aria-label="Table of contents">
+  <button id="tocClose" onclick="toggleToc()" aria-label="Close contents menu">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <h4>STUDY NOTES &middot; CONTENTS</h4>
+  <a href="#why" onclick="toggleToc()"><span class="n">01</span> Why design comes first</a>
+  <a href="#bigpicture" onclick="toggleToc()"><span class="n">02</span> The big picture</a>
+  <a href="#descriptive" onclick="toggleToc()"><span class="n">03</span> Descriptive designs</a>
+  <a href="#crosssectional" onclick="toggleToc()"><span class="n">04</span> Cross-sectional studies</a>
+  <a href="#casecontrol" onclick="toggleToc()"><span class="n">05</span> Case-control studies</a>
+  <a href="#cohort" onclick="toggleToc()"><span class="n">06</span> Cohort studies</a>
+  <a href="#headtohead" onclick="toggleToc()"><span class="n">07</span> Cohort vs case-control</a>
+  <a href="#experimental" onclick="toggleToc()"><span class="n">08</span> Experimental designs</a>
+  <a href="#choosing" onclick="toggleToc()"><span class="n">09</span> Choosing the right design</a>
+  <a href="#pitfalls" onclick="toggleToc()"><span class="n">10</span> Bias &amp; pitfalls</a>
+  <a href="#summary" onclick="toggleToc()"><span class="n">11</span> Summary</a>
+  <a href="#quiz" onclick="toggleToc()"><span class="n">12</span> Self-check quiz</a>
+  <a href="#refs" onclick="toggleToc()"><span class="n">13</span> References</a>
+</nav>
+
+<section class="hero" style="padding-top:48px;">
+  <div class="wrap">
+    <div class="eyebrow">MODULE 1 &middot; TOPIC 6 &middot; FOUNDATIONS IN EPIDEMIOLOGY</div>
+    <h1>Overview of Study Designs</h1>
+    <div class="sub">Observational and Experimental Approaches — Study Notes</div>
+    <p class="lead">Every clinical research question needs a design that matches it. These notes build that map using peer-reviewed evidence from Zimbabwe, Southern Africa and the Democratic Republic of the Congo — spanning HIV, Ebola, tuberculosis and cholera research. Click the <b style="color:#fff;">Show the evidence</b> buttons as you go to open the worked regional examples.</p>
+    <div class="meta">
+      <div class="item">READING TIME<b>~18 min</b></div>
+      <div class="item">REGIONAL STUDIES<b>9</b></div>
+      <div class="item">SELF-CHECK QUESTIONS<b>5</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-top:36px;">
+  <div class="objectives">
+    <h4>BY THE END OF THESE NOTES, YOU SHOULD BE ABLE TO</h4>
+    <ol>
+      <li>Differentiate descriptive, analytical-observational and experimental study designs.</li>
+      <li>Match a clinical or public-health research question to the most appropriate design.</li>
+      <li>Explain the direction of inquiry in cohort versus case-control studies.</li>
+      <li>Recognise the characteristic strengths, weaknesses and biases of each design.</li>
+      <li>Critically read Southern African and Sub-Saharan published examples spanning HIV, Ebola, TB and cholera research.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ===================== SECTION: WHY DESIGN MATTERS ===================== -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 01 &middot; Foundations</span></div>
+    <h2>Why Study Design Is the First Decision You Make</h2>
+    <p class="intro">Design determines what a study can and cannot tell you. No amount of statistical sophistication applied afterwards can fix a mismatched design — which is why it is decided before a single participant is enrolled.</p>
+
+    <div class="pyramid">
+      <div class="tier" style="width:36%; background:#E63425;">Systematic reviews &amp; meta-analyses</div>
+      <div class="tier" style="width:50%; background:#25374F;">Randomised controlled trials (individual &amp; cluster)</div>
+      <div class="tier" style="width:62.5%; background:#2E8B9B;">Cohort studies</div>
+      <div class="tier" style="width:75%; background:#F2A93B;">Case-control studies</div>
+      <div class="tier" style="width:87.5%; background:#5B9A56;">Cross-sectional &amp; ecological studies</div>
+      <div class="tier" style="width:100%; background:#5B6B7C;">Case reports, case series &amp; expert opinion</div>
+      <div class="arrow">Increasing confidence for causal inference &uarr;</div>
+    </div>
+
+    <div class="statrow">
+      <div class="statcard">
+        <div class="big">84%</div>
+        <p>Estimated effectiveness of the rVSV-ZEBOV Ebola vaccine, from a test-negative case-control study during the DRC's 2018&ndash;20 outbreak (Meakin et al., <i>Lancet Infect Dis</i>, 2024).</p>
+      </div>
+      <div class="statcard">
+        <div class="big">21</div>
+        <p>Communities in Zambia &amp; South Africa randomised as whole clusters in HPTN 071 (PopART) to test universal HIV testing and treatment (Hayes et al., <i>NEJM</i>, 2019).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION: BIG PICTURE ===================== -->
+<section id="bigpicture">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 01 &middot; Foundations</span></div>
+    <h2>The Big Picture: Observational vs Experimental</h2>
+    <p class="intro">Every design in epidemiology falls into one of two families, defined by a single question: who decided who got the exposure?</p>
+
+    <div class="twocol">
+      <div class="pcard light">
+        <div class="ptitle"><div class="badge" style="background:#2E8B9B;">OBS</div><h3>Observational — we watch</h3></div>
+        <p style="font-size:13.5px;">The researcher does not assign exposure. Nature, behaviour or circumstance has already done so — we simply measure and compare.</p>
+        <div class="row"><b>Descriptive</b><span>Case report &middot; case series &middot; ecological &middot; cross-sectional</span></div>
+        <div class="row"><b>Analytical</b><span>Cohort &middot; case-control</span></div>
+        <div class="foot">No random allocation &rarr; confounding is the central threat to validity.</div>
+      </div>
+      <div class="pcard dark">
+        <div class="ptitle"><div class="badge" style="background:#E63425;">EXP</div><h3>Experimental — we assign</h3></div>
+        <p style="font-size:13.5px;">The researcher actively assigns the exposure or intervention — ideally at random — to balance known and unknown confounders.</p>
+        <div class="row"><b>Individual RCT</b><span>Participants randomised one by one</span></div>
+        <div class="row"><b>Cluster RCT</b><span>Whole communities or clinics randomised</span></div>
+        <div class="foot">Randomisation &rarr; the strongest available evidence for cause and effect.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION: DESCRIPTIVE ===================== -->
+<section id="descriptive">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 02 &middot; Descriptive Designs</span></div>
+    <h2>Descriptive Studies: Telling the First Story</h2>
+    <p class="intro">Descriptive studies describe disease by person, place and time. There is no comparison group — they generate hypotheses rather than test them.</p>
+
+    <div class="design-block">
+      <div class="design-head"><div class="swatch" style="background:#2E8B9B;"></div><h3>Case report</h3></div>
+      <p class="def">A single unusual or instructive patient, described in clinical detail — often the first signal that something new is happening.</p>
+      <button class="reveal-btn" aria-expanded="false" onclick="toggleReveal(this,'ev-casereport')">Show the Harare evidence <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <div class="evidence-card" id="ev-casereport"><div class="inner">
+        <div class="tag">NEWLANDS CLINIC, HARARE, ZIMBABWE</div>
+        <p>Chimbetete, Chirimuta, Pascoe &amp; Keiser (2019, <i>South African Journal of HIV Medicine</i>) reported the first documented four-class drug-resistant — effectively "untreatable" — HIV case in Zimbabwe: a 17-year-old who had been vertically infected and was failing third-line antiretroviral therapy.</p>
+        <p class="finding">Why a case report: this was a sentinel event with implications for the whole national programme, not something you would wait to study with a control group.</p>
+      </div></div>
+    </div>
+
+    <div class="design-block">
+      <div class="design-head"><div class="swatch" style="background:#F2A93B;"></div><h3>Case series / outbreak report</h3></div>
+      <p class="def">Describes a cluster of cases by person, place and time — usually the first organised response to a disease outbreak.</p>
+      <button class="reveal-btn" aria-expanded="false" onclick="toggleReveal(this,'ev-caseseries')">Show the Zimbabwe evidence <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <div class="evidence-card" id="ev-caseseries"><div class="inner">
+        <div class="tag">NATIONAL CHOLERA OUTBREAK, ZIMBABWE</div>
+        <p>Mashe, Chaibva, Nair et al. (2023, <i>BMJ Open</i>) described Zimbabwe's 2018&ndash;19 cholera outbreak using routine surveillance data: 10,730 suspected cases, an attack rate of 174.6 per 100,000, and a multidrug-resistant <i>Vibrio cholerae</i> O1 Ogawa strain confirmed by the National Microbiology Reference Laboratory.</p>
+        <p class="finding">Why a case series: outbreak response needs an immediate picture of who, where and when — formal comparison groups come later, if at all.</p>
+      </div></div>
+    </div>
+
+    <div class="design-block">
+      <div class="design-head"><div class="swatch" style="background:#5B9A56;"></div><h3>Ecological study</h3></div>
+      <p class="def">Exposure and outcome are measured at the group or area level, not the individual — efficient, but at risk of the "ecological fallacy" (a group-level association may not hold for individuals).</p>
+      <button class="reveal-btn" aria-expanded="false" onclick="toggleReveal(this,'ev-eco')">Show the Harare evidence <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <div class="evidence-card" id="ev-eco"><div class="inner">
+        <div class="tag">SPATIAL CHOLERA ANALYSIS, HARARE</div>
+        <p>Luque-Fern&aacute;ndez, Mason, Gray et al. (2011, <i>Transactions of the Royal Society of Tropical Medicine and Hygiene</i>) used a secondary-data spatial analysis to link suburb-level water-supply interruptions to cholera risk during Harare's devastating 2008&ndash;09 epidemic.</p>
+        <p class="finding">Why ecological: water-supply records existed at suburb level, not per household — the analysis had to work at the level the data allowed.</p>
+      </div></div>
+    </div>
+
+    <p style="margin-top:30px; font-size:13.5px;"><b style="color:var(--navy);">Strength:</b> fast, cheap, hypothesis-generating, vital for outbreak response. &nbsp; <b style="color:var(--navy);">Limitation:</b> no comparison group — cannot test a causal hypothesis.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION: CROSS-SECTIONAL ===================== -->
+<section id="crosssectional">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 02 &middot; Descriptive Designs</span></div>
+    <h2>Cross-Sectional Studies: A Snapshot in Time</h2>
+    <p class="intro">Exposure and outcome are measured simultaneously, in a defined population, at one point in time — the design of choice for estimating prevalence.</p>
+
+    <button class="reveal-btn" aria-expanded="false" onclick="toggleReveal(this,'ev-cross')">Show the ZIMPHIA evidence <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <div class="evidence-card" id="ev-cross"><div class="inner">
+      <div class="tag">ZIMPHIA — ZIMBABWE POPULATION-BASED HIV IMPACT ASSESSMENT</div>
+      <p>Gonese, Musuka, Ruangtragool et al. (2020, <i>AIDS Research and Human Retroviruses</i>) report on ZIMPHIA, a nationally representative household survey. In the 2015&ndash;16 round, 20,577 adults aged 15&ndash;64 completed interviews and HIV testing in a single visit — yielding prevalence (13.35% among those aged 15&ndash;49), viral-load suppression and progress toward the UNAIDS 90-90-90 targets, all from one snapshot.</p>
+      <div style="display:flex; align-items:flex-end; gap:26px; margin:18px 0 6px;">
+        <div style="text-align:center;">
+          <div style="width:54px; height:90px; background:var(--navy); border-radius:4px 4px 0 0; margin:0 auto;"></div>
+          <div style="font-size:11.5px; margin-top:6px; color:var(--slate);">2015&ndash;16<br><b style="color:var(--navy);">13.4%</b></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:54px; height:86px; background:var(--red); border-radius:4px 4px 0 0; margin:0 auto;"></div>
+          <div style="font-size:11.5px; margin-top:6px; color:var(--slate);">2020<br><b style="color:var(--red-deep);">12.9%</b></div>
+        </div>
+        <p style="font-size:12px; color:var(--slate); margin:0; max-width:300px;">Two independent cross-sectional rounds — not the same people followed over time — used to monitor the national HIV response.</p>
+      </div>
+      <p class="finding">Why cross-sectional: the goal was a population-wide estimate right now, not a causal story about any one person's HIV trajectory.</p>
+    </div></div>
+
+    <p style="margin-top:24px; font-size:13.5px;"><b style="color:var(--navy);">Strength:</b> efficient for prevalence and health-system benchmarking; repeatable rounds reveal trends. &nbsp; <b style="color:var(--navy);">Limitation:</b> cannot establish temporal sequence — which came first, the exposure or the outcome?</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION: CASE-CONTROL ===================== -->
+<section id="casecontrol">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 03 &middot; Analytical Observational Designs</span></div>
+    <h2>Case-Control Studies: Working Backwards from the Outcome</h2>
+    <p class="intro">Case-control studies start with the outcome and look backward in time for the exposure — the mirror image of a cohort study.</p>
+
+    <div class="timeline">
+      <div class="step"><div class="circ" style="background:#5B6B7C;">PAST</div><div class="lab">Exposure history</div></div>
+      <div class="step"><div class="circ" style="background:#E63425;">NOW</div><div class="lab">Cases (outcome+) &amp; controls (outcome&minus;)</div></div>
+    </div>
+
+    <div class="tabs">
+      <div class="tabbtns">
+        <button class="tabbtn active" onclick="switchTab(event,'cc1')">Classic case-control</button>
+        <button class="tabbtn" onclick="switchTab(event,'cc2')">Test-negative design</button>
+      </div>
+      <div class="tabpanels">
+        <div class="tabpanel active" id="cc1">
+          <h4>PMTCT case-control, Chitungwiza Hospital, Zimbabwe</h4>
+          <p>Ngwende, Gombe, Midzi, Tshimanga, Shambira &amp; Chadambuka (2013, <i>BMC Public Health</i>) ran a 1:1 unmatched case-control study at Chitungwiza Hospital. Cases were HIV-positive infants and controls were HIV-negative infants, both born to mothers enrolled in the PMTCT programme.</p>
+          <p class="finding">Finding: maternal CD4 &lt;200 cells/&micro;L and mixed feeding raised infant HIV risk; exclusive breastfeeding for under six months was protective.</p>
+        </div>
+        <div class="tabpanel" id="cc2">
+          <h4>rVSV-ZEBOV vaccine effectiveness, Democratic Republic of the Congo</h4>
+          <p>Meakin et al. (2024, <i>Lancet Infectious Diseases</i>) ran a retrospective test-negative study during the DRC's 2018&ndash;20 Ebola outbreak — a case-control variant in which "cases" are people who test positive for the disease in question and "controls" are people tested for the same illness who test negative, all drawn from the same treatment centres.</p>
+          <p class="finding">Finding: rVSV-ZEBOV vaccine effectiveness was 84% (95% credible interval 70&ndash;92) from 10 days after vaccination — the first real-world effectiveness estimate for this vaccine.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:22px; font-size:13.5px;"><b style="color:var(--navy);">Central design challenge:</b> choosing controls who represent the same source population as the cases — without the outcome — to avoid selection and recall bias.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION: COHORT ===================== -->
+<section id="cohort">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 03 &middot; Analytical Observational Designs</span></div>
+    <h2>Cohort Studies: Following Forward Through Time</h2>
+    <p class="intro">Cohort studies start with exposure status and follow participants forward to see who develops the outcome.</p>
+
+    <div class="timeline">
+      <div class="step"><div class="circ" style="background:#2E8B9B;">BASE</div><div class="lab">Exposed / unexposed, outcome-free</div></div>
+      <div class="step"><div class="circ" style="background:#F2A93B;">FU</div><div class="lab">Follow-up over time</div></div>
+      <div class="step"><div class="circ" style="background:#E63425;">OUT</div><div class="lab">Compare incidence of outcome</div></div>
+    </div>
+
+    <button class="reveal-btn" aria-expanded="false" onclick="toggleReveal(this,'ev-cohort')">Show the TENART cohort evidence <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <div class="evidence-card" id="ev-cohort"><div class="inner">
+      <div class="tag">THE TENART COHORT, NEWLANDS CLINIC, HARARE</div>
+      <p>Shamu, Chimbetete, Shawarira-Bote, Mudzviti &amp; Luthy (2017, <i>PLoS ONE</i>) followed a prospective HIV cohort at Newlands Clinic, Harare, forward through a decade of comprehensive antiretroviral care — tracking mortality, retention and virologic outcomes among Zimbabwean adults on ART. The cohort has continued generating forward-following evidence ever since, from third-line ART outcomes to cancer incidence among people living with HIV.</p>
+      <p class="finding">Why cohort: the question was about long-term outcomes of a treatment programme — that requires watching the same people over years, not a single snapshot.</p>
+    </div></div>
+
+    <div class="twocol" style="margin-top:26px;">
+      <div>
+        <h4 style="font-size:13.5px; color:var(--navy); margin-bottom:8px;">PROSPECTIVE vs RETROSPECTIVE</h4>
+        <p style="font-size:13px; color:var(--ink); margin:0;">Prospective: outcomes have not happened yet when enrolment begins. Retrospective: exposure and follow-up are reconstructed from existing records — still forward in logic, even though the data already exist.</p>
+      </div>
+      <div>
+        <p style="font-size:13px; margin:0;"><b style="color:var(--navy);">Strength:</b> establishes temporality; one exposure can be linked to many outcomes.<br><br><b style="color:var(--navy);">Limitation:</b> costly, slow, and prone to loss-to-follow-up bias — a major issue for long-running African ART cohorts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION: HEAD TO HEAD ===================== -->
+<section id="headtohead">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 03 &middot; Analytical Observational Designs</span></div>
+    <h2>Cohort vs Case-Control: A Head-to-Head</h2>
+    <table class="cmp">
+      <tr><th>Feature</th><th>Cohort</th><th>Case-control</th></tr>
+      <tr><td>Starting point</td><td>Exposure status</td><td>Outcome status</td></tr>
+      <tr><td>Direction of inquiry</td><td>Forward (exposure &rarr; outcome)</td><td>Backward (outcome &rarr; exposure)</td></tr>
+      <tr><td>Best suited to</td><td>Rare exposures; multiple outcomes</td><td>Rare outcomes; multiple exposures</td></tr>
+      <tr><td>Speed &amp; cost</td><td>Slower, more costly</td><td>Faster, cheaper</td></tr>
+      <tr><td>Key bias to watch</td><td>Loss to follow-up</td><td>Recall &amp; selection bias</td></tr>
+      <tr><td>Regional example</td><td>TENART cohort, Newlands Clinic</td><td>PMTCT case-control, Chitungwiza</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== SECTION: EXPERIMENTAL ===================== -->
+<section id="experimental">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 04 &middot; Experimental Designs</span></div>
+    <h2>Randomised Trials: Individual and Cluster</h2>
+    <p class="intro">In an experimental study, the researcher actively assigns the exposure — ideally by chance — so that known and unknown confounders are balanced across groups without anyone choosing who gets what.</p>
+
+    <div class="tabs">
+      <div class="tabbtns">
+        <button class="tabbtn active" onclick="switchTab(event,'rct1')">Individually-randomised</button>
+        <button class="tabbtn" onclick="switchTab(event,'rct2')">Cluster-randomised</button>
+      </div>
+      <div class="tabpanels">
+        <div class="tabpanel active" id="rct1">
+          <h4>The PALM trial — Ebola therapeutics, Democratic Republic of the Congo</h4>
+          <p>Mulangu, Dodd, Davey et al. for the PALM Consortium (2019, <i>New England Journal of Medicine</i>) randomised 681 patients with confirmed Ebola virus disease, during the DRC's 2018&ndash;20 North Kivu/Ituri outbreak, in a 1:1:1:1 ratio to ZMapp, remdesivir, mAb114 or REGN-EB3.</p>
+          <p class="finding">Finding: mAb114 and REGN-EB3 significantly reduced mortality versus ZMapp — the first randomised trial of Ebola therapeutics conducted during an active outbreak, run jointly by DRC and international investigators under an independent safety monitoring board.</p>
+        </div>
+        <div class="tabpanel" id="rct2">
+          <h4>HPTN 071 (PopART) — Zambia &amp; South Africa, and DETECTB — Harare</h4>
+          <p><b>HPTN 071 (PopART):</b> Hayes et al. (2019, <i>NEJM</i>) randomised 21 communities (around 1 million people) in Zambia and South Africa to combination HIV prevention with universal test-and-treat, or to standard of care — measuring population-level HIV incidence.</p>
+          <p><b>DETECTB:</b> Corbett et al. (2010, <i>Lancet</i>) randomised 46 neighbourhood clusters in Harare (HIV prevalence around 21%) to two active TB case-finding strategies; the mobile-van strategy found 1.48&times; more infectious TB cases than door-to-door visits.</p>
+          <p class="finding">Why cluster, not individual: the intervention (a community testing campaign, a van visiting a neighbourhood) naturally applies to a whole group — individually randomising neighbours would let the intervention "leak" across arms.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:22px; font-size:13.5px;"><b style="color:var(--navy);">Analysis note:</b> outcomes within a cluster are correlated — a na&iuml;ve individual-level analysis overstates precision; methods must account for intra-cluster correlation.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION: CHOOSING ===================== -->
+<section id="choosing">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 05 &middot; Putting It Together</span></div>
+    <h2>Choosing the Right Design</h2>
+    <p class="intro">Work through these questions in order — the first "yes" usually points to your design.</p>
+
+    <div class="qa-list">
+      <div class="qa-row"><div class="q">Is this the first description of a new disease or outbreak?</div><div class="arrow">&rarr;</div><div class="a" style="background:#5B6B7C;">Case report / case series</div></div>
+      <div class="qa-row"><div class="q">Do you only have group-level (not individual-level) data?</div><div class="arrow">&rarr;</div><div class="a" style="background:#5B9A56;">Ecological study</div></div>
+      <div class="qa-row"><div class="q">Do you need a one-off snapshot of prevalence?</div><div class="arrow">&rarr;</div><div class="a" style="background:#F2A93B;">Cross-sectional study</div></div>
+      <div class="qa-row"><div class="q">Is the outcome rare (but the exposure common)?</div><div class="arrow">&rarr;</div><div class="a" style="background:#C0392B;">Case-control study</div></div>
+      <div class="qa-row"><div class="q">Is the exposure rare, or do you need to study multiple outcomes?</div><div class="arrow">&rarr;</div><div class="a" style="background:#2E8B9B;">Cohort study</div></div>
+      <div class="qa-row"><div class="q">Can you ethically and practically assign the exposure yourself?</div><div class="arrow">&rarr;</div><div class="a" style="background:#25374F;">Randomised trial (individual or cluster)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION: PITFALLS ===================== -->
+<section id="pitfalls">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 06 &middot; Reading Critically</span></div>
+    <h2>Cross-Cutting Pitfalls: Bias, Confounding &amp; Generalisability</h2>
+    <p class="intro">Every design carries its own typical bias — recognising it is half the work of critical appraisal.</p>
+
+    <div class="pitgrid">
+      <div class="pitcard"><div class="dot2" style="background:#E63425;"></div><h4>Selection bias</h4><p>Who ends up in the study — or stays in it — differs systematically from who should. Loss-to-follow-up in long-running ART cohorts is a classic example.</p></div>
+      <div class="pitcard"><div class="dot2" style="background:#F2A93B;"></div><h4>Information / recall bias</h4><p>Exposure or outcome is measured or remembered differently between groups — a key risk when case-control studies ask mothers to recall infant feeding practices.</p></div>
+      <div class="pitcard"><div class="dot2" style="background:#2E8B9B;"></div><h4>Confounding</h4><p>A third factor (e.g. HIV status) distorts the exposure&ndash;outcome link — central to interpreting TB risk in HIV-prevalent Harare settings.</p></div>
+      <div class="pitcard"><div class="dot2" style="background:#5B9A56;"></div><h4>Generalisability</h4><p>Will results from one outbreak setting (e.g. North Kivu, DRC) transfer to a different population, health system or epidemic?</p></div>
+    </div>
+    <p style="margin-top:20px; font-size:13px; color:var(--slate); font-style:italic;">Your weekly quiz and Final Presentation Project will ask you to name the design and spot the most likely bias in a published abstract — just like the examples above.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION: SUMMARY ===================== -->
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 07 &middot; Recap</span></div>
+    <h2>Summary</h2>
+    <p class="intro">Click each heading to expand the key point.</p>
+    <div class="accordion" id="accordion"></div>
+  </div>
+</section>
+
+<!-- ===================== SECTION: QUIZ ===================== -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>Section 08 &middot; Self-Check</span></div>
+    <h2>Self-Check Quiz</h2>
+    <p class="intro">Identify the design in each regional vignette. Click an option to check your answer.</p>
+    <div id="quizContainer"></div>
+  </div>
+</section>
+
+<!-- ===================== SECTION: REFERENCES ===================== -->
+<section id="refs">
+  <div class="wrap">
+    <div class="sec-eyebrow"><div class="dot"></div><span>References</span></div>
+    <h2>Peer-Reviewed Sources Used in These Notes</h2>
+    <ol class="reflist">
+      <li>Chimbetete C, Chirimuta L, Pascoe M, Keiser O. A case report of untreatable HIV infection in Harare, Zimbabwe. <i>South Afr J HIV Med.</i> 2019;20(1):885.</li>
+      <li>Mashe T, Chaibva BV, Nair P, et al. Descriptive epidemiology of the cholera outbreak in Zimbabwe 2018&ndash;2019: role of multi-sectorial approach in cholera epidemic control. <i>BMJ Open.</i> 2023;13(1):e059134.</li>
+      <li>Luque-Fern&aacute;ndez MA, Mason PR, Gray H, et al. Descriptive spatial analysis of the cholera epidemic 2008&ndash;2009 in Harare, Zimbabwe: a secondary data analysis. <i>Trans R Soc Trop Med Hyg.</i> 2011;105(1):38&ndash;45.</li>
+      <li>Gonese E, Musuka G, Ruangtragool L, et al. Comparison of HIV incidence in the Zimbabwe Population-Based HIV Impact Assessment Survey (2015&ndash;2016) with modelled estimates: progress toward epidemic control. <i>AIDS Res Hum Retroviruses.</i> 2020.</li>
+      <li>Ngwende S, Gombe NT, Midzi S, Tshimanga M, Shambira G, Chadambuka A. Factors associated with HIV infection among children born to mothers on the prevention of mother to child transmission programme at Chitungwiza Hospital, Zimbabwe, 2008. <i>BMC Public Health.</i> 2013;13:1181.</li>
+      <li>Meakin S, et al. Effectiveness of rVSV-ZEBOV vaccination during the 2018&ndash;20 Ebola virus disease epidemic in the Democratic Republic of the Congo: a retrospective test-negative study. <i>Lancet Infect Dis.</i> 2024.</li>
+      <li>Shamu T, Chimbetete C, Shawarira-Bote S, Mudzviti T, Luthy R. Outcomes of an HIV cohort after a decade of comprehensive care at Newlands Clinic in Harare, Zimbabwe: TENART cohort. <i>PLoS One.</i> 2017;12(10):e0186726.</li>
+      <li>Mulangu S, Dodd LE, Davey RT Jr, et al. for the PALM Consortium Study Team. A randomized, controlled trial of Ebola virus disease therapeutics. <i>N Engl J Med.</i> 2019;381(24):2293&ndash;2303.</li>
+      <li>Hayes RJ, Donnell D, Floyd S, et al. Effect of universal testing and treatment on HIV incidence &mdash; HPTN 071 (PopART). <i>N Engl J Med.</i> 2019;381:207&ndash;218.</li>
+      <li>Corbett EL, Bandason T, Duong T, et al. Comparison of two active case-finding strategies for community-based diagnosis of symptomatic smear-positive tuberculosis and control of infectious tuberculosis in Harare, Zimbabwe (DETECTB): a cluster-randomised trial. <i>Lancet.</i> 2010;376(9748):1244&ndash;1253.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Research Masterclass for Clinicians &middot; Newlands Clinic</div>
+    <div><a href="https://www.newlandsclinic.org.zw">www.newlandsclinic.org.zw</a> &middot; <a href="mailto:research@newlandsclinic.org.zw">research@newlandsclinic.org.zw</a></div>
+  </div>
+</footer>
+
+<script>
+  // ---- progress bar ----
+  function onScroll(){
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  }
+  document.addEventListener('scroll', onScroll);
+
+  // ---- TOC drawer ----
+  function toggleToc(){
+    document.getElementById('tocPanel').classList.toggle('open');
+    document.getElementById('tocOverlay').classList.toggle('open');
+    document.getElementById('tocBtn').classList.toggle('open');
+  }
+
+  // ---- generic reveal ----
+  function toggleReveal(btn, id){
+    const card = document.getElementById(id);
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    if(open){
+      card.style.maxHeight = '0px';
+      btn.innerHTML = btn.innerHTML.replace('Hide','Show');
+    } else {
+      card.style.maxHeight = card.scrollHeight + 40 + 'px';
+      btn.innerHTML = btn.innerHTML.replace('Show','Hide');
+    }
+  }
+
+  // ---- tabs ----
+  function switchTab(evt, id){
+    const panelGroup = evt.target.closest('.tabs');
+    panelGroup.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+    panelGroup.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+    evt.target.classList.add('active');
+    panelGroup.querySelector('#'+id).classList.add('active');
+  }
+
+  // ---- accordion (built from data so content lives in one place) ----
+  const accData = [
+    ["Comparison in epidemiology","We are usually comparing the occurrence of outcomes in different populations, either implicitly or explicitly. Analytical epidemiology always relies on explicit comparison between an exposed and an unexposed group."],
+    ["Descriptive studies","Case reports, case series and ecological studies describe disease by person, place and time. They generate hypotheses but cannot test them, because there is no comparison group."],
+    ["Cross-sectional studies","Exposure and outcome are measured at a single point in time in a defined population — ideal for prevalence, but unable to establish which came first."],
+    ["Case-control studies","Start from the outcome (cases vs controls) and look backward for exposure. Efficient for rare outcomes; vulnerable to recall and selection bias."],
+    ["Cohort studies","Start from exposure status and follow forward to the outcome. Establish temporality; vulnerable to loss-to-follow-up, especially over long periods."],
+    ["Randomised controlled trials","The investigator assigns exposure at random, either to individuals or to whole clusters. This is the strongest design for causal inference, when it is ethical and feasible."],
+    ["Choosing a design","Match the design to the question: how rare is the outcome, how rare is the exposure, can you ethically assign the exposure, and do you only have group-level data?"],
+  ];
+  const accEl = document.getElementById('accordion');
+  accData.forEach((item,i)=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'acc-item';
+    wrap.innerHTML = `
+      <button aria-expanded="false" onclick="toggleAcc(this)">
+        <span class="ico">+</span> ${item[0]}
+      </button>
+      <div class="acc-body"><div class="pad">${item[1]}</div></div>`;
+    accEl.appendChild(wrap);
+  });
+  function toggleAcc(btn){
+    const body = btn.parentElement.querySelector('.acc-body');
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    body.style.maxHeight = open ? '0px' : body.scrollHeight + 'px';
+  }
+
+  // ---- quiz ----
+  const quizData = [
+    {
+      q:"A researcher in Harare identifies the first 17-year-old in Zimbabwe with four-class drug-resistant HIV and writes up the clinical course in detail. What design is this?",
+      opts:["Cohort study","Case report","Cluster-randomised trial","Cross-sectional study"],
+      correct:1,
+      explain:"A single, detailed patient description with no comparison group is a case report — exactly the design Chimbetete et al. used for this sentinel HIV case."
+    },
+    {
+      q:"Investigators identify 1,273 confirmed Ebola virus disease patients and 25,165 patients who tested negative at the same treatment centres in the DRC, then compare prior vaccination rates between the two groups. What design is this?",
+      opts:["Cohort study","Ecological study","Test-negative case-control study","Individually-randomised trial"],
+      correct:2,
+      explain:"Comparing vaccination history between disease-positive \u201ccases\u201d and disease-negative \u201ccontrols\u201d drawn from the same testing population is the test-negative design — a case-control variant, as used by Meakin et al. for rVSV-ZEBOV."
+    },
+    {
+      q:"21 whole communities in Zambia and South Africa are randomly allocated to receive universal HIV testing and treatment, or standard care, and HIV incidence is compared between arms. What design is this?",
+      opts:["Case-control study","Cluster-randomised trial","Case series","Ecological study"],
+      correct:1,
+      explain:"Whole communities — not individuals — are the unit of randomisation, making this a cluster-randomised trial (HPTN 071 / PopART)."
+    },
+    {
+      q:"A team follows HIV-positive adults enrolled in ART care at one Harare clinic forward for over a decade, recording who dies, who is retained in care, and who achieves viral suppression. What design is this?",
+      opts:["Cohort study","Case-control study","Cross-sectional study","Test-negative design"],
+      correct:0,
+      explain:"Starting from exposure (being enrolled in ART care) and following forward in time to outcomes (death, retention, suppression) is the defining feature of a cohort study — as in the TENART cohort."
+    },
+    {
+      q:"A national household survey tests 20,577 Zimbabwean adults for HIV and asks about treatment status, all within a single visit per person. What design is this?",
+      opts:["Cohort study","Cluster-randomised trial","Cross-sectional study","Case report"],
+      correct:2,
+      explain:"Measuring exposure and outcome simultaneously, at one point in time, in a defined population is a cross-sectional study — exactly the ZIMPHIA design."
+    },
+  ];
+  const quizEl = document.getElementById('quizContainer');
+  quizData.forEach((item,qi)=>{
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    let optsHtml = item.opts.map((o,oi)=>`<button class="opt" onclick="answerQuiz(this,${qi},${oi})">${o}</button>`).join('');
+    card.innerHTML = `<div class="qn">QUESTION ${qi+1} OF ${quizData.length}</div><div class="qtext">${item.q}</div>${optsHtml}<div class="explain" id="explain-${qi}">${item.explain}</div>`;
+    quizEl.appendChild(card);
+  });
+  function answerQuiz(btn, qi, oi){
+    const card = btn.closest('.quiz-card');
+    const opts = card.querySelectorAll('.opt');
+    const correct = quizData[qi].correct;
+    opts.forEach((o,i)=>{
+      o.setAttribute('disabled','true');
+      if(i===correct) o.classList.add('correct');
+      else if(i===oi) o.classList.add('wrong');
+    });
+    document.getElementById('explain-'+qi).classList.add('show');
+  }
+</script>
+
+</body>
+</html>
