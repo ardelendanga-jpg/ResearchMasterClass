@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Research Masterclass - Topic 3: Measures of Disease Occurrence</title> 
+<style>
+    :root {
+        --nc-navy: #1B2E4B;
+        --nc-red: #C0392B;
+        --nc-cream: #F8F6F2;
+        --nc-slate: #4A5568;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: var(--nc-cream); }
+    header { background-color: var(--nc-navy); color: #fff; padding: 20px; border-radius: 8px 8px 0 0; text-align: center; }
+    header h1 { margin: 0; font-size: 24px; font-weight: 500; }
+    header p { margin: 5px 0 0; font-size: 14px; opacity: 0.8; }
+    .content-section { background: #fff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    h2 { color: var(--nc-navy); border-bottom: 2px solid var(--nc-red); padding-bottom: 5px; margin-top: 30px; }
+    h3 { color: var(--nc-red); margin-top: 25px; }
+    .def-box { background: #f8fafc; border-left: 4px solid var(--nc-red); padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+    .def-box strong { color: var(--nc-navy); text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; display: block; margin-bottom: 5px; }
+    .example-box { background: #EAF3DE; border: 1px solid #97C459; padding: 15px; margin: 20px 0; border-radius: 8px; }
+    .example-box strong { color: #27500A; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; display: block; margin-bottom: 5px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    th { background-color: var(--nc-navy); color: #fff; padding: 10px; text-align: left; }
+    td { padding: 10px; border-bottom: 1px solid #ddd; }
+    tr:nth-child(even) td { background-color: #f8fafc; }
+    .formula { text-align: center; font-size: 18px; margin: 15px 0; font-weight: bold; color: var(--nc-navy); }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+<header>
+    <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: var(--nc-red);">Newlands Clinic</div>
+    <h1>Topic 3: Measures of Disease Occurrence</h1>
+    <p>Research Masterclass for Clinicians | Course Director: Ardele Ndanga</p>
+</header>
+
+<div class="content-section">
+
+    <h2>1. Introduction to Occurrence Measures</h2>
+    <p>Epidemiological research is primarily based on the quantification of the occurrence of health-related outcomes and their associated factors in specified populations in relation to a measure of time[cite: 1]. Before calculating any measure, researchers must strictly define three elements:</p>
+    <ul>
+        <li><strong>The Case:</strong> A set of diagnostic criteria that must be fulfilled in order to identify a case of a particular disease, health disorder or condition[cite: 1].</li>
+        <li><strong>The Study Population:</strong> The group selected for investigation[cite: 1].</li>
+        <li><strong>The Time:</strong> A specific point, period, or interval in time[cite: 1].</li>
+    </ul>
+
+    <h2>2. Prevalence</h2>
+    <p>Prevalence is concerned with quantifying the number of existing cases in a population at a designated time[cite: 1]. It acts as a snapshot of the disease burden.</p>
+    
+    <h3>2.1 Point vs. Period Prevalence</h3>
+    <div class="def-box">
+        <strong>Point Prevalence</strong>
+        <p>The proportion of persons in a defined population that has the outcome under study at a specific point in time[cite: 1].</p>
+    </div>
+    <div class="def-box">
+        <strong>Period Prevalence</strong>
+        <p>Counts the number of cases in a population over a defined period of time[cite: 1]. The numerator for period prevalence includes cases present at the start, as well as incident cases which arose during the period of interest[cite: 1].</p>
+    </div>
+
+    <div class="example-box">
+        <strong>African Clinical Example: Point Prevalence of Metabolic Syndrome</strong>
+        <p>To understand the burden of cardiometabolic risk factors, Dr. Belinda Chihota and colleagues conducted a cross-sectional analysis among treatment-naïve adults living with and without HIV in urban Zambia and Zimbabwe. Using the International Diabetes Federation criteria, they assessed the point prevalence of Metabolic Syndrome (MetS). They found a high overall point prevalence of 19%, with females showing a significantly higher prevalence (27%) compared to males (9%). Notably, HIV status itself was not independently associated with MetS; rather, older age, female sex, and lifestyle factors were the primary drivers.</p>
+    </div>
+
+    <h2>3. Incidence</h2>
+    <p>Incidence is concerned with quantifying the frequency of occurrence of new cases in a defined population, arising during a given time period[cite: 1]. Unlike prevalence, incidence measures only the transition from a non-diseased to a diseased state.</p>
+
+    <h3>3.1 Incidence Risk (Cumulative Incidence)</h3>
+    <div class="def-box">
+        <strong>Incidence Risk</strong>
+        <p>The proportion of new cases that occur in a population initially free of the condition during a specified period of time[cite: 1].</p>
+    </div>
+    <p class="formula">$$r = \frac{\text{Number of new cases in a defined time period}}{\text{Population at risk at the beginning of the period}}$$</p>
+    
+    <div class="example-box">
+        <strong>African Clinical Example: Attack Rates</strong>
+        <p>An attack rate is a special kind of incidence risk used in the context of outbreaks or epidemics of infectious diseases[cite: 1]. For instance, if a cholera outbreak occurs in a high-density suburb of Harare, and 1,500 new cases occur among a local population of 10,000 people initially at risk, the attack rate (incidence risk) is 15%.</p>
+    </div>
+
+    <h3>3.2 Incidence Rate</h3>
+    <p>The incidence rate relates the number of new cases to the person-time at risk[cite: 1]. This takes into account the total time that individuals in a population spend at risk during the follow-up period[cite: 1]. It is the preferred measure in <em>dynamic populations</em> (populations that gain and lose members)[cite: 1].</p>
+    <div class="def-box">
+        <strong>Incidence Rate</strong>
+        <p>The number of new cases in a defined time period divided by the total person-time at risk[cite: 1].</p>
+    </div>
+    <p class="formula">$$\text{Incidence Rate} = \frac{\text{Number of new cases in a defined time period}}{\text{Total person-time at risk}}$$</p>
+
+    <div class="example-box">
+        <strong>African Clinical Example: Person-Time in HIV Cohorts</strong>
+        <p>During a follow-up study of patients initiating Antiretroviral Therapy (ART) at Newlands Clinic, researchers want to measure the incidence rate of opportunistic infections. Patients enroll on different dates, and some may default or transfer out. By calculating the exact <em>person-years</em> each patient contributes while remaining infection-free, researchers can accurately determine the incidence rate (e.g., 8.5 cases per 100 person-years), accounting for the dynamic nature of the clinical cohort.</p>
+    </div>
+
+    <h2>4. Relationship Between Prevalence and Incidence</h2>
+    <p>The prevalence (P) quantifies all the people with an outcome at a point in time[cite: 1]. It is influenced by the occurrence of new cases (incidence, I) and the duration of each case (D)[cite: 1]. In a stable population, this relationship is expressed as:</p>
+    <p class="formula">$$P \approx I \times D$$</p>
+    <ul>
+        <li>If a new ART regimen drastically improves survival for a chronic comorbidity without curing it, the duration ($D$) increases. Consequently, the prevalence ($P$) will increase even if the incidence ($I$) remains exactly the same.</li>
+        <li>Prevalence provides useful information about the state of health of a community at a particular point in time, and so are useful for evaluating health-care needs and planning health service provision[cite: 1].</li>
+        <li>The incidence risk provides health service planners with useful information about conditions in which the occurrence of a new case requires a large amount of service provision[cite: 1].</li>
+    </ul>
+
+</div>
+
+<footer>
+    <p style="text-align: center; font-size: 12px; color: var(--nc-slate); margin-top: 20px;">&copy; 2026 Newlands Clinic Research Masterclass. Curated by Ardele Ndanga.</p>
+</footer>
+
+</body>
+</html>
